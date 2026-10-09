@@ -3,7 +3,7 @@ import { getFormatter, getNow, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { db } from "@/db";
 import { brand, favorite, fuelType, openingHours, outage, source, station, stationFuelPrice } from "@/db/schema";
-import { FavoriteButton, ReportOutage } from "@/components/StationActions";
+import { ContributionPanel, FavoriteButton } from "@/components/StationActions";
 import { freshness } from "@/lib/cost";
 import { isOpenAt, localNow, type Hours } from "@/lib/hours";
 import { requireUser } from "@/lib/session";
@@ -122,8 +122,7 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
           )}
         </section>
 
-        <ReportOutage stationId={id} fuels={prices.map(({ p }) => ({ code: p.fuelCode, label: tf(p.fuelCode as never) }))}
-          labels={{ title: t("reportOutage"), done: t("reported"), send: t("report") }} />
+        <ContributionPanel stationId={id} soldFuels={prices.map(({ p }) => p.fuelCode)} />
 
         <section className="card px-4 py-3">
           <h2 className="mb-2 font-semibold">{t("hours")}</h2>

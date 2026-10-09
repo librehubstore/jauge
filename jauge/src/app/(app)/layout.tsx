@@ -19,6 +19,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
     { href: "/favorites", label: t("favorites") },
     { href: "/vehicles", label: t("vehicles") },
     { href: "/settings", label: t("settings") },
+    ...(u.role !== "user" ? [{ href: "/moderation", label: t("moderation") }] : []),
     ...(u.role === "admin" ? [{ href: "/admin", label: t("admin") }] : []),
   ];
 

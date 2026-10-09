@@ -37,5 +37,12 @@ Hypothèses retenues quand la spécification (`../gasoil-now-prompt.md`) laissai
 - **Fond de carte** : OpenFreeMap (positron), `NEXT_PUBLIC_MAP_STYLE` pour changer.
 - **Position** : jamais envoyée ailleurs qu'à `/api/stations` et jamais stockée. La dernière zone est mémorisée en `localStorage`, côté navigateur uniquement.
 
+## V1 — Contributions (spec 4.10)
+- **Réputation** : +1 pour toute contribution publiée (automatiquement ou par un modérateur), −3 par rejet.
+- **Prix communautaire** : il remplace le prix courant seulement si le prix officiel a plus de 24 h ; sinon il est conservé dans les contributions sans changer l'affichage. Il crée un point d'historique.
+- **Fermeture, enseigne, horaires, station manquante** : toujours en modération. Les horaires sont une note libre (pas d'éditeur structuré).
+- **Pays sans open data** (BE, LU, MC) : stations importées d'OpenStreetMap chaque semaine ; la source n'écrase ni un statut ni une enseigne validés par la modération.
+- **Station manquante** : créée dans la source `community` après validation, position issue du géocodage de l'adresse.
+
 ## Hors MVP (prévu en V1/V2, voir spec section 3)
 Itinéraire et plan carburant, alertes de prix, historique graphique, saisie de prix communautaire et file de modération, connecteurs PT/AD/DE/UK/AT, langues ES/IT/PT/DE/NL, conversion de devises, PWA hors ligne et Web Push, journal de pleins.

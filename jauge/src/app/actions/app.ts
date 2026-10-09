@@ -4,7 +4,8 @@ import { and, eq, isNull, ne } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { db } from "@/db";
-import { contribution, favorite, notification, outage, station, user, vehicle, type Preferences } from "@/db/schema";
+import { favorite, notification, user, vehicle, type Preferences } from "@/db/schema";
+import { PAYLOADS, submitContribution, type ContributionType } from "@/lib/contributions";
 import { FUEL_CODES } from "@/lib/fuels";
 import { requireUser } from "@/lib/session";
 
@@ -75,15 +76,13 @@ export async function savePreferences(input: Preferences) {
   revalidatePath("/", "layout");
 }
 
-/** Signalement de rupture : visible immédiatement, expire après 12 h ou au prochain prix officiel (spec 4.10). */
-export async function reportOutage(stationId: number, fuelCode: string) {
+/** Contribution (rupture, prix, fermeture, enseigne, horaires, station manquante) — spec 4.10. */
+export async function contribute(stationId: number | null, type: ContributionType, payload: unknown) {
   const u = await requireUser();
-  const f = fuel.parse(fuelCode);
-  const [s] = await db.select({ id: station.id }).from(station).where(eq(station.id, stationId));
-  if (!s) return;
-  await db.insert(outage).values({ stationId, fuelCode: f, kind: "temporary", origin: "community", reportedBy: u.id });
-  await db.insert(contribution).values({ userId: u.id, stationId, type: "outage", payload: { fuel: f }, status: "published" });
-  revalidatePath(`/station/${stationId}`);
+  if (!(type in PAYLOADS)) throw new Error("BAD_TYPE");
+  const c = await submitContribution(u.id, stationId, type, payload);
+  if (stationId) revalidatePath(`/station/${stationId}`);
+  return c.status;
 }
 
 export async function markNotificationsRead() {

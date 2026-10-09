@@ -17,9 +17,15 @@ export async function bootstrap() {
     .onConflictDoNothing();
 
   for (const c of CONNECTORS) {
-    const meta = { country: c.country, name: c.name, license: c.license, attribution: c.attribution, url: c.url, schedule: c.schedule };
+    const meta = { country: c.country, name: c.name, license: c.license, attribution: c.attribution, url: c.url, schedule: c.schedule, kind: c.kind ?? "official" };
     await db.insert(source).values({ id: c.id, ...meta }).onConflictDoUpdate({ target: source.id, set: meta });
   }
+
+  // Stations ajoutées par la communauté (signalement « station manquante » validé).
+  await db.insert(source).values({
+    id: "community", country: "EU", name: "Communauté Jauge", kind: "community", license: "—",
+    attribution: "Stations signalées par les utilisateurs", schedule: "", enabled: false,
+  }).onConflictDoNothing();
 
   const email = process.env.ADMIN_EMAIL?.toLowerCase();
   const password = process.env.ADMIN_PASSWORD;

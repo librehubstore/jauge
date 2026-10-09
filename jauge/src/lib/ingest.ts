@@ -49,10 +49,11 @@ export async function ingestStations(c: Connector, input: RawStation[]) {
         name: sql`excluded.name`, address: sql`excluded.address`, postalCode: sql`excluded.postal_code`,
         city: sql`excluded.city`, location: sql`excluded.location`, roadType: sql`excluded.road_type`,
         is24hAutomat: sql`excluded.is_24h_automat`, services: sql`excluded.services`,
-        paymentMethods: sql`excluded.payment_methods`, status: sql`excluded.status`, lastSeenAt: sql`excluded.last_seen_at`,
-        // L'enseigne de la source prime ; sinon on garde celle déjà enrichie (OSM, communauté).
-        brandId: sql`coalesce(excluded.brand_id, ${station.brandId})`,
-        brandOrigin: sql`coalesce(excluded.brand_origin, ${station.brandOrigin})`,
+        paymentMethods: sql`excluded.payment_methods`,
+        status: c.keepStatus ? sql`${station.status}` : sql`excluded.status`, lastSeenAt: sql`excluded.last_seen_at`,
+        // Enseigne validée par la modération > enseigne de la source > enrichissement OSM existant.
+        brandId: sql`case when ${station.brandOrigin} = 'community' then ${station.brandId} else coalesce(excluded.brand_id, ${station.brandId}) end`,
+        brandOrigin: sql`case when ${station.brandOrigin} = 'community' then ${station.brandOrigin} else coalesce(excluded.brand_origin, ${station.brandOrigin}) end`,
       },
     }).returning({ id: station.id, externalId: station.externalId });
     stationsUpserted += upserted.length;

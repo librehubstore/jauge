@@ -10,6 +10,7 @@ import { enrichFrBrandsFromOsm } from "@/connectors/osm-brands";
 import { db } from "@/db";
 import { auditLog, session, source, user } from "@/db/schema";
 import { auth } from "@/lib/auth";
+import { moderate } from "@/lib/contributions";
 import { runConnector } from "@/lib/ingest";
 import { notify } from "@/lib/notify";
 import { requireRole } from "@/lib/session";
@@ -85,4 +86,11 @@ export async function runOsmNow() {
   const admin = await requireRole("admin");
   await audit(admin.id, "osm.run", "source", "osm");
   after(() => enrichFrBrandsFromOsm().then((r) => console.info("[osm]", r)).catch((e) => console.error("[osm]", e)));
+}
+
+export async function moderateContribution(id: number, decision: "approve" | "reject", reason?: string) {
+  const mod = await requireRole("moderator", "admin");
+  const status = await moderate(id, mod.id, decision, reason?.trim().slice(0, 300));
+  if (status) await audit(mod.id, `contribution.${decision}`, "contribution", String(id), { reason });
+  revalidatePath("/moderation");
 }

@@ -34,6 +34,7 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
   const tst = useTranslations("station");
   const tc = useTranslations("common");
   const tv = useTranslations("vehicles");
+  const tcontrib = useTranslations("contrib");
   const locale = useLocale();
   const fmt = useFmt(prefs.distanceUnit);
   const router = useRouter();
@@ -216,6 +217,7 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
         <div className="flex items-center justify-between px-3 py-2 text-xs text-muted" aria-live="polite">
           <span>{loading ? tc("loading") : t("results", { count: stations.length })}</span>
           {data?.median != null && <span>{t("median", { value: fmt.price(data.median) })}</span>}
+          <Link href="/report-station" className="text-accent hover:underline">{tcontrib("missingLink")}</Link>
         </div>
         {error && <p role="alert" className="mx-3 rounded-md bg-danger/10 px-3 py-2 text-sm text-danger">{tc("error")}</p>}
         {!loading && !error && data && stations.length === 0 && <p className="px-3 py-6 text-center text-sm text-muted">{t("noResults")}</p>}

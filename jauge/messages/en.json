@@ -303,12 +303,69 @@
     "account_pending_approval": "New account to approve: {email}",
     "connector_failing": "Connector {sourceId} has failed 3 times in a row.",
     "empty": "No notifications.",
-    "account_approved": "Your account has been approved."
+    "account_approved": "Your account has been approved.",
+    "contribution_approved": "Your contribution has been approved. Thanks!",
+    "contribution_rejected": "Your contribution was rejected. {reason}"
   },
   "nav_apps": {
     "google": "Google Maps",
     "apple": "Apple Maps",
     "waze": "Waze",
     "osm": "OpenStreetMap"
+  },
+  "contrib": {
+    "title": "Report",
+    "fuel": "Fuel",
+    "price": "Observed price",
+    "send": "Send",
+    "closedKind": "Closure type",
+    "temporary": "Temporary",
+    "permanent": "Permanent",
+    "newBrand": "New brand",
+    "hoursNote": "Correct opening hours or services",
+    "tabs": {
+      "price": "Price",
+      "outage": "Shortage",
+      "closed": "Closure",
+      "brand_change": "Brand",
+      "hours": "Hours / services"
+    },
+    "result": {
+      "published": "Thanks! Your report is published.",
+      "pending": "Thanks! A moderator will review your report.",
+      "error": "Could not send the report. Check the values and try again."
+    },
+    "missingTitle": "Report a missing station",
+    "missingHelp": "Search the address, check the position, then fill in the details.",
+    "name": "Name",
+    "brand": "Brand",
+    "address": "Address",
+    "city": "City",
+    "country": "Country",
+    "position": "Position: {lat}, {lon}",
+    "missingLink": "A station is missing?",
+    "kind": "Type",
+    "note": "Note",
+    "lat": "Latitude",
+    "lon": "Longitude"
+  },
+  "moderation": {
+    "title": "Moderation",
+    "empty": "No pending contributions.",
+    "approve": "Approve",
+    "reject": "Reject",
+    "reason": "Reason (optional when approving)",
+    "author": "Author",
+    "reputation": "reputation {value}",
+    "median": "Local median: {value}",
+    "current": "Current price: {value}",
+    "types": {
+      "outage": "Shortage",
+      "price": "Price",
+      "closed": "Closure",
+      "brand_change": "Brand",
+      "hours": "Hours / services",
+      "missing_station": "Missing station"
+    }
   }
 }

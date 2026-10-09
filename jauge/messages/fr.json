@@ -303,12 +303,69 @@
     "account_pending_approval": "Nouveau compte à valider : {email}",
     "connector_failing": "Le connecteur {sourceId} échoue depuis 3 exécutions.",
     "empty": "Aucune notification.",
-    "account_approved": "Votre compte a été validé."
+    "account_approved": "Votre compte a été validé.",
+    "contribution_approved": "Votre contribution a été validée. Merci !",
+    "contribution_rejected": "Votre contribution a été refusée. {reason}"
   },
   "nav_apps": {
     "google": "Google Maps",
     "apple": "Apple Plans",
     "waze": "Waze",
     "osm": "OpenStreetMap"
+  },
+  "contrib": {
+    "title": "Signaler",
+    "fuel": "Carburant",
+    "price": "Prix constaté",
+    "send": "Envoyer",
+    "closedKind": "Type de fermeture",
+    "temporary": "Temporaire",
+    "permanent": "Définitive",
+    "newBrand": "Nouvelle enseigne",
+    "hoursNote": "Horaires ou services corrects",
+    "tabs": {
+      "price": "Prix",
+      "outage": "Rupture",
+      "closed": "Fermeture",
+      "brand_change": "Enseigne",
+      "hours": "Horaires / services"
+    },
+    "result": {
+      "published": "Merci ! Votre signalement est publié.",
+      "pending": "Merci ! Votre signalement sera vérifié par un modérateur.",
+      "error": "Signalement impossible. Vérifiez les valeurs et réessayez."
+    },
+    "missingTitle": "Signaler une station manquante",
+    "missingHelp": "Cherchez l'adresse, vérifiez la position puis complétez les informations.",
+    "name": "Nom",
+    "brand": "Enseigne",
+    "address": "Adresse",
+    "city": "Ville",
+    "country": "Pays",
+    "position": "Position : {lat}, {lon}",
+    "missingLink": "Une station manque ?",
+    "kind": "Type",
+    "note": "Note",
+    "lat": "Latitude",
+    "lon": "Longitude"
+  },
+  "moderation": {
+    "title": "Modération",
+    "empty": "Aucune contribution en attente.",
+    "approve": "Valider",
+    "reject": "Rejeter",
+    "reason": "Motif (facultatif pour valider)",
+    "author": "Auteur",
+    "reputation": "réputation {value}",
+    "median": "Médiane locale : {value}",
+    "current": "Prix actuel : {value}",
+    "types": {
+      "outage": "Rupture",
+      "price": "Prix",
+      "closed": "Fermeture",
+      "brand_change": "Enseigne",
+      "hours": "Horaires / services",
+      "missing_station": "Station manquante"
+    }
   }
 }

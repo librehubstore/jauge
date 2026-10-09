@@ -32,6 +32,9 @@ export type Connector = {
   attribution: string;
   url: string;
   schedule: string; // cron
+  kind?: "official" | "community";
+  /** Ne pas écraser le statut existant (fermetures validées par la modération). */
+  keepStatus?: boolean;
   fetch: () => Promise<RawStation[]>;
 };
 
