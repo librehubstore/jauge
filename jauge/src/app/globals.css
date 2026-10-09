@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #efede6;
+  --fg: #1c1b18;
+  --muted: #6b675e;
+  --border: #dcd8cd;
+  --accent: #0f5c4d;
+  --accent-fg: #ffffff;
+  --tier-0: #1d7a3a;
+  --tier-1: #a86400;
+  --tier-2: #b3261e;
+  --tier-none: #8a867c;
+  --danger: #b3261e;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131311;
+    --surface: #1c1c19;
+    --surface-2: #262622;
+    --fg: #ecebe6;
+    --muted: #a19d93;
+    --border: #36352f;
+    --accent: #5cc4a8;
+    --accent-fg: #0b1f1a;
+    --tier-0: #5fc47a;
+    --tier-1: #f0a63a;
+    --tier-2: #ff7a6e;
+    --tier-none: #8a867c;
+    --danger: #ff7a6e;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #131311;
+  --surface: #1c1c19;
+  --surface-2: #262622;
+  --fg: #ecebe6;
+  --muted: #a19d93;
+  --border: #36352f;
+  --accent: #5cc4a8;
+  --accent-fg: #0b1f1a;
+  --tier-0: #5fc47a;
+  --tier-1: #f0a63a;
+  --tier-2: #ff7a6e;
+  --tier-none: #8a867c;
+  --danger: #ff7a6e;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-danger: var(--danger);
+  --color-tier-0: var(--tier-0);
+  --color-tier-1: var(--tier-1);
+  --color-tier-2: var(--tier-2);
+  --color-tier-none: var(--tier-none);
+  --font-sans: var(--font-sans-app), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-app), ui-monospace, monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Composants de base */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-3.5 py-2 text-sm font-medium transition-colors disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+}
+@utility btn-primary {
+  @apply btn bg-accent text-accent-fg hover:opacity-90;
+}
+@utility btn-ghost {
+  @apply btn border border-border bg-surface hover:bg-surface-2;
+}
+@utility btn-danger {
+  @apply btn border border-danger text-danger hover:bg-surface-2;
+}
+@utility input {
+  @apply w-full rounded-md border border-border bg-surface px-3 py-2 text-sm placeholder:text-muted focus:outline-2 focus:outline-accent;
+}
+@utility label {
+  @apply mb-1 block text-sm font-medium;
+}
+@utility card {
+  @apply rounded-lg border border-border bg-surface;
+}
+@utility price {
+  @apply font-mono tabular-nums;
+}

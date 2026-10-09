@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: jauge
+      POSTGRES_PASSWORD: jauge
+      POSTGRES_DB: jauge
+    ports: ["5433:5432"]
+    volumes: [dbdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jauge"]
+      interval: 5s
+      retries: 10
+
+  app:
+    build: .
+    profiles: [full]
+    env_file: .env
+    environment:
+      DATABASE_URL: postgres://jauge:jauge@db:5432/jauge
+    ports: ["3000:3000"]
+    depends_on: { db: { condition: service_healthy } }
+
+  worker:
+    build: .
+    profiles: [full]
+    command: ["npx", "tsx", "src/worker.ts"]
+    env_file: .env
+    environment:
+      DATABASE_URL: postgres://jauge:jauge@db:5432/jauge
+    depends_on: { db: { condition: service_healthy } }
+
+volumes:
+  dbdata:

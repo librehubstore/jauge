@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<pdv_liste>
+  <pdv id="40500002" latitude="4377300" longitude="-56700" cp="40500" pop="R">
+    <adresse>Route de Mont de Marsan</adresse>
+    <ville>Saint-Sever</ville>
+    <horaires automate-24-24="1">
+      <jour id="1" nom="Lundi" ferme=""/>
+      <jour id="2" nom="Mardi" ferme=""/>
+      <jour id="3" nom="Mercredi" ferme=""/>
+      <jour id="4" nom="Jeudi" ferme=""/>
+      <jour id="5" nom="Vendredi" ferme=""/>
+      <jour id="6" nom="Samedi" ferme=""/>
+      <jour id="7" nom="Dimanche" ferme=""/>
+    </horaires>
+    <services>
+      <service>Station de gonflage</service>
+      <service>Location de véhicule</service>
+      <service>Piste poids lourds</service>
+      <service>Lavage manuel</service>
+      <service>Vente de gaz domestique (Butane, Propane)</service>
+      <service>Automate CB 24/24</service>
+      <service>DAB (Distributeur automatique de billets)</service>
+    </services>
+    <prix nom="Gazole" id="1" maj="2026-10-07 08:54:39" valeur="2.319"/>
+    <prix nom="GPLc" id="4" maj="2026-10-07 08:55:39" valeur="1.185"/>
+    <prix nom="E10" id="5" maj="2026-10-07 08:54:39" valeur="2.149"/>
+    <prix nom="SP98" id="6" maj="2026-09-30 15:04:41" valeur="2.298"/>
+    <rupture nom="E85" id="3" debut="2017-08-31 18:21:04" fin="" type="definitive"/>
+    <rupture nom="SP95" id="2" debut="2026-03-12 17:02:34" fin="" type="definitive"/>
+  </pdv>
+  <pdv id="89100001" latitude="4818300" longitude="330900" cp="89100" pop="R">
+    <adresse>84 ROUTE DE MAILLOT</adresse>
+    <ville>SENS</ville>
+    <horaires automate-24-24="">
+      <jour id="1" nom="Lundi" ferme=""/>
+      <jour id="2" nom="Mardi" ferme=""/>
+      <jour id="3" nom="Mercredi" ferme=""/>
+      <jour id="4" nom="Jeudi" ferme=""/>
+      <jour id="5" nom="Vendredi" ferme=""/>
+      <jour id="6" nom="Samedi" ferme=""/>
+      <jour id="7" nom="Dimanche" ferme=""/>
+    </horaires>
+    <services>
+      <service>Toilettes publiques</service>
+      <service>Location de véhicule</service>
+      <service>Vente de gaz domestique (Butane, Propane)</service>
+      <service>Wifi</service>
+      <service>DAB (Distributeur automatique de billets)</service>
+    </services>
+    <prix nom="Gazole" id="1" maj="2026-10-06 14:40:28" valeur="2.389"/>
+    <prix nom="E85" id="3" maj="2026-10-05 12:16:34" valeur="0.909"/>
+    <prix nom="E10" id="5" maj="2026-09-28 11:45:27" valeur="2.209"/>
+    <prix nom="SP98" id="6" maj="2026-09-28 11:42:00" valeur="2.289"/>
+    <rupture nom="GPLc" id="4" debut="2023-07-27 10:30:54" fin="" type="definitive"/>
+    <rupture nom="SP95" id="2" debut="2022-11-26 09:30:22" fin="" type="definitive"/>
+  </pdv>
+  <pdv id="80570001" latitude="5004475" longitude="152562" cp="80570" pop="R">
+    <adresse>Rue Joliot Curie</adresse>
+    <ville>Dargnies</ville>
+    <horaires automate-24-24="">
+      <jour id="1" nom="Lundi" ferme=""/>
+      <jour id="2" nom="Mardi" ferme=""/>
+      <jour id="3" nom="Mercredi" ferme=""/>
+      <jour id="4" nom="Jeudi" ferme=""/>
+      <jour id="5" nom="Vendredi" ferme=""/>
+      <jour id="6" nom="Samedi" ferme=""/>
+      <jour id="7" nom="Dimanche" ferme=""/>
+    </horaires>
+    <services>
+      <service>Boutique alimentaire</service>
+      <service>Vente de gaz domestique (Butane, Propane)</service>
+      <service>DAB (Distributeur automatique de billets)</service>
+    </services>
+    <prix nom="Gazole" id="1" maj="2026-09-18 06:30:48" valeur="2.419"/>
+    <prix nom="SP95" id="2" maj="2026-09-25 06:48:02" valeur="2.249"/>
+    <prix nom="SP98" id="6" maj="2026-09-25 06:48:02" valeur="2.309"/>
+    <rupture nom="E85" id="3" debut="2011-08-16 16:54:00" fin="" type=""/>
+    <rupture nom="GPLc" id="4" debut="2017-10-18 07:25:09" fin="" type="definitive"/>
+    <rupture nom="E10" id="5" debut="2017-10-18 07:25:09" fin="" type="definitive"/>
+  </pdv>
+</pdv_liste>

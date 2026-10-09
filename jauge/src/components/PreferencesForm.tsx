@@ -1,0 +1,55 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+import { useState, useTransition } from "react";
+import { savePreferences } from "@/app/actions/app";
+import type { Preferences } from "@/db/schema";
+import { FUEL_CODES } from "@/lib/fuels";
+
+export function PreferencesForm({ prefs }: { prefs: Preferences }) {
+  const t = useTranslations("settings");
+  const tf = useTranslations("fuel");
+  const tn = useTranslations("nav_apps");
+  const tc = useTranslations("common");
+  const [saved, setSaved] = useState(false);
+  const [pending, start] = useTransition();
+
+  return (
+    <form className="card grid gap-4 p-4 sm:grid-cols-2" onSubmit={(e) => {
+      e.preventDefault();
+      const f = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
+      start(async () => {
+        await savePreferences({
+          distanceUnit: f.distanceUnit as Preferences["distanceUnit"], defaultFuel: f.defaultFuel,
+          radiusKm: Number(f.radiusKm), navApp: f.navApp as Preferences["navApp"], theme: f.theme as Preferences["theme"],
+        });
+        setSaved(true);
+      });
+    }} onChange={() => setSaved(false)}>
+      <label><span className="label">{t("defaultFuel")}</span>
+        <select className="input" name="defaultFuel" defaultValue={prefs.defaultFuel ?? "B7"}>
+          {FUEL_CODES.map((c) => <option key={c} value={c}>{tf(c)}</option>)}
+        </select></label>
+      <label><span className="label">{t("radius")}</span>
+        <select className="input" name="radiusKm" defaultValue={prefs.radiusKm ?? 10}>
+          {[2, 5, 10, 20, 30, 50].map((r) => <option key={r} value={r}>{r}</option>)}
+        </select></label>
+      <label><span className="label">{t("distanceUnit")}</span>
+        <select className="input" name="distanceUnit" defaultValue={prefs.distanceUnit ?? "km"}>
+          <option value="km">km</option><option value="mi">mi</option>
+        </select></label>
+      <label><span className="label">{t("navApp")}</span>
+        <select className="input" name="navApp" defaultValue={prefs.navApp ?? "google"}>
+          {(["google", "apple", "waze", "osm"] as const).map((k) => <option key={k} value={k}>{tn(k)}</option>)}
+        </select></label>
+      <label><span className="label">{t("theme")}</span>
+        <select className="input" name="theme" defaultValue={prefs.theme ?? "system"}>
+          {(["system", "light", "dark"] as const).map((k) => <option key={k} value={k}>{t(`themes.${k}`)}</option>)}
+        </select></label>
+      <div className="flex items-center gap-3 sm:col-span-2">
+        <button className="btn-primary" disabled={pending}>{tc("save")}</button>
+        {saved && <span role="status" className="text-sm text-muted">{t("saved")}</span>}
+      </div>
+    </form>
+  );
+}
