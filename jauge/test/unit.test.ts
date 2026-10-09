@@ -151,3 +151,31 @@ describe("recherche (spec 4.3)", () => {
     expect(rank([row(5, "1.8", 1, { outage: true })], { ...base, hideOutages: true }, now).stations).toHaveLength(0);
   });
 });
+
+import { parseFrArchiveLines } from "@/lib/history-import";
+import { priceAt, trendOf } from "@/lib/trend";
+
+describe("historique (spec 4.9)", () => {
+  const day = 86_400_000, now = Date.UTC(2026, 9, 10);
+  it("prix en vigueur à une date et tendance 7 jours", () => {
+    const s: [number, number][] = [[now - 20 * day, 1.8], [now - 3 * day, 1.85]];
+    expect(priceAt(s, now - 10 * day)).toBe(1.8);
+    expect(trendOf(s, now)).toBe("up");
+    expect(trendOf([[now - 20 * day, 1.8], [now - 2 * day, 1.795]], now)).toBe("stable");
+    expect(trendOf([[now - 20 * day, 1.8], [now - 2 * day, 1.7]], now)).toBe("down");
+    expect(trendOf([[now - 2 * day, 1.7]], now)).toBeNull();
+  });
+  it("archive FR : seuls les changements de prix après la date de début sont gardés", () => {
+    const lines = [
+      `<pdv id="1000001" latitude="4620100" longitude="519800" cp="01000" pop="R">`,
+      `  <prix nom="Gazole" id="1" maj="2026-01-02T00:39:00" valeur="1.638"/>`,
+      `  <prix nom="Gazole" id="1" maj="2026-01-02T08:18:00" valeur="1.638"/>`,
+      `  <prix nom="Gazole" id="1" maj="2026-01-03T00:40:00" valeur="1.649"/>`,
+      `  <prix nom="SP98" id="6" maj="2025-12-31T10:00:00" valeur="1.9"/>`,
+      `</pdv>`,
+    ];
+    const pts = [...parseFrArchiveLines(lines, new Date("2026-01-01T00:00:00Z"))];
+    expect(pts.map((p) => [p.fuel, p.price])).toEqual([["B7", 1.638], ["B7", 1.649]]);
+    expect(pts[0].at.toISOString()).toBe("2026-01-01T23:39:00.000Z");
+  });
+});

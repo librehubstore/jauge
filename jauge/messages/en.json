@@ -367,5 +367,24 @@
       "hours": "Hours / services",
       "missing_station": "Missing station"
     }
+  },
+  "history": {
+    "title": "Price history",
+    "fuel": "Fuel",
+    "period": "Period",
+    "p7": "7 days",
+    "p30": "30 days",
+    "p365": "1 year",
+    "station": "This station",
+    "zone": "10 km median",
+    "empty": "No history yet for this fuel.",
+    "aria": "Price trend — {fuel}",
+    "table": "Show data",
+    "date": "Date",
+    "trend": {
+      "up": "↗ rising over 7 d",
+      "down": "↘ falling over 7 d",
+      "stable": "→ stable over 7 d"
+    }
   }
 }

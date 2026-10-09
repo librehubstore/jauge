@@ -6,7 +6,9 @@ import { brand, favorite, fuelType, openingHours, outage, source, station, stati
 import { ContributionPanel, FavoriteButton } from "@/components/StationActions";
 import { freshness } from "@/lib/cost";
 import { isOpenAt, localNow, type Hours } from "@/lib/hours";
+import { stationSeries, trendOf } from "@/lib/history";
 import { requireUser } from "@/lib/session";
+import { PriceHistoryChart } from "@/components/PriceHistoryChart";
 
 export default async function StationPage({ params }: PageProps<"/station/[id]">) {
   const u = await requireUser();
@@ -28,6 +30,9 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
     db.select().from(favorite).where(and(eq(favorite.userId, u.id), eq(favorite.stationId, id))),
   ]);
 
+  const trends = new Map(await Promise.all(prices.map(async ({ p }) =>
+    [p.fuelCode, trendOf(await stationSeries(id, p.fuelCode, 8))] as const)));
+  const th = await getTranslations("history");
   const t = await getTranslations("station");
   const tf = await getTranslations("fuel");
   const tp = await getTranslations("price");
@@ -106,10 +111,17 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
                         {o.origin === "community" ? t("outageCommunity", { ago: f.relativeTime(o.startedAt, now) }) : t(o.kind === "permanent" ? "outagePermanent" : "outageTemporary")}
                       </p>}
                     </div>
+                    <div className="text-right">
                     <p className={`price text-lg font-semibold ${o ? "text-muted line-through" : ""}`}>
                       {f.number(p.price, { style: "currency", currency: p.currency, minimumFractionDigits: 3 })}
                       <span className="text-xs font-normal text-muted">/{unit}</span>
                     </p>
+                    {trends.get(p.fuelCode) && (
+                      <p className={`text-xs ${trends.get(p.fuelCode) === "up" ? "text-tier-2" : trends.get(p.fuelCode) === "down" ? "text-tier-0" : "text-muted"}`}>
+                        {th(`trend.${trends.get(p.fuelCode)}`)}
+                      </p>
+                    )}
+                    </div>
                   </li>
                 );
               })}
@@ -121,6 +133,10 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
             </p>
           )}
         </section>
+
+        {prices.length > 0 && (
+          <PriceHistoryChart stationId={id} fuels={prices.map(({ p }) => p.fuelCode)} currency={prices[0].p.currency} />
+        )}
 
         <ContributionPanel stationId={id} soldFuels={prices.map(({ p }) => p.fuelCode)} />
 

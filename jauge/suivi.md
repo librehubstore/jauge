@@ -18,11 +18,13 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - [x] Tests : 6 nouveaux (décision, 1,20 € invisible avant validation, priorité officielle, rejet, fermeture)
 - ⚠️ Horaires : note libre lue par le modérateur, pas d'éditeur structuré (voir DECISIONS.md)
 
-### Phase 2 — Historique et tendances (spec 4.9) ⏳
-- [ ] API historique par station/carburant (7 j, 30 j, 1 an) + médiane de zone
-- [ ] Graphique sur la fiche station (SVG maison, sans librairie)
-- [ ] Indicateur de tendance 7 jours (hausse / stable / baisse)
-- [ ] Import initial des archives (FR annuel, IT trimestriel, ES par jour), fenêtre 1 an configurable
+### Phase 2 — Historique et tendances (spec 4.9) 🔄
+- [x] API `/api/stations/[id]/history` (7 j, 30 j, 1 an) + médiane de zone 10 km (quotidienne, hebdomadaire sur 1 an)
+- [x] Graphique SVG maison sur la fiche station : escalier, légende, réticule + infobulle, vue tableau ; palette validée (bleu/orange)
+- [x] Tendance 7 jours par carburant sur la fiche (seuil 0,01 €)
+- [x] Import FR en flux (`npm run import-history`, fenêtre `HISTORY_DAYS` = 365) — 1er import en cours (> 2,2 M points)
+- [ ] Vérifier le graphique dans le navigateur une fois l'import terminé
+- ⚠️ Archives IT (trimestrielles, > 100 Mo) et ES (1 requête par jour) non importées : l'historique s'y construit au fil des ingestions
 
 ### Phase 3 — Alertes de prix (spec 4.8) ⏳
 - [ ] CRUD alertes : station, favoris, zone ; carburant ; seuil
@@ -58,3 +60,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 ## Journal
 - 2026-10-10 — MVP commité. Plan V1 rédigé.
 - 2026-10-10 — Phase 1 terminée (28 tests). Overpass renvoie parfois 504 : le réessai suffit, l'import est hebdomadaire.
+- 2026-10-10 — Phase 2 codée, tests OK (34). Import d'archive FR lancé en arrière-plan ; graphique à valider visuellement.

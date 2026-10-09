@@ -17,6 +17,8 @@
   --tier-2: #b3261e;
   --tier-none: #8a867c;
   --danger: #b3261e;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
   color-scheme: light;
 }
 
@@ -35,6 +37,8 @@
     --tier-2: #ff7a6e;
     --tier-none: #8a867c;
     --danger: #ff7a6e;
+    --series-1: #3987e5;
+    --series-2: #d95926;
     color-scheme: dark;
   }
 }
@@ -53,6 +57,8 @@
   --tier-2: #ff7a6e;
   --tier-none: #8a867c;
   --danger: #ff7a6e;
+  --series-1: #3987e5;
+  --series-2: #d95926;
   color-scheme: dark;
 }
 

@@ -367,5 +367,24 @@
       "hours": "Horaires / services",
       "missing_station": "Station manquante"
     }
+  },
+  "history": {
+    "title": "Historique des prix",
+    "fuel": "Carburant",
+    "period": "Période",
+    "p7": "7 jours",
+    "p30": "30 jours",
+    "p365": "1 an",
+    "station": "Cette station",
+    "zone": "Médiane 10 km",
+    "empty": "Pas encore d'historique pour ce carburant.",
+    "aria": "Évolution du prix — {fuel}",
+    "table": "Voir les données",
+    "date": "Date",
+    "trend": {
+      "up": "↗ en hausse sur 7 j",
+      "down": "↘ en baisse sur 7 j",
+      "stable": "→ stable sur 7 j"
+    }
   }
 }

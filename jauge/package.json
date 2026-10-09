@@ -10,7 +10,8 @@
     "test": "vitest run",
     "db:generate": "drizzle-kit generate",
     "ingest": "tsx scripts/ingest-once.mts",
-    "worker": "tsx src/worker.ts"
+    "worker": "tsx src/worker.ts",
+    "import-history": "tsx scripts/import-history.mts"
   },
   "dependencies": {
     "better-auth": "^1.7.7",
