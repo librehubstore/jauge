@@ -45,6 +45,7 @@ export type Preferences = {
   theme?: "system" | "light" | "dark";
   emailAlerts?: boolean;
   displayCurrency?: string; // vide = devise d'origine
+  maxPriceAgeDays?: number; // au-delà, un prix est ignoré (7 par défaut)
 };
 
 export const session = pgTable("session", {

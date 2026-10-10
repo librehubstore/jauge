@@ -232,7 +232,10 @@
     "saved": "Instellingen opgeslagen.",
     "emailAlerts": "Prijsalarmen ook per e-mail ontvangen",
     "displayCurrency": "Prijzen omrekenen naar",
-    "originalCurrency": "Oorspronkelijke valuta"
+    "originalCurrency": "Oorspronkelijke valuta",
+    "maxPriceAge": "Prijzen negeren die ouder zijn dan",
+    "days": "{count, plural, one {# dag} other {# dagen}}",
+    "maxPriceAgeHint": "Sommige stations werken een prijs alleen bij als die verandert (vaak E85 of lpg)."
   },
   "admin": {
     "title": "Beheer",

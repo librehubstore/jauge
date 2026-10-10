@@ -23,7 +23,7 @@ export function PreferencesForm({ prefs }: { prefs: Preferences }) {
         await savePreferences({
           distanceUnit: f.distanceUnit as Preferences["distanceUnit"], defaultFuel: f.defaultFuel,
           radiusKm: Number(f.radiusKm), navApp: f.navApp as Preferences["navApp"], theme: f.theme as Preferences["theme"],
-          emailAlerts: f.emailAlerts === "on", displayCurrency: f.displayCurrency,
+          emailAlerts: f.emailAlerts === "on", displayCurrency: f.displayCurrency, maxPriceAgeDays: Number(f.maxPriceAgeDays),
         });
         setSaved(true);
       });
@@ -36,6 +36,11 @@ export function PreferencesForm({ prefs }: { prefs: Preferences }) {
         <select className="input" name="radiusKm" defaultValue={prefs.radiusKm ?? 10}>
           {[2, 5, 10, 20, 30, 50].map((r) => <option key={r} value={r}>{r}</option>)}
         </select></label>
+      <label><span className="label">{t("maxPriceAge")}</span>
+        <select className="input" name="maxPriceAgeDays" defaultValue={prefs.maxPriceAgeDays ?? 7}>
+          {[1, 2, 3, 7, 14, 30].map((d) => <option key={d} value={d}>{t("days", { count: d })}</option>)}
+        </select>
+        <span className="mt-1 block text-xs text-muted">{t("maxPriceAgeHint")}</span></label>
       <label><span className="label">{t("distanceUnit")}</span>
         <select className="input" name="distanceUnit" defaultValue={prefs.distanceUnit ?? "km"}>
           <option value="km">km</option><option value="mi">mi</option>

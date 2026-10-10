@@ -106,7 +106,7 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
           {prices.length === 0 ? <p className="px-4 py-3 text-sm text-muted">{tp("noPrice")}</p> : (
             <ul>
               {prices.map(({ p, unit }) => {
-                const fr = freshness(p.sourceUpdatedAt, now);
+                const fr = freshness(p.sourceUpdatedAt, now, u.preferences.maxPriceAgeDays);
                 const o = outageOf.get(p.fuelCode);
                 return (
                   <li key={p.fuelCode} className="flex items-center justify-between gap-3 border-b border-border px-4 py-2.5 last:border-0">

@@ -28,9 +28,10 @@ export const savings = (medianPrice: number, price: number, amount: number, crow
   (medianPrice - price) * amount - detourCost(crowKm, consumptionPer100, price);
 
 export type Freshness = "fresh" | "stale" | "excluded";
-export function freshness(updatedAt: Date, now = new Date()): Freshness {
+/** maxDays : âge au-delà duquel un prix est ignoré (réglage utilisateur, 7 jours par défaut). */
+export function freshness(updatedAt: Date, now = new Date(), maxDays = EXCLUDED_DAYS): Freshness {
   const h = (now.getTime() - updatedAt.getTime()) / 3_600_000;
-  if (h > EXCLUDED_DAYS * 24) return "excluded";
+  if (h > maxDays * 24) return "excluded";
   return h > STALE_HOURS ? "stale" : "fresh";
 }
 

@@ -232,7 +232,10 @@
     "saved": "Impostazioni salvate.",
     "emailAlerts": "Ricevi gli avvisi di prezzo anche via email",
     "displayCurrency": "Converti i prezzi in",
-    "originalCurrency": "Valuta d'origine"
+    "originalCurrency": "Valuta d'origine",
+    "maxPriceAge": "Ignora i prezzi più vecchi di",
+    "days": "{count, plural, one {# giorno} other {# giorni}}",
+    "maxPriceAgeHint": "Alcuni distributori aggiornano un prezzo solo quando cambia (spesso E85 o GPL)."
   },
   "admin": {
     "title": "Amministrazione",

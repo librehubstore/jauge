@@ -11,7 +11,7 @@ export type SearchParams = {
   sort: SortKey; level: number; tank: number; consumption: number;
   onlySelling: boolean; hideOutages: boolean; openNow: boolean; automat24: boolean; includeOld: boolean;
   brands: number[]; excludeBrands: number[]; services: string[];
-  favoritesFirst: boolean; userId: string;
+  favoritesFirst: boolean; userId: string; maxAgeDays?: number;
 };
 
 export type StationResult = {
@@ -70,7 +70,7 @@ export function rank(rows: Row[], p: SearchParams, now: Date) {
   const amount = amountToAdd(p.tank, p.level);
   const enriched = rows.map((r) => {
     const price = r.price !== null && !r.quarantined ? Number(r.price) : null;
-    const fresh = price !== null && r.source_updated_at ? freshness(new Date(r.source_updated_at), now) : null;
+    const fresh = price !== null && r.source_updated_at ? freshness(new Date(r.source_updated_at), now, p.maxAgeDays) : null;
     const openNow = r.is_24h_automat ? true : r.hours?.length ? isOpenAt(r.hours, r.country, now) : null;
     return { r, price, fresh, openNow };
   });
@@ -87,7 +87,7 @@ export function rank(rows: Row[], p: SearchParams, now: Date) {
     return true;
   });
 
-  // Tiers et médiane sur les prix non exclus (< 7 j) : certaines sources ne datent un prix que de son dernier changement.
+  // Tiers et médiane sur les prix non exclus (plus récents que le réglage utilisateur) : certaines sources ne datent un prix que de son dernier changement.
   const freshPrices = filtered.filter((x) => usable(x) && x.fresh !== "excluded" && !x.r.outage).map((x) => x.price!);
   const med = median(freshPrices);
   const tierOf = freshPrices.length ? priceTiers(freshPrices) : null;

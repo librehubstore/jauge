@@ -146,6 +146,9 @@ describe("recherche (spec 4.3)", () => {
     const old = row(3, "1.500", 1, { source_updated_at: new Date("2026-09-20T00:00:00Z") });
     expect(rank([old], base, now).stations).toHaveLength(0);
     expect(rank([old], { ...base, includeOld: true }, now).stations).toHaveLength(1);
+    expect(rank([old], { ...base, maxAgeDays: 30 }, now).stations[0].freshness).toBe("stale");
+    const recent = row(6, "1.500", 1, { source_updated_at: new Date("2026-10-07T00:00:00Z") });
+    expect(rank([recent], { ...base, maxAgeDays: 1 }, now).stations).toHaveLength(0);
   });
   it("prix en quarantaine ignoré, rupture masquable", () => {
     expect(rank([row(4, "0.200", 1, { quarantined: true })], base, now).stations).toHaveLength(0);

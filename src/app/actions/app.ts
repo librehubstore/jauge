@@ -70,6 +70,7 @@ const PrefsInput = z.object({
   theme: z.enum(["system", "light", "dark"]).optional(),
   emailAlerts: z.boolean().optional(),
   displayCurrency: z.enum(["", ...DISPLAY_CURRENCIES]).optional(),
+  maxPriceAgeDays: z.coerce.number().int().min(1).max(60).optional(),
 });
 
 export async function savePreferences(input: Preferences) {

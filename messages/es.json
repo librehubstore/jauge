@@ -232,7 +232,10 @@
     "saved": "Ajustes guardados.",
     "emailAlerts": "Recibir también las alertas de precio por correo",
     "displayCurrency": "Convertir los precios a",
-    "originalCurrency": "Moneda de origen"
+    "originalCurrency": "Moneda de origen",
+    "maxPriceAge": "Ignorar precios con más de",
+    "days": "{count, plural, one {# día} other {# días}}",
+    "maxPriceAgeHint": "Algunas estaciones solo actualizan un precio cuando cambia (a menudo E85 o GLP)."
   },
   "admin": {
     "title": "Administración",

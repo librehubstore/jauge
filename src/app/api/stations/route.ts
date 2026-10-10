@@ -43,7 +43,7 @@ export async function GET(req: Request) {
     tank: v?.tankCapacity ?? 50, consumption: v?.consumptionPer100km ?? 6,
     onlySelling: q.onlySelling, hideOutages: q.hideOutages, openNow: q.openNow, automat24: q.automat24,
     includeOld: q.includeOld, favoritesFirst: q.favoritesFirst, brands: q.brands, excludeBrands: q.excludeBrands,
-    services: q.services, userId: u.id,
+    services: q.services, userId: u.id, maxAgeDays: u.preferences.maxPriceAgeDays,
   });
   return Response.json(result, { headers: { "Cache-Control": "private, max-age=60" } });
 }

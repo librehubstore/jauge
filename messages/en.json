@@ -232,7 +232,10 @@
     "saved": "Settings saved.",
     "emailAlerts": "Also receive price alerts by email",
     "displayCurrency": "Convert prices to",
-    "originalCurrency": "Original currency"
+    "originalCurrency": "Original currency",
+    "maxPriceAge": "Ignore prices older than",
+    "days": "{count, plural, one {# day} other {# days}}",
+    "maxPriceAgeHint": "Some stations only update a price when it changes (often E85 or LPG)."
   },
   "admin": {
     "title": "Administration",

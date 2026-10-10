@@ -232,7 +232,10 @@
     "saved": "Einstellungen gespeichert.",
     "emailAlerts": "Preisalarme auch per E-Mail erhalten",
     "displayCurrency": "Preise umrechnen in",
-    "originalCurrency": "Originalwährung"
+    "originalCurrency": "Originalwährung",
+    "maxPriceAge": "Preise ignorieren, die älter sind als",
+    "days": "{count, plural, one {# Tag} other {# Tage}}",
+    "maxPriceAgeHint": "Manche Tankstellen aktualisieren einen Preis nur, wenn er sich ändert (oft E85 oder Autogas)."
   },
   "admin": {
     "title": "Verwaltung",

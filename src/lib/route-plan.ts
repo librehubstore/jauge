@@ -1,12 +1,12 @@
 import { sql } from "drizzle-orm";
 import { db } from "@/db";
-import { median, ROAD_FACTOR } from "./cost";
+import { EXCLUDED_DAYS, median, ROAD_FACTOR } from "./cost";
 import { planFuel, type Candidate, type Plan, type Strategy } from "./fuel-plan";
 import { route, type LatLon } from "./routing";
 
 export type RoutePlanInput = {
   points: LatLon[]; avoidTolls: boolean; avoidHighways: boolean; corridorKm: number;
-  fuel: string; tank: number; consumption: number; startLevel: number; reserve: number;
+  fuel: string; tank: number; consumption: number; startLevel: number; reserve: number; maxAgeDays?: number;
 };
 
 export type RouteStation = Candidate & { label: string | null; address: string | null; city: string | null; lat: number; lon: number; currency: string };
@@ -34,7 +34,7 @@ export async function planRoute(input: RoutePlanInput) {
     from station s
     join line on ST_DWithin(s.location::geography, line.g::geography, ${input.corridorKm * 1000})
     join station_fuel_price p on p.station_id = s.id and p.fuel_code = ${input.fuel}
-      and not p.quarantined and p.source_updated_at > now() - interval '7 days'
+      and not p.quarantined and p.source_updated_at > now() - make_interval(days => ${input.maxAgeDays ?? EXCLUDED_DAYS})
     left join brand b on b.id = s.brand_id
     where s.status = 'active'
       and not exists (

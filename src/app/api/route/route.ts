@@ -29,7 +29,7 @@ export async function POST(req: Request) {
   try {
     const result = await planRoute({
       ...b.data, fuel: b.data.fuel ?? v?.fuelCode ?? u.preferences.defaultFuel ?? "B7",
-      tank: v?.tankCapacity ?? 50, consumption: v?.consumptionPer100km ?? 6,
+      tank: v?.tankCapacity ?? 50, consumption: v?.consumptionPer100km ?? 6, maxAgeDays: u.preferences.maxPriceAgeDays,
     });
     return Response.json(result);
   } catch (e) {
