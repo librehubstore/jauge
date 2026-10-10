@@ -32,7 +32,8 @@
     "km": "{value} km",
     "mi": "{value} mi",
     "none": "Geen",
-    "noMatch": "Geen plaats gevonden."
+    "noMatch": "Geen plaats gevonden.",
+    "exportCsv": "Exporteren (CSV)"
   },
   "auth": {
     "email": "E-mail",
@@ -408,7 +409,8 @@
       "up": "↗ stijgend over 7 dagen",
       "down": "↘ dalend over 7 dagen",
       "stable": "→ stabiel over 7 dagen"
-    }
+    },
+    "export": "Geschiedenis exporteren (CSV)"
   },
   "alerts": {
     "title": "Prijsalarmen",

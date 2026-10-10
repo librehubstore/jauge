@@ -66,6 +66,12 @@ export function logStats(entries: FillEntry[]): LogStats {
 }
 
 /** Échappe une valeur pour un CSV (séparateur « ; », adapté aux tableurs européens) et neutralise les formules. */
+/** Réponse CSV téléchargeable : séparateur « ; » et BOM pour Excel en français. */
+export const csvResponse = (filename: string, header: string[], rows: unknown[][]) =>
+  new Response("\uFEFF" + [header.join(";"), ...rows.map((r) => r.map(csvCell).join(";"))].join("\r\n"), {
+    headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="${filename}"` },
+  });
+
 export const csvCell = (v: unknown) => {
   let s = v === null || v === undefined ? "" : String(v);
   if (typeof v === "string" && /^[=+\-@\t\r]/.test(s)) s = "'" + s;

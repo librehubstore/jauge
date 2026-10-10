@@ -77,7 +77,7 @@ Hypothèses retenues quand la spécification (`../gasoil-now-prompt.md`) laissai
 
 ## V2 — Journal de pleins (spec 4.13)
 - **Consommation plein à plein** : seuls les pleins complets ferment un segment ; les pleins partiels intermédiaires s'y cumulent ; un kilométrage qui recule invalide le segment au lieu de produire une valeur absurde.
-- **Export CSV** : séparateur « ; » et BOM pour Excel en français ; cellules commençant par `= + - @` préfixées d'une apostrophe (injection de formules).
+- **Export CSV** (journal, favoris, historique d'une station sur un an) : un seul helper `csvResponse` ; séparateur « ; » et BOM pour Excel en français ; cellules commençant par `= + - @` préfixées d'une apostrophe (injection de formules).
 
 ## V2 — Prévision (spec 4.9)
 - **Méthode volontairement simple et explicable** : profil hebdomadaire (écart de chaque jour à la moyenne de sa semaine sur 12 semaines) + pente sur 14 jours, horizon 3 jours. Pas de modèle statistique lourd : les cycles de prix sont essentiellement hebdomadaires et l'utilisateur doit comprendre le conseil.

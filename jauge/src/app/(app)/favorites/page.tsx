@@ -8,6 +8,7 @@ import { requireUser } from "@/lib/session";
 export default async function FavoritesPage() {
   const u = await requireUser();
   const t = await getTranslations("favorites");
+  const tc = await getTranslations("common");
   const [v] = await db.select().from(vehicle).where(and(eq(vehicle.userId, u.id), eq(vehicle.isDefault, true)));
   const fuel = v?.fuelCode ?? u.preferences.defaultFuel ?? "B7";
 
@@ -31,7 +32,10 @@ export default async function FavoritesPage() {
   return (
     <div className="h-full overflow-y-auto">
       <div className="mx-auto max-w-2xl p-4">
-        <h1 className="mb-4 text-2xl font-semibold">{t("title")}</h1>
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <h1 className="text-2xl font-semibold">{t("title")}</h1>
+          {rows.length > 0 && <a className="inline-flex min-h-11 shrink-0 items-center text-sm font-medium text-accent md:btn-ghost md:text-fg" href="/api/favorites.csv" download>{tc("exportCsv")}</a>}
+        </div>
         <FavoritesList fuel={fuel} items={rows.map((r) => ({
           id: r.id, label: r.label ?? "—", address: [r.address, r.city, r.country].filter(Boolean).join(", "),
           price: r.price === null ? null : Number(r.price), currency: r.currency ?? "EUR",

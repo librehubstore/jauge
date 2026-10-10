@@ -113,3 +113,5 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Phase 8 terminée (55 tests). Début phase 9.
 - 2026-10-10 — Phase 9 terminée (58 tests). Début phase 10.
 - 2026-10-10 — Phase 10 terminée (62 tests). V2 complète ; DK et RO en couverture partielle (limites des sources).
+- 2026-10-10 — Boucle de recompilation en dev : serveur Turbopack resté actif des heures, corrigée par redémarrage ; service worker de test désormais retiré en dev.
+- 2026-10-10 — Exports CSV de la spec 8 complétés : favoris et historique d'une station (63 tests).

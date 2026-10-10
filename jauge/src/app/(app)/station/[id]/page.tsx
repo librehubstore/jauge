@@ -159,7 +159,10 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
         )}
 
         {prices.length > 0 && (
-          <PriceHistoryChart stationId={id} fuels={prices.map(({ p }) => p.fuelCode)} currency={prices[0].p.currency} />
+          <>
+            <PriceHistoryChart stationId={id} fuels={prices.map(({ p }) => p.fuelCode)} currency={prices[0].p.currency} />
+            <a className="-mt-2 inline-flex min-h-11 items-center text-sm font-medium text-accent" href={`/api/stations/${id}/history.csv`} download>{th("export")}</a>
+          </>
         )}
 
         <Link className="btn-ghost w-full" href={`/log?station=${id}`}>{t("filledHere")}</Link>

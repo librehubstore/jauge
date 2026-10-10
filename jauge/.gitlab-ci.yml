@@ -1,0 +1,37 @@
+stages:
+  - build
+  - package
+
+variables:
+  TAG: "develop-$CI_PIPELINE_IID"
+
+
+
+.image-docker:
+  image:
+    name: quay.io/buildah/stable
+  before_script:
+    - df -k
+    - ls
+    - echo "CI_COMMIT_BRANCH=$CI_COMMIT_BRANCH - $ENVIRONNEMENT "
+    - echo "Login sur $CI_REGISTRY_IMAGE avec $CI_REGISTRY_USER"
+    - buildah login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY_IMAGE
+  script: # les commandes pour builder et exporter l'image
+    - buildah bud -f Dockerfile -t ${CI_REGISTRY_IMAGE}:${TAG} .
+    - echo "PUSH sur ${CI_REGISTRY_IMAGE}:${TAG}"
+    - buildah push ${CI_REGISTRY_IMAGE}:${TAG}
+    - buildah tag ${CI_REGISTRY_IMAGE}:${TAG} ${CI_REGISTRY_IMAGE}:latest
+    - buildah push ${CI_REGISTRY_IMAGE}:latest
+
+build:prod:
+  variables:
+    TAG: "prod-$CI_COMMIT_TAG"
+    ENVIRONNEMENT: "prod"
+  extends:
+    - .image-docker
+  stage: package
+#  rules:
+#    - if: $CI_COMMIT_TAG =~ /^v(?:\d+.){2}(?:\d+)$/
+
+
+

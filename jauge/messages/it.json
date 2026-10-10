@@ -32,7 +32,8 @@
     "km": "{value} km",
     "mi": "{value} mi",
     "none": "Nessuno",
-    "noMatch": "Nessun luogo trovato."
+    "noMatch": "Nessun luogo trovato.",
+    "exportCsv": "Esporta (CSV)"
   },
   "auth": {
     "email": "Email",
@@ -408,7 +409,8 @@
       "up": "↗ in aumento in 7 giorni",
       "down": "↘ in calo in 7 giorni",
       "stable": "→ stabile in 7 giorni"
-    }
+    },
+    "export": "Esporta storico (CSV)"
   },
   "alerts": {
     "title": "Avvisi di prezzo",

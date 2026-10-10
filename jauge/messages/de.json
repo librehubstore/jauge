@@ -32,7 +32,8 @@
     "km": "{value} km",
     "mi": "{value} mi",
     "none": "Keine",
-    "noMatch": "Kein Ort gefunden."
+    "noMatch": "Kein Ort gefunden.",
+    "exportCsv": "Exportieren (CSV)"
   },
   "auth": {
     "email": "E-Mail",
@@ -408,7 +409,8 @@
       "up": "↗ steigend über 7 Tage",
       "down": "↘ fallend über 7 Tage",
       "stable": "→ stabil über 7 Tage"
-    }
+    },
+    "export": "Verlauf exportieren (CSV)"
   },
   "alerts": {
     "title": "Preisalarme",

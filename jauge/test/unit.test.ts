@@ -270,7 +270,7 @@ describe("devises (BCE)", () => {
   });
 });
 
-import { consumptionSegments, csvCell, logStats } from "@/lib/fuel-log";
+import { consumptionSegments, csvCell, csvResponse, logStats } from "@/lib/fuel-log";
 
 describe("journal de pleins (spec 4.13)", () => {
   const d = (day: number) => new Date(Date.UTC(2026, 8, day));
@@ -301,6 +301,13 @@ describe("journal de pleins (spec 4.13)", () => {
     expect(csvCell("12 rue")).toBe("12 rue");
     expect(csvCell(-12)).toBe("-12");
     expect(csvCell(null)).toBe("");
+  });
+  it("csvResponse : BOM, séparateur « ; », fin de ligne CRLF, pièce jointe", async () => {
+    const res = csvResponse("x.csv", ["a", "b"], [[1, "=2"], [null, "c;d"]]);
+    expect(res.headers.get("content-disposition")).toContain('filename="x.csv"');
+    const bytes = Buffer.from(await res.arrayBuffer());
+    expect([...bytes.subarray(0, 3)]).toEqual([0xef, 0xbb, 0xbf]); // BOM (text() le retirerait)
+    expect(bytes.subarray(3).toString("utf8")).toBe("a;b\r\n1;'=2\r\n;\"c;d\"");
   });
 });
 
