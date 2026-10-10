@@ -145,7 +145,8 @@
     "official": "official",
     "quarantined": "under review",
     "perUnit": "/{unit}",
-    "noPrice": "No recent price"
+    "noPrice": "No recent price",
+    "converted": "converted at today's ECB rate"
   },
   "station": {
     "title": "Station",
@@ -220,7 +221,9 @@
       "dark": "Dark"
     },
     "saved": "Settings saved.",
-    "emailAlerts": "Also receive price alerts by email"
+    "emailAlerts": "Also receive price alerts by email",
+    "displayCurrency": "Convert prices to",
+    "originalCurrency": "Original currency"
   },
   "admin": {
     "title": "Administration",

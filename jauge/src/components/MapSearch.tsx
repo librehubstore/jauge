@@ -219,6 +219,7 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
           {data?.median != null && <span>{t("median", { value: fmt.price(data.median) })}</span>}
           <Link href="/report-station" className="text-accent hover:underline">{tcontrib("missingLink")}</Link>
         </div>
+        {fmt.converted(stations[0]?.currency ?? "EUR") && <p className="mx-3 mb-2 text-xs text-muted">≈ {fmt.convertedLabel}</p>}
         {stations.some((s) => s.country === "AT") && (
           <p className="mx-3 mb-2 rounded-md bg-tier-1/10 px-3 py-2 text-xs">{t("partialAT")}</p>
         )}

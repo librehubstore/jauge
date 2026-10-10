@@ -51,14 +51,18 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - ⚠️ UK bloqué : portail développeur Fuel Finder inaccessible (403) et identifiants OAuth2 via GOV.UK One Login nécessaires — à reprendre avec un compte
 - [x] Tests : 4 parseurs (fixtures réelles PT/AD/AT, fixture documentée DE) → 43 tests
 
-### Phase 6 — Langues et devises (spec 4.12) 🔄
-- [ ] Traductions ES, IT, PT, DE, NL (interface + emails)
-- [ ] Taux BCE quotidiens, préférence « convertir en », mention « converti »
+### Phase 6 — Langues et devises (spec 4.12) ✅
+- [x] Interface et emails en 7 langues : FR, EN, ES, IT, PT, DE, NL (381 chaînes chacune)
+- [x] Test de parité : mêmes clés et mêmes variables ICU dans toutes les langues
+- [x] Taux BCE quotidiens (worker, jours ouvrés 15 h 30 UTC), préférence « Convertir les prix en » (12 devises), prix convertis préfixés « ≈ » et mention « converti au taux BCE du jour »
+- [x] Vérifié dans le navigateur (allemand + GBP) → 51 tests
+- ⚠️ Graphique d'historique et page de modération restent dans la devise d'origine
 
-### Phase 7 — PWA, push, partage ⏳
+### Phase 7 — PWA, push, partage 🔄
 - [ ] Service worker : dernière zone + favoris hors ligne, bandeau « hors ligne, données du … »
 - [ ] Web Push (VAPID) pour les alertes
-- [ ] Lien partageable : la vue (zone, carburant, filtres, itinéraire) dans l'URL
+- [x] Lien partageable pour les itinéraires (phase 4)
+- [ ] Lien partageable pour la vue carte (zone, carburant, filtres)
 
 ## Journal
 - 2026-10-10 — MVP commité. Plan V1 rédigé.
@@ -68,3 +72,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Phase 3 terminée (34 tests). Début phase 4 (itinéraire).
 - 2026-10-10 — Phase 4 terminée (39 tests). Début phase 5 (nouveaux pays).
 - 2026-10-10 — Phase 5 terminée hors UK (bloqué, identifiants requis). Début phase 6.
+- 2026-10-10 — Phase 6 terminée (51 tests). Début phase 7.

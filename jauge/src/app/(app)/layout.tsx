@@ -6,7 +6,9 @@ import { notification } from "@/db/schema";
 import { Logo } from "@/components/Logo";
 import { NavLinks } from "@/components/NavLinks";
 import { SignOutButton } from "@/components/SignOutButton";
+import { FxProvider } from "@/components/FxContext";
 import { requireUser } from "@/lib/session";
+import { getSetting } from "@/lib/settings";
 
 export default async function AppLayout({ children }: LayoutProps<"/">) {
   const u = await requireUser();
@@ -43,7 +45,9 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
           <SignOutButton label={t("signOut")} />
         </div>
       </header>
-      <div className="min-h-0 flex-1">{children}</div>
+      <div className="min-h-0 flex-1">
+        <FxProvider target={u.preferences.displayCurrency || null} rates={(await getSetting("ecb_rates"))?.rates ?? {}}>{children}</FxProvider>
+      </div>
     </div>
   );
 }

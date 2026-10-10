@@ -44,6 +44,7 @@ export type Preferences = {
   navApp?: "google" | "apple" | "waze" | "osm";
   theme?: "system" | "light" | "dark";
   emailAlerts?: boolean;
+  displayCurrency?: string; // vide = devise d'origine
 };
 
 export const session = pgTable("session", {

@@ -7,6 +7,7 @@ import { db } from "@/db";
 import { favorite, notification, priceAlert, user, vehicle, type Preferences } from "@/db/schema";
 import { PAYLOADS, submitContribution, type ContributionType } from "@/lib/contributions";
 import { FUEL_CODES } from "@/lib/fuels";
+import { DISPLAY_CURRENCIES } from "@/lib/fx";
 import { requireUser } from "@/lib/session";
 
 const fuel = z.enum(FUEL_CODES as [string, ...string[]]);
@@ -68,6 +69,7 @@ const PrefsInput = z.object({
   navApp: z.enum(["google", "apple", "waze", "osm"]).optional(),
   theme: z.enum(["system", "light", "dark"]).optional(),
   emailAlerts: z.boolean().optional(),
+  displayCurrency: z.enum(["", ...DISPLAY_CURRENCIES]).optional(),
 });
 
 export async function savePreferences(input: Preferences) {

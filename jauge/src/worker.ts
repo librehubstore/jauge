@@ -5,12 +5,14 @@ import { enrichFrBrandsFromOsm } from "@/connectors/osm-brands";
 import { bootstrap } from "@/lib/bootstrap";
 import { runConnector } from "@/lib/ingest";
 import { notifyAdmins } from "@/lib/notify";
+import { getSetting, refreshEcbRates } from "@/lib/settings";
 import { db } from "@/db";
 import { source } from "@/db/schema";
 import { eq, sql } from "drizzle-orm";
 
 const QUEUE = "ingest";
 const OSM_QUEUE = "osm-brands";
+const FX_QUEUE = "ecb-rates";
 
 async function main() {
   await bootstrap();
@@ -21,6 +23,11 @@ async function main() {
   await boss.createQueue(OSM_QUEUE);
   // Enseignes FR depuis OpenStreetMap : hebdomadaire (lundi 4 h UTC).
   await boss.schedule(OSM_QUEUE, "0 4 * * 1", null, { key: "osm", tz: "UTC" });
+  // Taux BCE publiés vers 16 h CET les jours ouvrés.
+  await boss.createQueue(FX_QUEUE);
+  await boss.schedule(FX_QUEUE, "30 15 * * 1-5", null, { key: "ecb", tz: "UTC" });
+  await boss.work(FX_QUEUE, async () => console.info("[fx]", await refreshEcbRates()));
+  if (!(await getSetting("ecb_rates"))) await boss.send(FX_QUEUE, {});
   await boss.work(OSM_QUEUE, async () => console.info("[osm]", await enrichFrBrandsFromOsm()));
 
   for (const c of CONNECTORS) {

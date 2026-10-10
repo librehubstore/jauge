@@ -5,6 +5,7 @@ import { useState, useTransition } from "react";
 import { savePreferences } from "@/app/actions/app";
 import type { Preferences } from "@/db/schema";
 import { FUEL_CODES } from "@/lib/fuels";
+import { DISPLAY_CURRENCIES } from "@/lib/fx";
 
 export function PreferencesForm({ prefs }: { prefs: Preferences }) {
   const t = useTranslations("settings");
@@ -22,7 +23,7 @@ export function PreferencesForm({ prefs }: { prefs: Preferences }) {
         await savePreferences({
           distanceUnit: f.distanceUnit as Preferences["distanceUnit"], defaultFuel: f.defaultFuel,
           radiusKm: Number(f.radiusKm), navApp: f.navApp as Preferences["navApp"], theme: f.theme as Preferences["theme"],
-          emailAlerts: f.emailAlerts === "on",
+          emailAlerts: f.emailAlerts === "on", displayCurrency: f.displayCurrency,
         });
         setSaved(true);
       });
@@ -46,6 +47,11 @@ export function PreferencesForm({ prefs }: { prefs: Preferences }) {
       <label><span className="label">{t("theme")}</span>
         <select className="input" name="theme" defaultValue={prefs.theme ?? "system"}>
           {(["system", "light", "dark"] as const).map((k) => <option key={k} value={k}>{t(`themes.${k}`)}</option>)}
+        </select></label>
+      <label><span className="label">{t("displayCurrency")}</span>
+        <select className="input" name="displayCurrency" defaultValue={prefs.displayCurrency ?? ""}>
+          <option value="">{t("originalCurrency")}</option>
+          {DISPLAY_CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
         </select></label>
       <label className="flex items-center gap-2 text-sm sm:col-span-2">
         <input type="checkbox" name="emailAlerts" defaultChecked={!!prefs.emailAlerts} /> {t("emailAlerts")}

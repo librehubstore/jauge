@@ -10,6 +10,7 @@ import { isOpenAt, localNow, type Hours } from "@/lib/hours";
 import { stationSeries, trendOf } from "@/lib/history";
 import { requireUser } from "@/lib/session";
 import { PriceHistoryChart } from "@/components/PriceHistoryChart";
+import { Price } from "@/components/Price";
 
 export default async function StationPage({ params }: PageProps<"/station/[id]">) {
   const u = await requireUser();
@@ -114,7 +115,7 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
                     </div>
                     <div className="text-right">
                     <p className={`price text-lg font-semibold ${o ? "text-muted line-through" : ""}`}>
-                      {f.number(p.price, { style: "currency", currency: p.currency, minimumFractionDigits: 3 })}
+                      <Price value={p.price} currency={p.currency} />
                       <span className="text-xs font-normal text-muted">/{unit}</span>
                     </p>
                     {trends.get(p.fuelCode) && (

@@ -6,7 +6,7 @@ import { useTransition } from "react";
 import { setLocale } from "@/app/actions/locale";
 import { LOCALES } from "@/i18n/config";
 
-const NAMES: Record<string, string> = { fr: "Français", en: "English" };
+const NAMES: Record<string, string> = { fr: "Français", en: "English", es: "Español", it: "Italiano", pt: "Português", de: "Deutsch", nl: "Nederlands" };
 
 export function LocaleSwitch() {
   const locale = useLocale();

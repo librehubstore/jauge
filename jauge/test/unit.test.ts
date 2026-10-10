@@ -255,3 +255,17 @@ describe("connecteurs PT, AD, AT, DE", () => {
     expect(rows[1].address).toBe("Holzmarktstraße 12");
   });
 });
+
+import { convert, parseEcbXml } from "@/lib/fx";
+
+describe("devises (BCE)", () => {
+  const xml = `<Cube time='2026-10-09'><Cube currency='USD' rate='1.1'/><Cube currency='GBP' rate='0.85'/></Cube>`;
+  it("lit le flux BCE et convertit via l'euro", () => {
+    const r = parseEcbXml(xml)!;
+    expect(r.date).toBe("2026-10-09");
+    expect(convert(2, "EUR", "GBP", r.rates)).toBeCloseTo(1.7, 6);
+    expect(convert(1.7, "GBP", "USD", r.rates)).toBeCloseTo(2.2, 6);
+    expect(convert(1, "EUR", "CHF", r.rates)).toBeNull();
+    expect(parseEcbXml("<html/>")).toBeNull();
+  });
+});

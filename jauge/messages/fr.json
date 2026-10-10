@@ -145,7 +145,8 @@
     "official": "officiel",
     "quarantined": "en vérification",
     "perUnit": "/{unit}",
-    "noPrice": "Pas de prix récent"
+    "noPrice": "Pas de prix récent",
+    "converted": "converti au taux BCE du jour"
   },
   "station": {
     "title": "Station",
@@ -220,7 +221,9 @@
       "dark": "Sombre"
     },
     "saved": "Réglages enregistrés.",
-    "emailAlerts": "Recevoir aussi les alertes de prix par email"
+    "emailAlerts": "Recevoir aussi les alertes de prix par email",
+    "displayCurrency": "Convertir les prix en",
+    "originalCurrency": "Devise d'origine"
   },
   "admin": {
     "title": "Administration",
