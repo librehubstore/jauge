@@ -4,12 +4,27 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { deletePushSubscription, savePushSubscription } from "@/app/actions/app";
 
-/** Enregistre le service worker (production, ou NEXT_PUBLIC_SW=1 en développement). */
+const SW_ENABLED = process.env.NODE_ENV === "production" || process.env.NEXT_PUBLIC_SW === "1";
+
+/**
+ * Enregistre le service worker (production, ou NEXT_PUBLIC_SW=1 en développement).
+ * En développement, désinstalle un service worker resté d'un test en production : il servirait
+ * d'anciens fichiers /_next/static et provoquerait des rechargements en boucle.
+ */
 export function ServiceWorker() {
   useEffect(() => {
     if (!("serviceWorker" in navigator)) return;
-    if (process.env.NODE_ENV !== "production" && process.env.NEXT_PUBLIC_SW !== "1") return;
-    navigator.serviceWorker.register("/sw.js", { scope: "/", updateViaCache: "none" }).catch(() => {});
+    if (SW_ENABLED) {
+      navigator.serviceWorker.register("/sw.js", { scope: "/", updateViaCache: "none" }).catch(() => {});
+      return;
+    }
+    (async () => {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      if (!regs.length) return;
+      await Promise.all(regs.map((r) => r.unregister()));
+      for (const k of await caches.keys()) if (k.startsWith("jauge-")) await caches.delete(k);
+      location.reload();
+    })().catch(() => {});
   }, []);
   return null;
 }
@@ -41,7 +56,7 @@ export function PushToggle() {
 
   useEffect(() => {
     (async () => {
-      if (!key || !("serviceWorker" in navigator) || !("PushManager" in window)) return setState("unsupported");
+      if (!SW_ENABLED || !key || !("serviceWorker" in navigator) || !("PushManager" in window)) return setState("unsupported");
       if (Notification.permission === "denied") return setState("denied");
       const reg = await navigator.serviceWorker.getRegistration();
       setState((await reg?.pushManager.getSubscription()) ? "on" : "off");
