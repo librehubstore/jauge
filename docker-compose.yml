@@ -18,7 +18,7 @@ services:
     env_file: .env
     environment:
       DATABASE_URL: postgres://jauge:jauge@db:5432/jauge
-    ports: ["3000:3000"]
+    ports: ["127.0.0.1:3000:3000"]
     depends_on: { db: { condition: service_healthy } }
 
   worker:
