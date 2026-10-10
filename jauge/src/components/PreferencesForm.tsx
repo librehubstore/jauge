@@ -22,6 +22,7 @@ export function PreferencesForm({ prefs }: { prefs: Preferences }) {
         await savePreferences({
           distanceUnit: f.distanceUnit as Preferences["distanceUnit"], defaultFuel: f.defaultFuel,
           radiusKm: Number(f.radiusKm), navApp: f.navApp as Preferences["navApp"], theme: f.theme as Preferences["theme"],
+          emailAlerts: f.emailAlerts === "on",
         });
         setSaved(true);
       });
@@ -46,6 +47,9 @@ export function PreferencesForm({ prefs }: { prefs: Preferences }) {
         <select className="input" name="theme" defaultValue={prefs.theme ?? "system"}>
           {(["system", "light", "dark"] as const).map((k) => <option key={k} value={k}>{t(`themes.${k}`)}</option>)}
         </select></label>
+      <label className="flex items-center gap-2 text-sm sm:col-span-2">
+        <input type="checkbox" name="emailAlerts" defaultChecked={!!prefs.emailAlerts} /> {t("emailAlerts")}
+      </label>
       <div className="flex items-center gap-3 sm:col-span-2">
         <button className="btn-primary" disabled={pending}>{tc("save")}</button>
         {saved && <span role="status" className="text-sm text-muted">{t("saved")}</span>}

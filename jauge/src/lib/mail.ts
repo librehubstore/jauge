@@ -1,7 +1,7 @@
 import { createTranslator } from "next-intl";
 import { LOCALES, type Locale } from "@/i18n/config";
 
-type MailKind = "verify" | "reset";
+type MailKind = "verify" | "reset" | "alert";
 
 async function translator(locale: string) {
   const l = (LOCALES as readonly string[]).includes(locale) ? (locale as Locale) : "fr";
@@ -12,10 +12,10 @@ async function translator(locale: string) {
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 
 /** Envoie un email transactionnel via Brevo ; sans clé API, l'écrit dans la console (développement). */
-export async function sendMail(kind: MailKind, to: { email: string; name: string; locale: string }, url: string) {
+export async function sendMail(kind: MailKind, to: { email: string; name: string; locale: string }, url: string, values: Record<string, string> = {}) {
   const t = await translator(to.locale);
-  const subject = t(`${kind}.subject`);
-  const html = `<p>${esc(t("hello", { name: to.name }))}</p><p>${esc(t(`${kind}.body`))}</p>` +
+  const subject = t(`${kind}.subject`, values);
+  const html = `<p>${esc(t("hello", { name: to.name }))}</p><p>${esc(t(`${kind}.body`, values))}</p>` +
     `<p><a href="${esc(url)}">${esc(t(`${kind}.cta`))}</a></p><p style="color:#666">${esc(t(`${kind}.footer`))}</p>`;
 
   if (!process.env.BREVO_API_KEY) {

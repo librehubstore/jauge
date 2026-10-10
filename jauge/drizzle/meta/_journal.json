@@ -8,6 +8,13 @@
       "when": 1791579613533,
       "tag": "0000_init",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791594146947,
+      "tag": "0001_price_alert",
+      "breakpoints": true
     }
   ]
 }

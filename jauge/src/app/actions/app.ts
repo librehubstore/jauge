@@ -4,7 +4,7 @@ import { and, eq, isNull, ne } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { db } from "@/db";
-import { favorite, notification, user, vehicle, type Preferences } from "@/db/schema";
+import { favorite, notification, priceAlert, user, vehicle, type Preferences } from "@/db/schema";
 import { PAYLOADS, submitContribution, type ContributionType } from "@/lib/contributions";
 import { FUEL_CODES } from "@/lib/fuels";
 import { requireUser } from "@/lib/session";
@@ -67,6 +67,7 @@ const PrefsInput = z.object({
   radiusKm: z.coerce.number().min(1).max(50).optional(),
   navApp: z.enum(["google", "apple", "waze", "osm"]).optional(),
   theme: z.enum(["system", "light", "dark"]).optional(),
+  emailAlerts: z.boolean().optional(),
 });
 
 export async function savePreferences(input: Preferences) {
@@ -89,4 +90,39 @@ export async function markNotificationsRead() {
   const u = await requireUser();
   await db.update(notification).set({ readAt: new Date() }).where(and(eq(notification.userId, u.id), isNull(notification.readAt)));
   revalidatePath("/", "layout");
+}
+
+const AlertInput = z.discriminatedUnion("scope", [
+  z.object({ scope: z.literal("station"), stationId: z.coerce.number().int(), fuelCode: fuel, threshold: z.coerce.number().min(0.1).max(20) }),
+  z.object({ scope: z.literal("favorites"), fuelCode: fuel, threshold: z.coerce.number().min(0.1).max(20) }),
+  z.object({
+    scope: z.literal("area"), fuelCode: fuel, threshold: z.coerce.number().min(0.1).max(20),
+    lat: z.coerce.number().min(-90).max(90), lon: z.coerce.number().min(-180).max(180),
+    radiusKm: z.coerce.number().min(1).max(50), label: z.string().trim().max(160),
+  }),
+]);
+
+export async function createAlert(input: z.input<typeof AlertInput>) {
+  const u = await requireUser();
+  const a = AlertInput.parse(input);
+  await db.insert(priceAlert).values({
+    userId: u.id, scope: a.scope, fuelCode: a.fuelCode, threshold: a.threshold,
+    stationId: a.scope === "station" ? a.stationId : null,
+    center: a.scope === "area" ? { x: a.lon, y: a.lat } : null,
+    radiusKm: a.scope === "area" ? a.radiusKm : null,
+    label: a.scope === "area" ? a.label : null,
+  });
+  revalidatePath("/alerts");
+}
+
+export async function setAlertActive(id: number, active: boolean) {
+  const u = await requireUser();
+  await db.update(priceAlert).set({ active, armed: true }).where(and(eq(priceAlert.id, id), eq(priceAlert.userId, u.id)));
+  revalidatePath("/alerts");
+}
+
+export async function deleteAlert(id: number) {
+  const u = await requireUser();
+  await db.delete(priceAlert).where(and(eq(priceAlert.id, id), eq(priceAlert.userId, u.id)));
+  revalidatePath("/alerts");
 }

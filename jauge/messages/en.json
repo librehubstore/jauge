@@ -12,7 +12,9 @@
     "moderation": "Moderation",
     "about": "About",
     "signOut": "Sign out",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "alerts": "Alerts",
+    "openStation": "View station"
   },
   "common": {
     "save": "Save",
@@ -83,6 +85,12 @@
       "body": "You asked to reset your password. This link is valid for 1 hour.",
       "cta": "Choose a new password",
       "footer": "If you did not ask for this, ignore this email: your password stays unchanged."
+    },
+    "alert": {
+      "subject": "Price alert: {station} at {price} {currency}",
+      "body": "The price dropped below your threshold: {station} now shows {price} {currency}.",
+      "cta": "View the station",
+      "footer": "You receive this email because email alerts are enabled in your Jauge settings."
     }
   },
   "search": {
@@ -209,7 +217,8 @@
       "light": "Light",
       "dark": "Dark"
     },
-    "saved": "Settings saved."
+    "saved": "Settings saved.",
+    "emailAlerts": "Also receive price alerts by email"
   },
   "admin": {
     "title": "Administration",
@@ -305,7 +314,8 @@
     "empty": "No notifications.",
     "account_approved": "Your account has been approved.",
     "contribution_approved": "Your contribution has been approved. Thanks!",
-    "contribution_rejected": "Your contribution was rejected. {reason}"
+    "contribution_rejected": "Your contribution was rejected. {reason}",
+    "price_alert": "{station}: {price} {currency}, below your {threshold} threshold"
   },
   "nav_apps": {
     "google": "Google Maps",
@@ -386,5 +396,27 @@
       "down": "↘ falling over 7 d",
       "stable": "→ stable over 7 d"
     }
+  },
+  "alerts": {
+    "title": "Price alerts",
+    "empty": "No alerts. Create one below or from a station page.",
+    "new": "New alert",
+    "scopeFavorites": "My favourite stations",
+    "scopeAreaShort": "An area",
+    "scopeArea": "Around {label} ({km} km)",
+    "place": "City or address",
+    "radius": "Radius",
+    "fuel": "Fuel",
+    "threshold": "Threshold (price per unit)",
+    "create": "Create alert",
+    "created": "Alert created.",
+    "pause": "Pause",
+    "resume": "Resume",
+    "lastTriggered": "triggered {ago}",
+    "neverTriggered": "never triggered",
+    "stationTitle": "Alert me when the price drops below",
+    "emailOn": "You also receive alerts by email.",
+    "emailOff": "Alerts arrive in your notifications. Email is off.",
+    "settingsLink": "Change"
   }
 }

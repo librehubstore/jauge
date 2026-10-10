@@ -44,5 +44,12 @@ Hypothèses retenues quand la spécification (`../gasoil-now-prompt.md`) laissai
 - **Pays sans open data** (BE, LU, MC) : stations importées d'OpenStreetMap chaque semaine ; la source n'écrase ni un statut ni une enseigne validés par la modération.
 - **Station manquante** : créée dans la source `community` après validation, position issue du géocodage de l'adresse.
 
+## V1 — Historique et alertes (spec 4.8 / 4.9)
+- **Archives** : seul le FR est importé (`npm run import-history`, en flux, 3 M de points sur un an). Les archives IT (trimestrielles, > 100 Mo) et ES (une requête par jour) ne le sont pas : l'historique s'y construit au fil des ingestions.
+- **Médiane de zone** : prix en vigueur chaque jour pour chaque station à moins de 10 km (dernier relevé de moins de 30 jours), un point par jour, ou par semaine sur un an.
+- **Tendance** : écart entre le prix actuel et celui d'il y a 7 jours, seuil de 0,01.
+- **Alertes** : prix récents seulement (< 7 j, hors quarantaine, station active). Évaluées après une ingestion qui change des prix et après un prix communautaire publié, pas sur un minuteur.
+- **Graphique** : SVG maison, palette catégorielle de référence validée (bleu `--series-1`, orange `--series-2`).
+
 ## Hors MVP (prévu en V1/V2, voir spec section 3)
 Itinéraire et plan carburant, alertes de prix, historique graphique, saisie de prix communautaire et file de modération, connecteurs PT/AD/DE/UK/AT, langues ES/IT/PT/DE/NL, conversion de devises, PWA hors ligne et Web Push, journal de pleins.

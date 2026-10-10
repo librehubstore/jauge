@@ -12,7 +12,9 @@
     "moderation": "Modération",
     "about": "À propos",
     "signOut": "Se déconnecter",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "alerts": "Alertes",
+    "openStation": "Voir la station"
   },
   "common": {
     "save": "Enregistrer",
@@ -83,6 +85,12 @@
       "body": "Vous avez demandé à réinitialiser votre mot de passe. Ce lien est valable 1 heure.",
       "cta": "Choisir un nouveau mot de passe",
       "footer": "Si vous n'avez rien demandé, ignorez cet email : votre mot de passe reste inchangé."
+    },
+    "alert": {
+      "subject": "Alerte prix : {station} à {price} {currency}",
+      "body": "Le prix est passé sous votre seuil : {station} affiche {price} {currency}.",
+      "cta": "Voir la station",
+      "footer": "Vous recevez cet email car les alertes par email sont activées dans vos réglages Jauge."
     }
   },
   "search": {
@@ -209,7 +217,8 @@
       "light": "Clair",
       "dark": "Sombre"
     },
-    "saved": "Réglages enregistrés."
+    "saved": "Réglages enregistrés.",
+    "emailAlerts": "Recevoir aussi les alertes de prix par email"
   },
   "admin": {
     "title": "Administration",
@@ -305,7 +314,8 @@
     "empty": "Aucune notification.",
     "account_approved": "Votre compte a été validé.",
     "contribution_approved": "Votre contribution a été validée. Merci !",
-    "contribution_rejected": "Votre contribution a été refusée. {reason}"
+    "contribution_rejected": "Votre contribution a été refusée. {reason}",
+    "price_alert": "{station} : {price} {currency}, sous votre seuil de {threshold}"
   },
   "nav_apps": {
     "google": "Google Maps",
@@ -386,5 +396,27 @@
       "down": "↘ en baisse sur 7 j",
       "stable": "→ stable sur 7 j"
     }
+  },
+  "alerts": {
+    "title": "Alertes de prix",
+    "empty": "Aucune alerte. Créez-en une ci-dessous ou depuis la fiche d'une station.",
+    "new": "Nouvelle alerte",
+    "scopeFavorites": "Mes stations favorites",
+    "scopeAreaShort": "Une zone",
+    "scopeArea": "Autour de {label} ({km} km)",
+    "place": "Ville ou adresse",
+    "radius": "Rayon",
+    "fuel": "Carburant",
+    "threshold": "Seuil (prix au litre)",
+    "create": "Créer l'alerte",
+    "created": "Alerte créée.",
+    "pause": "Suspendre",
+    "resume": "Réactiver",
+    "lastTriggered": "déclenchée {ago}",
+    "neverTriggered": "jamais déclenchée",
+    "stationTitle": "M'alerter quand le prix passe sous",
+    "emailOn": "Vous recevez aussi les alertes par email.",
+    "emailOff": "Les alertes arrivent dans vos notifications. Email désactivé.",
+    "settingsLink": "Modifier"
   }
 }

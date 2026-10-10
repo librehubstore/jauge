@@ -43,6 +43,7 @@ export type Preferences = {
   radiusKm?: number;
   navApp?: "google" | "apple" | "waze" | "osm";
   theme?: "system" | "light" | "dark";
+  emailAlerts?: boolean;
 };
 
 export const session = pgTable("session", {
@@ -225,6 +226,22 @@ export const contribution = pgTable("contribution", {
   reason: text("reason"),
   createdAt: ts("created_at").notNull().defaultNow(),
 });
+
+export const priceAlert = pgTable("price_alert", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+  scope: text("scope").notNull(), // station | favorites | area
+  stationId: integer("station_id").references(() => station.id, { onDelete: "cascade" }),
+  center: point4326("center"),
+  label: text("label"), // libellé de la zone (adresse géocodée)
+  radiusKm: doublePrecision("radius_km"),
+  fuelCode: text("fuel_code").notNull().references(() => fuelType.code),
+  threshold: numeric("threshold", { precision: 7, scale: 3, mode: "number" }).notNull(),
+  active: boolean("active").notNull().default(true),
+  armed: boolean("armed").notNull().default(true),
+  lastTriggeredAt: ts("last_triggered_at"),
+  createdAt: ts("created_at").notNull().defaultNow(),
+}, (t) => [index("price_alert_active_idx").on(t.active)]);
 
 export const notification = pgTable("notification", {
   id: serial("id").primaryKey(),

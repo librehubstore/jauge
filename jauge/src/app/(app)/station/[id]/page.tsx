@@ -3,6 +3,7 @@ import { getFormatter, getNow, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { db } from "@/db";
 import { brand, favorite, fuelType, openingHours, outage, source, station, stationFuelPrice } from "@/db/schema";
+import { StationAlertForm } from "@/components/AlertForms";
 import { ContributionPanel, FavoriteButton } from "@/components/StationActions";
 import { freshness } from "@/lib/cost";
 import { isOpenAt, localNow, type Hours } from "@/lib/hours";
@@ -136,6 +137,13 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
 
         {prices.length > 0 && (
           <PriceHistoryChart stationId={id} fuels={prices.map(({ p }) => p.fuelCode)} currency={prices[0].p.currency} />
+        )}
+
+        {prices.length > 0 && (
+          <section className="card px-4 py-3">
+            <StationAlertForm stationId={id} fuels={prices.map(({ p }) => p.fuelCode)}
+              suggested={Object.fromEntries(prices.map(({ p }) => [p.fuelCode, Math.max(0.1, p.price - 0.02)]))} />
+          </section>
         )}
 
         <ContributionPanel stationId={id} soldFuels={prices.map(({ p }) => p.fuelCode)} />

@@ -1,5 +1,6 @@
 import { desc, eq } from "drizzle-orm";
 import { getFormatter, getNow, getTranslations } from "next-intl/server";
+import Link from "next/link";
 import { db } from "@/db";
 import { notification } from "@/db/schema";
 import { MarkRead } from "@/components/MarkRead";
@@ -22,6 +23,9 @@ export default async function NotificationsPage() {
             {items.map((n) => (
               <li key={n.id} className={`px-4 py-3 text-sm ${n.readAt ? "text-muted" : ""}`}>
                 <p>{t.has(n.type) ? (t as unknown as (k: string, v: object) => string)(n.type, n.payload as object) : n.type}</p>
+                {(n.payload as { stationId?: number }).stationId && (
+                  <Link className="text-xs text-accent hover:underline" href={`/station/${(n.payload as { stationId: number }).stationId}`}>{tn("openStation")}</Link>
+                )}
                 <p className="text-xs text-muted">{f.relativeTime(n.createdAt, now)}</p>
               </li>
             ))}

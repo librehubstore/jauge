@@ -1,45 +1,25 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import { PlaceLookup, type Place } from "./PlaceLookup";
 import { useState, useTransition } from "react";
 import { contribute } from "@/app/actions/app";
 
 // ponytail: liste courte des pays couverts ou visés ; à étendre avec les connecteurs.
 const COUNTRIES = ["FR", "ES", "IT", "PT", "BE", "LU", "MC", "AD", "DE", "AT", "GB", "CH", "NL"];
 
-type Place = { label: string; lat: number; lon: number };
-
 export function MissingStationForm() {
   const t = useTranslations("contrib");
   const locale = useLocale();
-  const [q, setQ] = useState("");
-  const [places, setPlaces] = useState<Place[]>([]);
   const [pos, setPos] = useState<Place | null>(null);
   const [result, setResult] = useState<string | null>(null);
   const [pending, start] = useTransition();
   const region = new Intl.DisplayNames([locale], { type: "region" });
 
-  async function search() {
-    const r = await fetch(`/api/geocode?${new URLSearchParams({ q, lang: locale })}`);
-    setPlaces(r.ok ? await r.json() : []);
-  }
-
   if (result) return <p role="status" className="rounded-md bg-accent/10 px-3 py-2 text-sm">{t(`result.${result}` as never)}</p>;
   return (
     <div className="card space-y-4 p-4">
-      <div className="flex gap-2">
-        <input className="input" value={q} onChange={(e) => setQ(e.target.value)} placeholder={t("address")} aria-label={t("address")}
-          onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); void search(); } }} />
-        <button type="button" className="btn-ghost" onClick={search}>OK</button>
-      </div>
-      {places.length > 0 && (
-        <ul className="divide-y divide-border rounded-md border border-border text-sm">
-          {places.map((p, i) => (
-            <li key={i}><button type="button" className={`w-full px-3 py-2 text-left hover:bg-surface-2 ${pos === p ? "bg-surface-2 font-medium" : ""}`}
-              onClick={() => setPos(p)}>{p.label}</button></li>
-          ))}
-        </ul>
-      )}
+      <PlaceLookup placeholder={t("address")} selected={pos} onPick={setPos} />
       {pos && (
         <form className="grid gap-3 sm:grid-cols-2" onSubmit={(e) => {
           e.preventDefault();

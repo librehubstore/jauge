@@ -18,21 +18,22 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - [x] Tests : 6 nouveaux (décision, 1,20 € invisible avant validation, priorité officielle, rejet, fermeture)
 - ⚠️ Horaires : note libre lue par le modérateur, pas d'éditeur structuré (voir DECISIONS.md)
 
-### Phase 2 — Historique et tendances (spec 4.9) 🔄
+### Phase 2 — Historique et tendances (spec 4.9) ✅
 - [x] API `/api/stations/[id]/history` (7 j, 30 j, 1 an) + médiane de zone 10 km (quotidienne, hebdomadaire sur 1 an)
 - [x] Graphique SVG maison sur la fiche station : escalier, légende, réticule + infobulle, vue tableau ; palette validée (bleu/orange)
 - [x] Tendance 7 jours par carburant sur la fiche (seuil 0,01 €)
-- [x] Import FR en flux (`npm run import-history`, fenêtre `HISTORY_DAYS` = 365) — 1er import en cours (> 2,2 M points)
-- [ ] Vérifier le graphique dans le navigateur une fois l'import terminé
+- [x] Import FR en flux (`npm run import-history`, fenêtre `HISTORY_DAYS` = 365) : 3 070 232 points
+- [x] Vérifié dans le navigateur ; API 1 an servie en ~0,7 s
 - ⚠️ Archives IT (trimestrielles, > 100 Mo) et ES (1 requête par jour) non importées : l'historique s'y construit au fil des ingestions
 
-### Phase 3 — Alertes de prix (spec 4.8) ⏳
-- [ ] CRUD alertes : station, favoris, zone ; carburant ; seuil
-- [ ] Déclenchement à l'ingestion : une fois par 24 h, réarmement au-dessus du seuil
-- [ ] Canaux : in-app, email Brevo (option), Web Push (phase 7)
-- [ ] Test : 1,80 → 1,69 (seuil 1,70) puis 3 ingestions à 1,69 = 1 seule notification
+### Phase 3 — Alertes de prix (spec 4.8) ✅
+- [x] Alertes station (depuis la fiche, seuil proposé = prix − 0,02), favoris, zone (adresse + rayon) ; page `/alerts` : suspendre, supprimer
+- [x] Évaluation après chaque ingestion qui modifie des prix et après chaque prix communautaire publié : 1 fois / 24 h, réarmement au-dessus du seuil
+- [x] Canaux : notification in-app (lien vers la station), email Brevo si « alertes par email » est coché dans les réglages
+- [x] Tests : règle pure + critère spec (1,80 → 1,69 puis 3 ingestions à 1,69 = 1 notification) → 34 tests
+- ⏳ Web Push : reporté en phase 7 (PWA)
 
-### Phase 4 — Itinéraire et plan carburant (spec 4.7) ⏳
+### Phase 4 — Itinéraire et plan carburant (spec 4.7) 🔄
 - [ ] Service de routage (OSRM, Valhalla pour éviter péages/autoroutes) derrière une interface
 - [ ] Stations dans un corridor de 1–20 km autour du tracé (PostGIS)
 - [ ] Stratégies : moins d'arrêts, coût minimal, équilibré (≤ 2 arrêts)
@@ -60,4 +61,6 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 ## Journal
 - 2026-10-10 — MVP commité. Plan V1 rédigé.
 - 2026-10-10 — Phase 1 terminée (28 tests). Overpass renvoie parfois 504 : le réessai suffit, l'import est hebdomadaire.
-- 2026-10-10 — Phase 2 codée, tests OK (34). Import d'archive FR lancé en arrière-plan ; graphique à valider visuellement.
+- 2026-10-10 — Phase 2 codée, tests OK (30). Import d'archive FR lancé en arrière-plan ; graphique à valider visuellement.
+- 2026-10-10 — Phase 2 validée visuellement. Début phase 3.
+- 2026-10-10 — Phase 3 terminée (34 tests). Début phase 4 (itinéraire).

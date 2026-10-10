@@ -2,6 +2,7 @@ import { and, eq, inArray, lt, sql } from "drizzle-orm";
 import type { Connector, RawStation } from "@/connectors/types";
 import { db } from "@/db";
 import { brand, ingestionRun, openingHours, outage, priceHistory, source, station, stationFuelPrice } from "@/db/schema";
+import { evaluateAlerts } from "./alerts";
 import { median } from "./cost";
 
 const BATCH = 500;
@@ -120,6 +121,7 @@ export async function runConnector(c: Connector, fetchRows: () => Promise<RawSta
     const counts = await ingestStations(c, await fetchRows());
     await db.update(ingestionRun).set({ ...counts, status: "success", finishedAt: new Date() }).where(eq(ingestionRun.id, run.id));
     await db.update(source).set({ lastSuccessAt: new Date(), consecutiveFailures: 0 }).where(eq(source.id, c.id));
+    if (counts.pricesChanged) await evaluateAlerts().catch((e) => console.error("[alerts]", e));
     return counts;
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);

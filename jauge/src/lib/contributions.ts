@@ -2,6 +2,7 @@ import { and, eq, sql } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@/db";
 import { brand, contribution, outage, priceHistory, station, stationFuelPrice, user } from "@/db/schema";
+import { evaluateAlerts } from "./alerts";
 import { median } from "./cost";
 import { FUEL_CODES } from "./fuels";
 import { notify } from "./notify";
@@ -72,6 +73,7 @@ export async function applyContribution(c: typeof contribution.$inferSelect) {
         target: [stationFuelPrice.stationId, stationFuelPrice.fuelCode],
         set: { price: p.price, currency, sourceUpdatedAt: now, ingestedAt: now, origin: "community", quarantined: false },
       });
+      await evaluateAlerts().catch((e) => console.error("[alerts]", e));
       if (cur?.price !== p.price) {
         await db.insert(priceHistory).values({ stationId: c.stationId!, fuelCode: p.fuel, price: p.price, currency, validFrom: now }).onConflictDoNothing();
       }
