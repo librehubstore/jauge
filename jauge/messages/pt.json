@@ -460,5 +460,16 @@
     "openAll": "Abrir o percurso completo no Google Maps",
     "share": "Copiar a ligação",
     "copied": "Ligação copiada"
+  },
+  "pwa": {
+    "title": "Notificações push",
+    "offline": "Sem ligação: está a ver os últimos dados carregados.",
+    "offlineData": "Sem ligação, dados de {date, date, short} às {date, time, short}",
+    "on": "Ativas neste dispositivo.",
+    "off": "Desativadas neste dispositivo.",
+    "enable": "Ativar",
+    "disable": "Desativar",
+    "denied": "O navegador bloqueia as notificações: autorize-as nas definições.",
+    "unsupported": "Notificações push indisponíveis neste navegador."
   }
 }

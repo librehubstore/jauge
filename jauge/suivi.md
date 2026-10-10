@@ -5,7 +5,7 @@ Légende : ✅ fait · 🔄 en cours · ⏳ à faire · ⚠️ bloqué / à vali
 ## MVP — ✅ terminé (commit `ac884a6`)
 Auth (email + Google, vérification Brevo, domaines, validation admin), connecteurs FR/ES/IT, enseignes OSM, carte + liste, meilleur choix avec détour, fiche station, favoris, véhicules, ruptures, admin, i18n FR/EN. 22 tests.
 
-## V1 — plan
+## V1 — ✅ terminée (sauf UK)
 
 Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contributions, historique, alertes), puis le routage, puis l'extension géographique et linguistique, puis la PWA.
 
@@ -58,11 +58,13 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - [x] Vérifié dans le navigateur (allemand + GBP) → 51 tests
 - ⚠️ Graphique d'historique et page de modération restent dans la devise d'origine
 
-### Phase 7 — PWA, push, partage 🔄
-- [ ] Service worker : dernière zone + favoris hors ligne, bandeau « hors ligne, données du … »
-- [ ] Web Push (VAPID) pour les alertes
-- [x] Lien partageable pour les itinéraires (phase 4)
-- [ ] Lien partageable pour la vue carte (zone, carburant, filtres)
+### Phase 7 — PWA, push, partage ✅
+- [x] Service worker écrit à la main () : dernière recherche, pages Carte et Favoris, ressources Next et tuiles de carte (≤ 1 500) disponibles hors ligne
+- [x] Bandeau « Hors ligne, données du … » sur la carte, bandeau général quand le navigateur est hors ligne
+- [x] Web Push (VAPID, ) : abonnement par appareil dans Réglages, envoi traduit pour les alertes de prix et les comptes à valider, abonnements expirés supprimés
+- [x] Lien partageable de la carte (zone, carburant, rayon, tri, filtres dans l'URL) ; itinéraires déjà partageables
+- [x] Vérifié en production locale : service worker actif, données servies serveur arrêté, bandeau affiché ; 51 tests
+- ⚠️ Push non vérifié de bout en bout (demande d'autorisation du navigateur impossible à accepter en automatique)
 
 ## Journal
 - 2026-10-10 — MVP commité. Plan V1 rédigé.
@@ -73,3 +75,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Phase 4 terminée (39 tests). Début phase 5 (nouveaux pays).
 - 2026-10-10 — Phase 5 terminée hors UK (bloqué, identifiants requis). Début phase 6.
 - 2026-10-10 — Phase 6 terminée (51 tests). Début phase 7.
+- 2026-10-10 — Phase 7 terminée. V1 complète hors connecteur UK (identifiants requis).

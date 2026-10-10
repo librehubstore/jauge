@@ -70,5 +70,10 @@ Hypothèses retenues quand la spécification (`../gasoil-now-prompt.md`) laissai
 - **7 langues** : traductions rédigées pour l'interface et les emails ; à faire relire par des locuteurs natifs avant diffusion large. Le géocodage Photon ne gère que fr/en/de/it (sinon langue par défaut).
 - **Devises** : toutes les sources actuelles publient en EUR. La conversion (taux BCE, base EUR) est un affichage : « ≈ » + mention, valeurs stockées inchangées. Le graphique d'historique et la modération restent en devise d'origine.
 
+## V1 — PWA (spec 4.8 / 10)
+- **Service worker écrit à la main** plutôt que Serwist : une centaine de lignes, sans dépendance ni configuration de bundler. Enregistré en production seulement ( pour le tester en dev).
+- **Hors ligne** : réseau d'abord pour l'API de recherche et les pages Carte/Favoris, dernière réponse sinon, marquée par l'en-tête  (date) ; cache d'abord pour les ressources versionnées et les tuiles.
+- **Push** : envoyé pour les alertes de prix et les comptes à valider, en plus de la notification in-app. Désactivé si les clés VAPID manquent.
+
 ## Hors MVP (prévu en V1/V2, voir spec section 3)
 Itinéraire et plan carburant, alertes de prix, historique graphique, saisie de prix communautaire et file de modération, connecteurs PT/AD/DE/UK/AT, langues ES/IT/PT/DE/NL, conversion de devises, PWA hors ligne et Web Push, journal de pleins.

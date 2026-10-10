@@ -244,6 +244,14 @@ export const priceAlert = pgTable("price_alert", {
   createdAt: ts("created_at").notNull().defaultNow(),
 }, (t) => [index("price_alert_active_idx").on(t.active)]);
 
+export const pushSubscription = pgTable("push_subscription", {
+  endpoint: text("endpoint").primaryKey(),
+  userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+  p256dh: text("p256dh").notNull(),
+  auth: text("auth").notNull(),
+  createdAt: ts("created_at").notNull().defaultNow(),
+}, (t) => [index("push_subscription_user_idx").on(t.userId)]);
+
 export const notification = pgTable("notification", {
   id: serial("id").primaryKey(),
   userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),

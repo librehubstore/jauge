@@ -460,5 +460,16 @@
     "openAll": "Open the full trip in Google Maps",
     "share": "Copy link",
     "copied": "Link copied"
+  },
+  "pwa": {
+    "title": "Push notifications",
+    "offline": "Offline: you are viewing the last loaded data.",
+    "offlineData": "Offline, data from {date, date, short} at {date, time, short}",
+    "on": "Enabled on this device.",
+    "off": "Disabled on this device.",
+    "enable": "Enable",
+    "disable": "Disable",
+    "denied": "Notifications are blocked by the browser: allow them in its settings.",
+    "unsupported": "Push notifications are not available in this browser."
   }
 }

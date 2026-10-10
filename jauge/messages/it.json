@@ -460,5 +460,16 @@
     "openAll": "Apri il percorso completo in Google Maps",
     "share": "Copia il link",
     "copied": "Link copiato"
+  },
+  "pwa": {
+    "title": "Notifiche push",
+    "offline": "Offline: stai consultando gli ultimi dati caricati.",
+    "offlineData": "Offline, dati del {date, date, short} alle {date, time, short}",
+    "on": "Attive su questo dispositivo.",
+    "off": "Disattivate su questo dispositivo.",
+    "enable": "Attiva",
+    "disable": "Disattiva",
+    "denied": "Il browser blocca le notifiche: consentile nelle sue impostazioni.",
+    "unsupported": "Notifiche push non disponibili in questo browser."
   }
 }

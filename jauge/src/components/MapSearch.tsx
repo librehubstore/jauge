@@ -35,6 +35,7 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
   const tc = useTranslations("common");
   const tv = useTranslations("vehicles");
   const tcontrib = useTranslations("contrib");
+  const tpwa = useTranslations("pwa");
   const locale = useLocale();
   const fmt = useFmt(prefs.distanceUnit);
   const router = useRouter();
@@ -59,6 +60,7 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
   const [pendingArea, setPendingArea] = useState<{ lat: number; lon: number; radiusKm: number } | null>(null);
 
   const [data, setData] = useState<{ stations: StationResult[]; median: number | null } | null>(null);
+  const [offlineAt, setOfflineAt] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [highlight, setHighlight] = useState<number | null>(null);
@@ -82,8 +84,23 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
     );
   }, []);
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect -- géolocalisation (système externe) au montage
-  useEffect(() => { setZone({ ...(store.get() ?? FALLBACK), seq: 0 }); locate(false); }, [locate]);
+  /* eslint-disable react-hooks/set-state-in-effect -- initialisation unique au montage (URL, stockage, géolocalisation) */
+  useEffect(() => {
+    // Lien partagé : la vue de l'URL prime sur la géolocalisation.
+    const q = new URLSearchParams(location.search);
+    const lat = Number(q.get("lat")), lon = Number(q.get("lon"));
+    if (q.get("lat") && Number.isFinite(lat) && Number.isFinite(lon)) {
+      if (q.get("fuel")) setFuel(q.get("fuel")!);
+      if (q.get("r")) setRadius(Number(q.get("r")));
+      if (q.get("sort")) setSort(q.get("sort") as SortKey);
+      setFilters((f) => Object.fromEntries(FILTER_KEYS.map((k) => [k, q.has(k) ? q.get(k) === "1" : f[k]])) as Record<FilterKey, boolean>);
+      setZone({ lat, lon, zoom: 13, seq: 0 });
+      return;
+    }
+    setZone({ ...(store.get() ?? FALLBACK), seq: 0 });
+    locate(false);
+  }, [locate]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   // Recherche (avec annulation de la requête précédente).
   useEffect(() => {
@@ -103,7 +120,13 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
         if (res.status === 401) { router.replace("/login"); return; }
         if (!res.ok) throw new Error(String(res.status));
         setData(await res.json());
+        // Réponse servie par le service worker hors ligne : on affiche la date des données.
+        setOfflineAt(res.headers.get("x-jauge-offline") || null);
         store.set({ lat: zone.lat, lon: zone.lon });
+        // Lien partageable : l'URL reflète la vue (zone, carburant, rayon, tri, filtres).
+        const share = new URLSearchParams({ lat: zone.lat.toFixed(4), lon: zone.lon.toFixed(4), fuel, r: String(radius), sort });
+        FILTER_KEYS.forEach((k) => { if (filters[k] !== (k === "onlySelling")) share.set(k, filters[k] ? "1" : "0"); });
+        history.replaceState(null, "", `/?${share}`);
       } catch (e) {
         if ((e as Error).name !== "AbortError") setError(true);
       } finally {
@@ -219,6 +242,7 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
           {data?.median != null && <span>{t("median", { value: fmt.price(data.median) })}</span>}
           <Link href="/report-station" className="text-accent hover:underline">{tcontrib("missingLink")}</Link>
         </div>
+        {offlineAt && <p role="status" className="mx-3 mb-2 rounded-md bg-tier-1/10 px-3 py-2 text-xs">{tpwa("offlineData", { date: new Date(offlineAt) })}</p>}
         {fmt.converted(stations[0]?.currency ?? "EUR") && <p className="mx-3 mb-2 text-xs text-muted">≈ {fmt.convertedLabel}</p>}
         {stations.some((s) => s.country === "AT") && (
           <p className="mx-3 mb-2 rounded-md bg-tier-1/10 px-3 py-2 text-xs">{t("partialAT")}</p>

@@ -460,5 +460,16 @@
     "openAll": "Abrir el trayecto completo en Google Maps",
     "share": "Copiar el enlace",
     "copied": "Enlace copiado"
+  },
+  "pwa": {
+    "title": "Notificaciones push",
+    "offline": "Sin conexión: estás viendo los últimos datos cargados.",
+    "offlineData": "Sin conexión, datos del {date, date, short} a las {date, time, short}",
+    "on": "Activadas en este dispositivo.",
+    "off": "Desactivadas en este dispositivo.",
+    "enable": "Activar",
+    "disable": "Desactivar",
+    "denied": "El navegador bloquea las notificaciones: permítelas en sus ajustes.",
+    "unsupported": "Las notificaciones push no están disponibles en este navegador."
   }
 }

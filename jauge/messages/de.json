@@ -460,5 +460,16 @@
     "openAll": "Gesamte Strecke in Google Maps öffnen",
     "share": "Link kopieren",
     "copied": "Link kopiert"
+  },
+  "pwa": {
+    "title": "Push-Benachrichtigungen",
+    "offline": "Offline: Sie sehen die zuletzt geladenen Daten.",
+    "offlineData": "Offline, Daten vom {date, date, short} um {date, time, short}",
+    "on": "Auf diesem Gerät aktiviert.",
+    "off": "Auf diesem Gerät deaktiviert.",
+    "enable": "Aktivieren",
+    "disable": "Deaktivieren",
+    "denied": "Der Browser blockiert Benachrichtigungen: erlauben Sie sie in den Browsereinstellungen.",
+    "unsupported": "Push-Benachrichtigungen sind in diesem Browser nicht verfügbar."
   }
 }

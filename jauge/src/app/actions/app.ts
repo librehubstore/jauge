@@ -4,7 +4,7 @@ import { and, eq, isNull, ne } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { db } from "@/db";
-import { favorite, notification, priceAlert, user, vehicle, type Preferences } from "@/db/schema";
+import { favorite, notification, priceAlert, pushSubscription, user, vehicle, type Preferences } from "@/db/schema";
 import { PAYLOADS, submitContribution, type ContributionType } from "@/lib/contributions";
 import { FUEL_CODES } from "@/lib/fuels";
 import { DISPLAY_CURRENCIES } from "@/lib/fx";
@@ -127,4 +127,18 @@ export async function deleteAlert(id: number) {
   const u = await requireUser();
   await db.delete(priceAlert).where(and(eq(priceAlert.id, id), eq(priceAlert.userId, u.id)));
   revalidatePath("/alerts");
+}
+
+const PushInput = z.object({ endpoint: z.string().url().max(1000), keys: z.object({ p256dh: z.string().max(200), auth: z.string().max(100) }) });
+
+export async function savePushSubscription(sub: z.input<typeof PushInput>) {
+  const u = await requireUser();
+  const p = PushInput.parse(sub);
+  await db.insert(pushSubscription).values({ endpoint: p.endpoint, userId: u.id, p256dh: p.keys.p256dh, auth: p.keys.auth })
+    .onConflictDoUpdate({ target: pushSubscription.endpoint, set: { userId: u.id, p256dh: p.keys.p256dh, auth: p.keys.auth } });
+}
+
+export async function deletePushSubscription(endpoint: string) {
+  const u = await requireUser();
+  await db.delete(pushSubscription).where(and(eq(pushSubscription.endpoint, endpoint), eq(pushSubscription.userId, u.id)));
 }

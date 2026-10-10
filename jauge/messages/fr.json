@@ -460,5 +460,16 @@
     "openAll": "Ouvrir le trajet complet dans Google Maps",
     "share": "Copier le lien",
     "copied": "Lien copié"
+  },
+  "pwa": {
+    "title": "Notifications push",
+    "offline": "Hors ligne : vous consultez les dernières données chargées.",
+    "offlineData": "Hors ligne, données du {date, date, short} à {date, time, short}",
+    "on": "Activées sur cet appareil.",
+    "off": "Désactivées sur cet appareil.",
+    "enable": "Activer",
+    "disable": "Désactiver",
+    "denied": "Notifications bloquées par le navigateur : autorisez-les dans ses réglages.",
+    "unsupported": "Notifications push indisponibles sur ce navigateur."
   }
 }

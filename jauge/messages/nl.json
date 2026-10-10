@@ -460,5 +460,16 @@
     "openAll": "Volledige route openen in Google Maps",
     "share": "Link kopiëren",
     "copied": "Link gekopieerd"
+  },
+  "pwa": {
+    "title": "Pushmeldingen",
+    "offline": "Offline: je bekijkt de laatst geladen gegevens.",
+    "offlineData": "Offline, gegevens van {date, date, short} om {date, time, short}",
+    "on": "Ingeschakeld op dit apparaat.",
+    "off": "Uitgeschakeld op dit apparaat.",
+    "enable": "Inschakelen",
+    "disable": "Uitschakelen",
+    "denied": "De browser blokkeert meldingen: sta ze toe in de browserinstellingen.",
+    "unsupported": "Pushmeldingen zijn niet beschikbaar in deze browser."
   }
 }

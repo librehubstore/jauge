@@ -2,12 +2,14 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { LocaleSwitch } from "@/components/LocaleSwitch";
 import { PreferencesForm } from "@/components/PreferencesForm";
+import { PushToggle } from "@/components/Pwa";
 import { requireUser } from "@/lib/session";
 
 export default async function SettingsPage() {
   const u = await requireUser();
   const t = await getTranslations("settings");
   const tn = await getTranslations("nav");
+  const tp = await getTranslations("pwa");
   return (
     <div className="h-full overflow-y-auto">
       <div className="mx-auto max-w-2xl space-y-4 p-4">
@@ -17,6 +19,10 @@ export default async function SettingsPage() {
           <LocaleSwitch />
         </div>
         <PreferencesForm prefs={u.preferences} />
+        <div className="card space-y-2 px-4 py-3">
+          <h2 className="text-sm font-medium">{tp("title")}</h2>
+          <PushToggle />
+        </div>
         <p className="text-sm"><Link className="text-accent hover:underline" href="/about">{tn("about")}</Link></p>
       </div>
     </div>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
+import { ServiceWorker } from "@/components/Pwa";
 import { currentUser } from "@/lib/session";
 import "./globals.css";
 
@@ -24,7 +25,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang={locale} data-theme={theme} className={`${sans.variable} ${mono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans" suppressHydrationWarning>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider><ServiceWorker />{children}</NextIntlClientProvider>
       </body>
     </html>
   );

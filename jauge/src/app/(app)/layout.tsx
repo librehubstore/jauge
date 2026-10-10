@@ -7,6 +7,7 @@ import { Logo } from "@/components/Logo";
 import { NavLinks } from "@/components/NavLinks";
 import { SignOutButton } from "@/components/SignOutButton";
 import { FxProvider } from "@/components/FxContext";
+import { OfflineBanner } from "@/components/Pwa";
 import { requireUser } from "@/lib/session";
 import { getSetting } from "@/lib/settings";
 
@@ -45,6 +46,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
           <SignOutButton label={t("signOut")} />
         </div>
       </header>
+      <OfflineBanner />
       <div className="min-h-0 flex-1">
         <FxProvider target={u.preferences.displayCurrency || null} rates={(await getSetting("ecb_rates"))?.rates ?? {}}>{children}</FxProvider>
       </div>
