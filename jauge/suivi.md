@@ -59,9 +59,9 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - ⚠️ Graphique d'historique et page de modération restent dans la devise d'origine
 
 ### Phase 7 — PWA, push, partage ✅
-- [x] Service worker écrit à la main () : dernière recherche, pages Carte et Favoris, ressources Next et tuiles de carte (≤ 1 500) disponibles hors ligne
+- [x] Service worker écrit à la main (`public/sw.js`) : dernière recherche, pages Carte et Favoris, ressources Next et tuiles de carte (≤ 1 500) disponibles hors ligne
 - [x] Bandeau « Hors ligne, données du … » sur la carte, bandeau général quand le navigateur est hors ligne
-- [x] Web Push (VAPID, ) : abonnement par appareil dans Réglages, envoi traduit pour les alertes de prix et les comptes à valider, abonnements expirés supprimés
+- [x] Web Push (VAPID, `web-push`) : abonnement par appareil dans Réglages, envoi traduit pour les alertes de prix et les comptes à valider, abonnements expirés supprimés
 - [x] Lien partageable de la carte (zone, carburant, rayon, tri, filtres dans l'URL) ; itinéraires déjà partageables
 - [x] Vérifié en production locale : service worker actif, données servies serveur arrêté, bandeau affiché ; 51 tests
 - ⚠️ Push non vérifié de bout en bout (demande d'autorisation du navigateur impossible à accepter en automatique)
