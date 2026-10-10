@@ -2,11 +2,11 @@
 export type Hours = [number, string | null, string | null, boolean][];
 
 // ponytail: un fuseau par pays ; les DOM et les Canaries héritent du fuseau métropolitain. Passer au fuseau par station si besoin.
-const TZ: Record<string, string> = { FR: "Europe/Paris", ES: "Europe/Madrid", IT: "Europe/Rome", PT: "Europe/Lisbon", DE: "Europe/Berlin", AT: "Europe/Vienna", GB: "Europe/London", AD: "Europe/Andorra" };
+export const TZ_BY_COUNTRY: Record<string, string> = { FR: "Europe/Paris", ES: "Europe/Madrid", IT: "Europe/Rome", PT: "Europe/Lisbon", DE: "Europe/Berlin", AT: "Europe/Vienna", GB: "Europe/London", AD: "Europe/Andorra" };
 
 export function localNow(country: string, now: Date) {
   const parts = new Intl.DateTimeFormat("en-GB", {
-    timeZone: TZ[country] ?? "Europe/Paris", weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+    timeZone: TZ_BY_COUNTRY[country] ?? "Europe/Paris", weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23",
   }).formatToParts(now);
   const g = (t: string) => parts.find((x) => x.type === t)!.value;
   const weekday = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].indexOf(g("weekday"));

@@ -508,5 +508,17 @@
     "history": "Geschiedenis",
     "empty": "Nog geen tankbeurten voor dit voertuig.",
     "partial": "gedeeltelijk"
+  },
+  "forecast": {
+    "title": "Advies",
+    "now": "Tank nu",
+    "nowWhy": "Geen daling verwacht in de komende 3 dagen.",
+    "wait": "Kun je wachten, tank dan op {day}: ongeveer {gain} minder per liter",
+    "basis": "Schatting op basis van de laatste {weeks} weken van {basis, select, zone {het gebied} other {dit station}}.",
+    "confidence": {
+      "low": "Lage betrouwbaarheid.",
+      "medium": "Gemiddelde betrouwbaarheid.",
+      "high": "Hoge betrouwbaarheid."
+    }
   }
 }

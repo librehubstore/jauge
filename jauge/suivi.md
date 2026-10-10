@@ -84,12 +84,14 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - [x] Export CSV (séparateur « ; », BOM Excel, formules neutralisées)
 - [x] Vérifié sur mobile (2 pleins → 6 L/100 km) ; 55 tests
 
-### Phase 9 — Prévision « attendre ou faire le plein » (spec 4.9) 🔄
-- [ ] Profil hebdomadaire des prix (écart moyen par jour de la semaine sur 12 semaines) par station, repli sur la zone
-- [ ] Recommandation : faire le plein maintenant / attendre jusqu'à tel jour (gain estimé), avec niveau de confiance
-- [ ] Affichage sur la fiche station ; tests sur des séries synthétiques
+### Phase 9 — Prévision « attendre ou faire le plein » (spec 4.9) ✅
+- [x] Profil hebdomadaire sur 12 semaines (écart de chaque jour à la moyenne de sa semaine), tendance sur 14 jours, horizon 3 jours, seuil de 0,01 €/L
+- [x] Confiance : nombre de semaines complètes et régularité du jour conseillé (parmi les semaines où le prix a bougé)
+- [x] Repli sur la médiane de la zone (10 km) si la station n'a pas assez d'historique
+- [x] Fiche station : « Faites le plein maintenant » ou « Si vous pouvez, attendez lundi : environ 0,033 € de moins par litre », base et confiance affichées
+- [x] Données réelles FR : cycle du lundi retrouvé (−0,02 €/L), calcul en 15–100 ms ; tests sur séries synthétiques → 58 tests
 
-### Phase 10 — Nouveaux pays : HR, SI, DK, RO (spec 4.2) ⏳
+### Phase 10 — Nouveaux pays : HR, SI, DK, RO (spec 4.2) 🔄
 - [ ] Identifier les sources officielles par station et leurs conditions
 - [ ] Connecteurs + fixtures réelles + tests, ou ⚠️ documenté si la source n'existe pas / n'est pas réutilisable
 
@@ -105,3 +107,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Phase 7 terminée. V1 complète hors connecteur UK (identifiants requis).
 - 2026-10-10 — Refonte mobile + correctif des rechargements en boucle (commit a1b7ed9). Plan V2 rédigé, début phase 8.
 - 2026-10-10 — Phase 8 terminée (55 tests). Début phase 9.
+- 2026-10-10 — Phase 9 terminée (58 tests). Début phase 10.

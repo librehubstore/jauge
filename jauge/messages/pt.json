@@ -508,5 +508,17 @@
     "history": "Histórico",
     "empty": "Nenhum abastecimento registado para este veículo.",
     "partial": "parcial"
+  },
+  "forecast": {
+    "title": "Conselho",
+    "now": "Abasteça agora",
+    "nowWhy": "Não se espera descida nos próximos 3 dias.",
+    "wait": "Se puder, espere por {day}: cerca de {gain} a menos por litro",
+    "basis": "Estimativa baseada nas últimas {weeks} semanas {basis, select, zone {da zona} other {deste posto}}.",
+    "confidence": {
+      "low": "Confiança baixa.",
+      "medium": "Confiança média.",
+      "high": "Confiança elevada."
+    }
   }
 }

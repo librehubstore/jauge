@@ -508,5 +508,17 @@
     "history": "Storico",
     "empty": "Nessun rifornimento registrato per questo veicolo.",
     "partial": "parziale"
+  },
+  "forecast": {
+    "title": "Consiglio",
+    "now": "Fai rifornimento adesso",
+    "nowWhy": "Nessun calo previsto nei prossimi 3 giorni.",
+    "wait": "Se puoi, aspetta {day}: circa {gain} in meno al litro",
+    "basis": "Stima basata sulle ultime {weeks} settimane {basis, select, zone {della zona} other {di questo distributore}}.",
+    "confidence": {
+      "low": "Affidabilità bassa.",
+      "medium": "Affidabilità media.",
+      "high": "Affidabilità alta."
+    }
   }
 }

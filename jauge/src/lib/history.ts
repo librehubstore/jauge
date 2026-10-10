@@ -18,8 +18,8 @@ export async function stationSeries(stationId: number, fuel: string, days: numbe
 }
 
 /** Médiane quotidienne de la zone (10 km) : prix en vigueur chaque jour pour chaque station. */
-export async function zoneMedianSeries(stationId: number, fuel: string, days: number) {
-  const step = days > 60 ? 7 : 1; // hebdomadaire sur un an : ~52 points
+export async function zoneMedianSeries(stationId: number, fuel: string, days: number, stepDays?: number) {
+  const step = stepDays ?? (days > 60 ? 7 : 1); // hebdomadaire sur un an : ~52 points
   const rows = (await db.execute(sql`
     with days as (
       select generate_series(date_trunc('day', now()) - make_interval(days => ${days}), date_trunc('day', now()), make_interval(days => ${step})) as d
@@ -41,3 +41,14 @@ export async function zoneMedianSeries(stationId: number, fuel: string, days: nu
 }
 
 export { priceAt, trendOf, type Trend } from "./trend";
+
+/** Prévision pour une station : son propre historique, sinon la médiane de sa zone (10 km). */
+export async function stationForecast(stationId: number, fuel: string, country: string) {
+  const { forecast } = await import("./forecast");
+  const { TZ_BY_COUNTRY } = await import("./hours");
+  const tz = TZ_BY_COUNTRY[country] ?? "Europe/Paris";
+  const own = forecast(await stationSeries(stationId, fuel, 90), Date.now(), tz);
+  if (own) return { ...own, basis: "station" as const };
+  const zone = forecast(await zoneMedianSeries(stationId, fuel, 90, 1), Date.now(), tz);
+  return zone ? { ...zone, basis: "zone" as const } : null;
+}

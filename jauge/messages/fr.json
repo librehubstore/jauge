@@ -508,5 +508,17 @@
     "history": "Historique",
     "empty": "Aucun plein enregistré pour ce véhicule.",
     "partial": "partiel"
+  },
+  "forecast": {
+    "title": "Conseil",
+    "now": "Faites le plein maintenant",
+    "nowWhy": "Pas de baisse attendue dans les 3 prochains jours.",
+    "wait": "Si vous pouvez, attendez {day} : environ {gain} de moins par litre",
+    "basis": "Estimation tirée des {weeks} dernières semaines de {basis, select, zone {la zone} other {cette station}}.",
+    "confidence": {
+      "low": "Confiance faible.",
+      "medium": "Confiance moyenne.",
+      "high": "Confiance élevée."
+    }
   }
 }

@@ -508,5 +508,17 @@
     "history": "History",
     "empty": "No fill-up recorded for this vehicle.",
     "partial": "partial"
+  },
+  "forecast": {
+    "title": "Advice",
+    "now": "Fill up now",
+    "nowWhy": "No drop expected in the next 3 days.",
+    "wait": "If you can, wait until {day}: about {gain} less per litre",
+    "basis": "Estimate based on the last {weeks} weeks of {basis, select, zone {the area} other {this station}}.",
+    "confidence": {
+      "low": "Low confidence.",
+      "medium": "Medium confidence.",
+      "high": "High confidence."
+    }
   }
 }

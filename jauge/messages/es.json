@@ -508,5 +508,17 @@
     "history": "Historial",
     "empty": "Ningún repostaje registrado para este vehículo.",
     "partial": "parcial"
+  },
+  "forecast": {
+    "title": "Consejo",
+    "now": "Reposta ahora",
+    "nowWhy": "No se espera ninguna bajada en los próximos 3 días.",
+    "wait": "Si puedes, espera al {day}: unos {gain} menos por litro",
+    "basis": "Estimación basada en las últimas {weeks} semanas de {basis, select, zone {la zona} other {esta estación}}.",
+    "confidence": {
+      "low": "Confianza baja.",
+      "medium": "Confianza media.",
+      "high": "Confianza alta."
+    }
   }
 }

@@ -3,12 +3,12 @@ import { getFormatter, getNow, getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db } from "@/db";
-import { brand, favorite, fuelType, openingHours, outage, source, station, stationFuelPrice } from "@/db/schema";
+import { brand, favorite, fuelType, openingHours, outage, source, station, stationFuelPrice, vehicle } from "@/db/schema";
 import { StationAlertForm } from "@/components/AlertForms";
 import { ContributionPanel, FavoriteButton } from "@/components/StationActions";
 import { freshness } from "@/lib/cost";
 import { isOpenAt, localNow, type Hours } from "@/lib/hours";
-import { stationSeries, trendOf } from "@/lib/history";
+import { stationForecast, stationSeries, trendOf } from "@/lib/history";
 import { requireUser } from "@/lib/session";
 import { PriceHistoryChart } from "@/components/PriceHistoryChart";
 import { Price } from "@/components/Price";
@@ -35,6 +35,10 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
 
   const trends = new Map(await Promise.all(prices.map(async ({ p }) =>
     [p.fuelCode, trendOf(await stationSeries(id, p.fuelCode, 8))] as const)));
+  const [defVehicle] = await db.select({ fuel: vehicle.fuelCode }).from(vehicle).where(and(eq(vehicle.userId, u.id), eq(vehicle.isDefault, true)));
+  const forecastFuel = prices.find(({ p }) => p.fuelCode === defVehicle?.fuel)?.p.fuelCode ?? prices[0]?.p.fuelCode;
+  const fc = forecastFuel ? await stationForecast(id, forecastFuel, s.st.country) : null;
+  const tfc = await getTranslations("forecast");
   const th = await getTranslations("history");
   const t = await getTranslations("station");
   const tf = await getTranslations("fuel");
@@ -138,6 +142,21 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
             </p>
           )}
         </section>
+
+        {fc && forecastFuel && (
+          <section className={`rounded-lg p-4 ${fc.action === "wait" ? "bg-tier-1/15" : "bg-tier-0/15"}`} aria-label={tfc("title")}>
+            <p className="text-xs font-medium text-muted">{tfc("title")} · {tf(forecastFuel as never)}</p>
+            <p className="mt-1 text-lg font-semibold">
+              {fc.action === "wait"
+                ? tfc("wait", { day: (t.raw("days") as string[])[fc.weekday].toLowerCase(), gain: f.number(fc.gainPerUnit, { style: "currency", currency: prices[0].p.currency, minimumFractionDigits: 2, maximumFractionDigits: 3 }) })
+                : tfc("now")}
+            </p>
+            <p className="mt-1 text-sm text-muted">
+              {fc.action === "now" && <>{tfc("nowWhy")} </>}
+              {tfc("basis", { weeks: fc.weeks, basis: fc.basis })} {tfc(`confidence.${fc.confidence}`)}
+            </p>
+          </section>
+        )}
 
         {prices.length > 0 && (
           <PriceHistoryChart stationId={id} fuels={prices.map(({ p }) => p.fuelCode)} currency={prices[0].p.currency} />

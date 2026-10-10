@@ -508,5 +508,17 @@
     "history": "Verlauf",
     "empty": "Noch keine Tankfüllung für dieses Fahrzeug.",
     "partial": "Teilbetankung"
+  },
+  "forecast": {
+    "title": "Empfehlung",
+    "now": "Jetzt tanken",
+    "nowWhy": "In den nächsten 3 Tagen wird kein Preisrückgang erwartet.",
+    "wait": "Wenn möglich, bis {day} warten: etwa {gain} weniger pro Liter",
+    "basis": "Schätzung aus den letzten {weeks} Wochen {basis, select, zone {der Umgebung} other {dieser Tankstelle}}.",
+    "confidence": {
+      "low": "Geringe Sicherheit.",
+      "medium": "Mittlere Sicherheit.",
+      "high": "Hohe Sicherheit."
+    }
   }
 }

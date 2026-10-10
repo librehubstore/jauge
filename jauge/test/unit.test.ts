@@ -303,3 +303,37 @@ describe("journal de pleins (spec 4.13)", () => {
     expect(csvCell(null)).toBe("");
   });
 });
+
+import { forecast, weekdayIn } from "@/lib/forecast";
+
+describe("prévision attendre / faire le plein (spec 4.9)", () => {
+  const DAY = 86_400_000;
+  // Lundi 5 octobre 2026, 12:00 UTC = 14:00 à Paris.
+  const monday = Date.UTC(2026, 9, 5, 12);
+  /** Série quotidienne synthétique : prix = base + motif[jour de la semaine] + pente × jour. */
+  const build = (pattern: number[], slopePerDay = 0, weeks = 12, noise = 0) => {
+    const s: [number, number][] = [];
+    for (let i = weeks * 7 + 3; i >= 0; i--) {
+      const ts = monday - i * DAY - 6 * 3_600_000; // changement de prix à 6 h UTC
+      const wd = weekdayIn(ts, "Europe/Paris");
+      s.push([ts, 1.8 + pattern[wd] + slopePerDay * -i + (i % 3 === 0 ? noise : 0)]);
+    }
+    return s;
+  };
+
+  it("cycle hebdomadaire : moins cher le mercredi → attendre 2 jours un lundi", () => {
+    const f = forecast(build([0.03, 0.02, -0.04, -0.01, 0, 0, 0]), monday)!;
+    expect(f.action).toBe("wait");
+    expect(f.waitDays).toBe(2);
+    expect(f.weekday).toBe(2);
+    expect(f.gainPerUnit).toBeCloseTo(0.07, 2);
+    expect(f.confidence).toBe("high");
+  });
+  it("hausse rapide : faire le plein maintenant malgré un petit creux à venir", () => {
+    expect(forecast(build([0, 0, -0.01, 0, 0, 0, 0], 0.01), monday)!.action).toBe("now");
+  });
+  it("prix stables ou historique trop court : pas de prévision", () => {
+    expect(forecast(build([0, 0, 0, 0, 0, 0, 0]), monday)).toBeNull();
+    expect(forecast(build([0.03, 0, -0.04, 0, 0, 0, 0], 0, 2), monday)).toBeNull();
+  });
+});
