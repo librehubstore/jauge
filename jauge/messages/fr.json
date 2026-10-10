@@ -141,7 +141,7 @@
     },
     "median": "Médiane de la zone : {value}",
     "partialAT": "Autriche : seules les stations les moins chères de chaque district sont publiées par E-Control. Couverture partielle.",
-    "partialDK": "Danemark : seules les enseignes OK et Shell publient une API ouverte. Couverture partielle.",
+    "partialDK": "Danemark : enseignes OK, Shell, Q8 et F24 ; Circle K et Uno-X ne publient pas encore d'API ouverte. Couverture partielle.",
     "partialRO": "Roumanie : la source officielle répond par petites zones ; la liste se complète au fil des recherches.",
     "showResults": "Voir les stations"
   },

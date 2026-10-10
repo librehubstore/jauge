@@ -141,7 +141,7 @@
     },
     "median": "Mediaan van het gebied: {value}",
     "partialAT": "Oostenrijk: E-Control publiceert alleen de goedkoopste stations per district. Gedeeltelijke dekking.",
-    "partialDK": "Denemarken: alleen OK en Shell publiceren een open API. Gedeeltelijke dekking.",
+    "partialDK": "Denemarken: stations van OK, Shell, Q8 en F24; Circle K en Uno-X publiceren nog geen open API. Gedeeltelijke dekking.",
     "partialRO": "Roemenië: de officiële bron antwoordt per klein gebied; de lijst vult zich aan bij elke zoekopdracht.",
     "showResults": "Stations tonen"
   },

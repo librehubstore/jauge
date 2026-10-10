@@ -1,0 +1,69 @@
+{
+ "data": {
+  "stationsPrices": [
+   {
+    "stationId": "8001",
+    "stationName": "F24",
+    "address": "Dronningemaen 34 Svendborg 5700 Danmark",
+    "products": [
+     {
+      "productId": "1",
+      "productName": "GoEasy 95 Extra E5",
+      "price": 19.19,
+      "unit": "L",
+      "priceChangeDate": "2026-10-10T00:03:00"
+     },
+     {
+      "productId": "2",
+      "productName": "GoEasy 95 E10",
+      "price": 18.09,
+      "unit": "L",
+      "priceChangeDate": "2026-10-10T00:03:00"
+     },
+     {
+      "productId": "6",
+      "productName": "GoEasy Diesel",
+      "price": 18.89,
+      "unit": "L",
+      "priceChangeDate": "2026-10-10T00:03:00"
+     }
+    ]
+   },
+   {
+    "stationId": "8003",
+    "stationName": "Q8 Service",
+    "address": "Hummeltoftevej 45 Virum 2830 Danmark",
+    "products": [
+     {
+      "productId": "1",
+      "productName": "GoEasy 95 Extra E5",
+      "price": 19.29,
+      "unit": "L",
+      "priceChangeDate": "2026-10-10T00:04:32.26"
+     },
+     {
+      "productId": "2",
+      "productName": "GoEasy 95 E10",
+      "price": 18.19,
+      "unit": "L",
+      "priceChangeDate": "2026-10-10T00:04:32.26"
+     },
+     {
+      "productId": "6",
+      "productName": "GoEasy Diesel",
+      "price": 18.99,
+      "unit": "L",
+      "priceChangeDate": "2026-10-10T00:04:32.26"
+     },
+     {
+      "productId": "8",
+      "productName": "GoEasy Diesel Extra",
+      "price": 19.89,
+      "unit": "L",
+      "priceChangeDate": "2026-10-10T00:04:32.26"
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -29,7 +29,8 @@ async function brandIds(names: string[]) {
 export const validCoords = (s: RawStation) => Math.abs(s.lat) <= 90 && Math.abs(s.lon) <= 180 && !(s.lat === 0 && s.lon === 0);
 
 export async function ingestStations(c: Connector, input: RawStation[]) {
-  const rows = input.filter(validCoords);
+  // Une source peut publier deux fois le même identifiant (Q8 DK) : l'upsert refuserait le lot entier.
+  const rows = [...new Map(input.filter(validCoords).map((s) => [s.externalId, s])).values()];
   const meds = mediansByFuel(rows);
   let stationsUpserted = 0, pricesChanged = 0;
   const now = new Date();

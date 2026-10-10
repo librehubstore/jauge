@@ -141,7 +141,7 @@
     },
     "median": "Median der Umgebung: {value}",
     "partialAT": "Österreich: E-Control veröffentlicht nur die günstigsten Tankstellen je Bezirk. Unvollständige Abdeckung.",
-    "partialDK": "Dänemark: nur OK und Shell veröffentlichen eine offene API. Unvollständige Abdeckung.",
+    "partialDK": "Dänemark: Tankstellen von OK, Shell, Q8 und F24; Circle K und Uno-X veröffentlichen noch keine offene API. Unvollständige Abdeckung.",
     "partialRO": "Rumänien: Die amtliche Quelle antwortet nur für kleine Gebiete; die Liste füllt sich mit jeder Suche.",
     "showResults": "Tankstellen anzeigen"
   },

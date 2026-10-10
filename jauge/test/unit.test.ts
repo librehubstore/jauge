@@ -345,7 +345,7 @@ describe("prévision attendre / faire le plein (spec 4.9)", () => {
   });
 });
 
-import { parseDkOk, parseDkShell } from "@/connectors/dk";
+import { mapProduct, parseDkOk, parseDkQ8, parseDkShell, splitQ8Address } from "@/connectors/dk";
 import { parseHr } from "@/connectors/hr";
 import { gridPoints, parseRo } from "@/connectors/ro";
 import { parseSi } from "@/connectors/si";
@@ -382,6 +382,14 @@ describe("connecteurs SI, HR, DK, RO", () => {
     const shell = parseDkShell(JSON.parse(fx("dk_shell.json").toString()));
     expect(shell[0].lat).toBeGreaterThan(54);
     expect(shell.flatMap((s) => s.prices).every((p) => ["B7", "B7_PREMIUM", "E10", "E5_98"].includes(p.fuel))).toBe(true);
+    expect(splitQ8Address("Dronningemaen 34 Svendborg 5700 Danmark")).toEqual({ q: "Dronningemaen 34 Svendborg 5700", street: "Dronningemaen 34", city: "Svendborg", postalCode: "5700" });
+    expect(["GoEasy 95 Extra E5", "GoEasy 95 E10", "GoEasy Diesel", "GoEasy Diesel Extra", "Neste MY (HVO100)", "AdBlue"].map(mapProduct))
+      .toEqual(["E5", "E10", "B7", "B7_PREMIUM", "XTL", null]);
+    const q8 = JSON.parse(fx("dk_q8.json").toString()).data.stationsPrices;
+    const rows = parseDkQ8(q8, new Map([[`q8-${q8[0].stationId}`, [55.06, 10.6]]])); // sans coordonnées → ignorée
+    expect(rows).toHaveLength(1);
+    expect(rows[0]).toMatchObject({ brand: "F24", is24hAutomat: true, lat: 55.06 });
+    expect(rows[0].prices.map((p) => p.fuel)).toEqual(expect.arrayContaining(["E5", "E10", "B7"]));
   });
   it("RO : prix en lei, date de la station, services ; grille de cercles de 5 km", () => {
     const rows = parseRo([JSON.parse(fx("ro.json").toString())]);

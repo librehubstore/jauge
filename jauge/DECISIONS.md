@@ -86,11 +86,12 @@ Hypothèses retenues quand la spécification (`../gasoil-now-prompt.md`) laissai
 ## V2 — Nouveaux pays (spec 4.2)
 - **SI** : API JSON paginée de goriva.si (non documentée, utilisée par le site officiel). Pas d'horodatage par prix → date de récupération ; la valeur 0,001 sert de « vide » côté source et est ignorée.
 - **HR** : fichier `data.gz` chargé par l'application officielle du ministère. Latitude et longitude parfois inversées → corrigées par plage plausible. La mention « avec/sans additifs » ne distingue pas standard et premium : gazole le moins cher = `B7`, le plus cher = `B7_PREMIUM`. Prix > 4 €/L ignorés (saisies erronées). Plages horaires coupées fusionnées (une ligne par jour).
-- **DK** : pas de portail national ; chaque enseigne publie une API (§ 16 a, guide KFST de décembre 2025). Seules OK et Shell sont ouvertes avec coordonnées. « Blyfri 95 » = `E10` (E10 généralisé au Danemark depuis 2020).
+- **DK** : pas de portail national ; chaque enseigne publie une API (§ 16 a, guide KFST de décembre 2025). OK et Shell donnent les coordonnées ; Q8/F24 seulement l'adresse, géocodée une fois via Photon (code postal vérifié, positions réutilisées depuis la base ; le référentiel officiel DAWA est fermé). Circle K et Uno-X : accès restreint. Q8 vend un vrai E5 (« 95 Extra E5 ») à côté de l'E10. « Blyfri 95 » = `E10` (E10 généralisé au Danemark depuis 2020).
 - **RO** : l'API du Monitorul Prețurilor ignore les rayons > 5 km, renvoie des listes vides si plusieurs produits sont demandés, et plafonne à 50 résultats. Import national impossible sans des milliers de requêtes : grandes villes en planifié + rafraîchissement à la demande (cache mémoire 2 h par cellule, à déplacer en base si plusieurs instances web).
+- **Identifiants en double dans une source** (Q8 DK) : dédoublonnés à l'ingestion, sinon l'upsert rejette tout le lot.
 - **Carburants disparus d'une source** : l'ingestion ne supprime pas le prix ; il vieillit et sort de l'affichage par la règle de fraîcheur.
 
 ## Reste à faire
 - **V1** : connecteur UK (Fuel Finder), bloqué faute d'identifiants GOV.UK One Login.
-- **DK** : ajouter Q8/F24 (géocoder les adresses), Circle K et Uno-X quand leur accès sera ouvert.
+- **DK** : ajouter Circle K et Uno-X quand leur accès sera ouvert.
 - **RO** : couverture nationale si la source publie un jour un export complet.

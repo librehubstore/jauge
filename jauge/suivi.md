@@ -94,7 +94,7 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 ### Phase 10 — Nouveaux pays : HR, SI, DK, RO (spec 4.2) ✅
 - [x] SI : API JSON de goriva.si (ministère de l'Économie), ~550 stations, toutes les 3 h
 - [x] HR : fichier national `data.gz` du ministère (mzoe-gor.hr), ~900 stations avec horaires et services, toutes les 2 h
-- [x] DK : API des enseignes (obligation § 16 a depuis janvier 2026) ; OK + Shell (~900 stations), toutes les heures. ⚠️ Partiel : Q8/F24 sans coordonnées, Circle K et Uno-X à accès restreint
+- [x] DK : API des enseignes (obligation § 16 a depuis janvier 2026) ; OK + Shell + Q8/F24 (~1 140 stations), toutes les heures. ⚠️ Partiel : Circle K et Uno-X à accès restreint
 - [x] RO : Monitorul Prețurilor (Consiliul Concurenței). ⚠️ L'API ne répond que par cercles de 5 km, un produit et 50 résultats par requête : centres de 12 grandes villes en planifié, puis rafraîchissement à la demande avant chaque recherche en Roumanie (budget 6 s)
 - [x] Avertissement « couverture partielle » DK et RO dans la liste (7 langues) ; pays ajoutés au formulaire « station manquante »
 - [x] Fixtures réelles + tests (62) ; recherche vérifiée à Ljubljana, Zagreb, Copenhague, Cluj et Sibiu (rafraîchissement à la demande)
@@ -115,3 +115,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Phase 10 terminée (62 tests). V2 complète ; DK et RO en couverture partielle (limites des sources).
 - 2026-10-10 — Boucle de recompilation en dev : serveur Turbopack resté actif des heures, corrigée par redémarrage ; service worker de test désormais retiré en dev.
 - 2026-10-10 — Exports CSV de la spec 8 complétés : favoris et historique d'une station (63 tests).
+- 2026-10-10 — DK : Q8 et F24 ajoutés (237 stations géocodées via Photon, une seule fois) ; doublons d'identifiants dédoublonnés à l'ingestion.

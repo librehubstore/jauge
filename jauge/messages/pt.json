@@ -141,7 +141,7 @@
     },
     "median": "Mediana da zona: {value}",
     "partialAT": "Áustria: a E-Control só publica os postos mais baratos de cada distrito. Cobertura parcial.",
-    "partialDK": "Dinamarca: só a OK e a Shell publicam uma API aberta. Cobertura parcial.",
+    "partialDK": "Dinamarca: postos OK, Shell, Q8 e F24; a Circle K e a Uno-X ainda não publicam uma API aberta. Cobertura parcial.",
     "partialRO": "Roménia: a fonte oficial responde por pequenas zonas; a lista completa-se com as pesquisas.",
     "showResults": "Ver os postos"
   },
