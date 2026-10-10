@@ -14,7 +14,8 @@
     "signOut": "Se déconnecter",
     "notifications": "Notifications",
     "alerts": "Alertes",
-    "openStation": "Voir la station"
+    "openStation": "Voir la station",
+    "route": "Itinéraire"
   },
   "common": {
     "save": "Enregistrer",
@@ -418,5 +419,42 @@
     "emailOn": "Vous recevez aussi les alertes par email.",
     "emailOff": "Les alertes arrivent dans vos notifications. Email désactivé.",
     "settingsLink": "Modifier"
+  },
+  "route": {
+    "map": "Carte de l'itinéraire",
+    "from": "Départ",
+    "to": "Arrivée",
+    "via": "Étape {n}",
+    "addVia": "Ajouter une étape",
+    "vehicle": "Véhicule",
+    "level": "Niveau au départ : {value} %",
+    "reserve": "Réserve de sécurité",
+    "corridor": "Distance max. de la route",
+    "avoidTolls": "Éviter les péages",
+    "avoidHighways": "Éviter les autoroutes",
+    "plan": "Calculer le plan carburant",
+    "error": "Itinéraire impossible à calculer. Réessayez plus tard.",
+    "summary": "{km} km · {h} h {m} min · {n} stations au prix connu le long du trajet",
+    "strategies": {
+      "cheapest": "Coût minimal",
+      "balanced": "Équilibré",
+      "fewest": "Moins d'arrêts"
+    },
+    "strategyHelp": {
+      "cheapest": "Le moins cher au total : on achète juste ce qu'il faut pour rejoindre une station moins chère, y compris de l'autre côté d'une frontière.",
+      "balanced": "Au plus 2 arrêts, au meilleur coût.",
+      "fewest": "On roule le plus loin possible avant de s'arrêter."
+    },
+    "infeasible": "Aucun plan possible : pas assez de stations avec un prix connu sur le trajet. Élargissez la distance à la route ou augmentez le niveau de départ.",
+    "total": "Carburant",
+    "litres": "Litres achetés",
+    "saving": "Économie",
+    "noStop": "Aucun arrêt nécessaire : votre réservoir suffit.",
+    "stopLine": "km {km} · {litres} L · {cost} · détour ≈ {detour} km",
+    "navigate": "Y aller",
+    "endFuel": "Carburant restant à l'arrivée : {litres} L",
+    "openAll": "Ouvrir le trajet complet dans Google Maps",
+    "share": "Copier le lien",
+    "copied": "Lien copié"
   }
 }

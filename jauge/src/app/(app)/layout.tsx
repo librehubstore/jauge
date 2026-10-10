@@ -16,6 +16,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
 
   const links = [
     { href: "/", label: t("map") },
+    { href: "/route", label: t("route") },
     { href: "/favorites", label: t("favorites") },
     { href: "/alerts", label: t("alerts") },
     { href: "/vehicles", label: t("vehicles") },

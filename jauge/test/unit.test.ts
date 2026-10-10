@@ -179,3 +179,44 @@ describe("historique (spec 4.9)", () => {
     expect(pts[0].at.toISOString()).toBe("2026-01-01T23:39:00.000Z");
   });
 });
+
+import { evaluate, planFuel, type Candidate, type PlanParams } from "@/lib/fuel-plan";
+
+describe("plan carburant (spec 4.7)", () => {
+  // 50 L, 6 L/100 km, départ à 50 % (25 L), réserve 15 % (7,5 L) : autonomie initiale ≈ 291 km.
+  const p: PlanParams = { routeKm: 600, tank: 50, consumption: 6, startLevel: 0.5, reserve: 0.15 };
+  const fr1: Candidate = { id: 1, km: 60, price: 1.9, detourKm: 1 };
+  const fr2: Candidate = { id: 2, km: 200, price: 1.92, detourKm: 0.5 };
+  const es1: Candidate = { id: 3, km: 280, price: 1.55, detourKm: 1 };
+  const es2: Candidate = { id: 4, km: 450, price: 1.6, detourKm: 2 };
+
+  it("trajet FR → ES : la stratégie « coût minimal » s'arrête côté ES et achète surtout là", () => {
+    const plan = planFuel("cheapest", p, [fr1, fr2, es1, es2])!;
+    expect(plan.feasible).toBe(true);
+    expect(plan.stops[0].id).toBe(3);
+    expect(plan.stops.every((s) => s.price < 1.7)).toBe(true);
+  });
+  it("si l'Espagne n'est pas atteignable, on achète le strict nécessaire en France", () => {
+    const far = { ...es1, km: 330 };
+    const plan = planFuel("cheapest", p, [fr1, fr2, far, es2])!;
+    const frStop = plan.stops.find((s) => s.price > 1.8)!;
+    const esStop = plan.stops.find((s) => s.id === 3)!;
+    expect(frStop.amount).toBeLessThan(esStop.amount);
+    expect(esStop.arrivalFuel).toBeCloseTo(7.5, 1);
+  });
+  it("« moins d'arrêts » minimise le nombre d'arrêts, « équilibré » en fait au plus 2", () => {
+    const fewest = planFuel("fewest", p, [fr1, fr2, es1, es2])!;
+    const balanced = planFuel("balanced", p, [fr1, fr2, es1, es2])!;
+    expect(fewest.stops.length).toBeLessThanOrEqual(balanced.stops.length);
+    expect(balanced.stops.length).toBeLessThanOrEqual(2);
+    expect(balanced.fuelCost).toBeLessThanOrEqual(fewest.fuelCost + 1e-9);
+  });
+  it("aucun arrêt si le réservoir suffit ; impossible si aucune station atteignable", () => {
+    expect(planFuel("cheapest", { ...p, routeKm: 100 }, [fr1])!.stops).toHaveLength(0);
+    expect(planFuel("cheapest", { ...p, startLevel: 0.1 }, [es2])).toBeNull();
+  });
+  it("la simulation refuse une réserve entamée ou un réservoir trop rempli", () => {
+    expect(evaluate(p, [{ c: es1, amount: 60 }]).feasible).toBe(false);
+    expect(evaluate({ ...p, startLevel: 0.2 }, [{ c: es1, amount: 30 }]).feasible).toBe(false);
+  });
+});

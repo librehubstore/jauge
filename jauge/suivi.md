@@ -33,15 +33,16 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - [x] Tests : règle pure + critère spec (1,80 → 1,69 puis 3 ingestions à 1,69 = 1 notification) → 34 tests
 - ⏳ Web Push : reporté en phase 7 (PWA)
 
-### Phase 4 — Itinéraire et plan carburant (spec 4.7) 🔄
-- [ ] Service de routage (OSRM, Valhalla pour éviter péages/autoroutes) derrière une interface
-- [ ] Stations dans un corridor de 1–20 km autour du tracé (PostGIS)
-- [ ] Stratégies : moins d'arrêts, coût minimal, équilibré (≤ 2 arrêts)
-- [ ] Page Itinéraire : départ, arrivée, ≤ 3 étapes, véhicule, niveau, réserve ; liste des arrêts, coût total, économie
-- [ ] Détour routier réel dans le « meilleur choix » (remplace l'estimation × 1,3 quand dispo)
-- [ ] Test : trajet FR → ES fictif, l'arrêt « coût minimal » est côté ES
+### Phase 4 — Itinéraire et plan carburant (spec 4.7) ✅
+- [x] Routage Valhalla (instance publique FOSSGIS, `VALHALLA_URL` pour l'auto-hébergement) : éviter péages / autoroutes, jusqu'à 3 étapes
+- [x] Corridor PostGIS 1–20 km autour du tracé (prix < 7 j, hors ruptures), position le long de la route, détour estimé
+- [x] Stratégies : coût minimal (programmation dynamique + pénalité de 0,5 € par arrêt + quantités exactes), équilibré (≤ 2 arrêts, énumération), moins d'arrêts
+- [x] Page `/route` : carte avec tracé, arrêts (litres, coût, détour), économie vs « moins d'arrêts », Google Maps (trajet complet ou par arrêt), lien partageable
+- [x] Détour routier réel (matrice Valhalla, aller-retour, km + minutes) pour les 25 premières stations du « meilleur choix » ; repli sur l'estimation si indisponible (~1 s par recherche)
+- [x] Tests : FR → ES (arrêt côté ES), achat minimal côté FR, contraintes de réserve et de capacité → 39 tests
+- Mesure réelle Toulouse → Barcelone : 398 km, 439 stations candidates, 2 arrêts, 38,88 € contre 45,51 € (−6,65 €)
 
-### Phase 5 — Nouveaux pays (spec 4.2) ⏳
+### Phase 5 — Nouveaux pays (spec 4.2) 🔄
 - [ ] PT (DGEG) — API à identifier
 - [ ] AD (gouvernement d'Andorre)
 - [ ] DE (Tankerkönig, clé `TANKERKOENIG_API_KEY`)
@@ -64,3 +65,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Phase 2 codée, tests OK (30). Import d'archive FR lancé en arrière-plan ; graphique à valider visuellement.
 - 2026-10-10 — Phase 2 validée visuellement. Début phase 3.
 - 2026-10-10 — Phase 3 terminée (34 tests). Début phase 4 (itinéraire).
+- 2026-10-10 — Phase 4 terminée (39 tests). Début phase 5 (nouveaux pays).

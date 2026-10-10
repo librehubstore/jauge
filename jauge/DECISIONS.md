@@ -51,5 +51,12 @@ Hypothèses retenues quand la spécification (`../gasoil-now-prompt.md`) laissai
 - **Alertes** : prix récents seulement (< 7 j, hors quarantaine, station active). Évaluées après une ingestion qui change des prix et après un prix communautaire publié, pas sur un minuteur.
 - **Graphique** : SVG maison, palette catégorielle de référence validée (bleu `--series-1`, orange `--series-2`).
 
+## V1 — Itinéraire (spec 4.7)
+- **Valhalla seul** (pas OSRM) : il gère l'évitement des péages et des autoroutes. Instance publique en développement, `VALHALLA_URL` en production.
+- **Détour vers une station du trajet** : distance au tracé × 1,3 × 2 (estimé), sans appel de routage par station.
+- **Coût minimal** : programmation dynamique sur des niveaux de réservoir discrétisés (50), une station retenue par tronçon de 10 km, **pénalité fixe de 0,5 € par arrêt** (sinon l'optimum enchaîne des micro-arrêts pour quelques centimes). Les quantités sont ensuite recalculées exactement pour la suite d'arrêts retenue ; le résultat n'est jamais pire que « équilibré ».
+- **Économie** affichée par rapport à la stratégie naïve « moins d'arrêts », au même volume acheté.
+- **Recherche autour de soi** : détour routier réel (matrice Valhalla, aller-retour = 2 × aller) pour les 25 premières stations des tris « meilleur choix » et « prix du plein » ; au-delà et en cas d'échec, estimation × 1,3 libellée « estimé ».
+
 ## Hors MVP (prévu en V1/V2, voir spec section 3)
 Itinéraire et plan carburant, alertes de prix, historique graphique, saisie de prix communautaire et file de modération, connecteurs PT/AD/DE/UK/AT, langues ES/IT/PT/DE/NL, conversion de devises, PWA hors ligne et Web Push, journal de pleins.

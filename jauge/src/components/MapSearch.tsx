@@ -250,7 +250,7 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
                   {s.fillCost !== null && (
                     <div className="mt-1 flex flex-wrap gap-x-3 text-xs text-muted">
                       <span>{t("fillCost", { value: fmt.money(s.fillCost, s.currency ?? "EUR") })}</span>
-                      <span>{t("detour", { km: fmt.distance(s.detourKm), cost: fmt.money(s.detourCost ?? 0, s.currency ?? "EUR") })} ({t("estimated")})</span>
+                      <span>{t("detour", { km: fmt.distance(s.detourKm), cost: fmt.money(s.detourCost ?? 0, s.currency ?? "EUR") })}{s.detourMinutes !== null ? ` · ${s.detourMinutes} min` : ` (${t("estimated")})`}</span>
                       {s.saving !== null && s.saving > 0.005 && <span className="font-medium text-tier-0">{t("saving", { value: fmt.money(s.saving, s.currency ?? "EUR") })}</span>}
                     </div>
                   )}

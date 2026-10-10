@@ -2,6 +2,7 @@ import { sql } from "drizzle-orm";
 import { db } from "@/db";
 import { amountToAdd, bestChoiceCost, detourCost, detourKm, freshness, median, priceTiers, savings, type Freshness } from "./cost";
 import { isOpenAt, type Hours } from "./hours";
+import { roadDistances } from "./routing";
 
 export type SortKey = "best" | "price" | "fill" | "distance";
 
@@ -20,6 +21,7 @@ export type StationResult = {
   price: number | null; currency: string | null; priceUpdatedAt: string | null; origin: string | null;
   freshness: Freshness | null; outage: boolean; openNow: boolean | null;
   tier: 0 | 1 | 2 | null; fillCost: number | null; detourKm: number; detourCost: number | null;
+  detourEstimated: boolean; detourMinutes: number | null;
   totalCost: number | null; saving: number | null;
 };
 
@@ -58,7 +60,9 @@ export async function searchStations(p: SearchParams): Promise<{ stations: Stati
     order by distance_km
     limit 500
   `)) as unknown as Row[];
-  return rank(rows, p, new Date());
+  const result = rank(rows, p, new Date());
+  if (p.sort === "best" || p.sort === "fill") await refineDetours(result.stations, p, result.median);
+  return result;
 }
 
 /** Post-traitement pur : filtres, coûts, tiers, tri (testé unitairement). */
@@ -98,18 +102,43 @@ export function rank(rows: Row[], p: SearchParams, now: Date) {
       origin: r.origin, freshness: fresh, outage: r.outage, openNow,
       tier: ranked && fresh !== "excluded" && tierOf ? (tierOf(price!) as 0 | 1 | 2) : null,
       fillCost: ranked ? price! * amount : null,
-      detourKm: detourKm(Number(r.distance_km)),
+      detourKm: detourKm(Number(r.distance_km)), detourEstimated: true, detourMinutes: null,
       detourCost: ranked ? detourCost(Number(r.distance_km), p.consumption, price!) : null,
       totalCost: ranked ? bestChoiceCost(price!, amount, Number(r.distance_km), p.consumption) : null,
       saving: ranked && med !== null ? savings(med, price!, amount, Number(r.distance_km), p.consumption) : null,
     };
   });
 
-  // Les stations sans prix exploitable passent toujours après celles qui en ont un.
+  sortStations(stations, p);
+  return { stations, median: med };
+}
+
+// Les stations sans prix exploitable passent toujours après celles qui en ont un.
+function sortStations(stations: StationResult[], p: Pick<SearchParams, "sort" | "favoritesFirst">) {
   const key = (s: StationResult) => p.sort === "distance" ? s.distanceKm
     : s.totalCost === null ? Infinity
     : p.sort === "price" ? s.price! : p.sort === "fill" ? s.fillCost! : s.totalCost;
   stations.sort((a, b) =>
     (p.favoritesFirst ? Number(b.favorite) - Number(a.favorite) : 0) || key(a) - key(b) || a.distanceKm - b.distanceKm);
-  return { stations, median: med };
+}
+
+export const REAL_DETOUR_TOP = 25;
+
+/** Remplace le détour estimé par la distance routière réelle (aller-retour) pour les premières stations, puis re-trie. */
+export async function refineDetours(stations: StationResult[], p: SearchParams, med: number | null) {
+  const top = stations.filter((s) => s.totalCost !== null).slice(0, REAL_DETOUR_TOP);
+  const d = await roadDistances({ lat: p.lat, lon: p.lon }, top.map((s) => ({ lat: s.lat, lon: s.lon })));
+  if (!d) return stations;
+  const amount = amountToAdd(p.tank, p.level);
+  top.forEach((s, i) => {
+    if (!Number.isFinite(d[i].km)) return;
+    s.detourKm = d[i].km * 2;
+    s.detourMinutes = Math.round(d[i].minutes * 2);
+    s.detourEstimated = false;
+    s.detourCost = (s.detourKm * p.consumption / 100) * s.price!;
+    s.totalCost = s.price! * amount + s.detourCost;
+    if (med !== null) s.saving = (med - s.price!) * amount - s.detourCost;
+  });
+  sortStations(stations, p);
+  return stations;
 }

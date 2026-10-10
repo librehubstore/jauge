@@ -1,6 +1,6 @@
 "use client";
 
-import { LngLat, Map as MlMap, NavigationControl, type GeoJSONSource, type MapLayerMouseEvent } from "maplibre-gl";
+import { LngLat, LngLatBounds, Map as MlMap, NavigationControl, type GeoJSONSource, type MapLayerMouseEvent } from "maplibre-gl";
 import { useEffect, useRef } from "react";
 
 export type MapPoint = { id: number; lat: number; lon: number; tier: 0 | 1 | 2 | null; label: string };
@@ -19,16 +19,18 @@ type Props = {
   onUserMove: (c: { lat: number; lon: number; radiusKm: number }) => void;
   recenterLabel: string;
   onRecenter: () => void;
+  /** Tracé d'itinéraire [lon, lat] ; la carte s'y cadre à chaque changement. */
+  line?: [number, number][];
 };
 
-export function StationMap({ center, me, points, highlightId, onSelect, onUserMove, recenterLabel, onRecenter }: Props) {
+export function StationMap({ center, me, points, highlightId, onSelect, onUserMove, recenterLabel, onRecenter, line }: Props) {
   const el = useRef<HTMLDivElement>(null);
   const map = useRef<MlMap | null>(null);
   const ready = useRef(false);
   const cb = useRef({ onSelect, onUserMove });
   cb.current = { onSelect, onUserMove };
-  const latest = useRef({ points, me, highlightId });
-  latest.current = { points, me, highlightId };
+  const latest = useRef({ points, me, highlightId, line });
+  latest.current = { points, me, highlightId, line };
 
   useEffect(() => {
     const m = new MlMap({
@@ -42,6 +44,9 @@ export function StationMap({ center, me, points, highlightId, onSelect, onUserMo
     m.on("load", () => {
       m.addSource("stations", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
       m.addSource("me", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+      m.addSource("route", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+      m.addLayer({ id: "route", type: "line", source: "route", layout: { "line-join": "round", "line-cap": "round" },
+        paint: { "line-color": cssVar("--series-1"), "line-width": 4, "line-opacity": 0.85 } });
       m.addLayer({
         id: "me", type: "circle", source: "me",
         paint: { "circle-radius": 7, "circle-color": "#2563eb", "circle-stroke-width": 3, "circle-stroke-color": "#fff" },
@@ -83,7 +88,7 @@ export function StationMap({ center, me, points, highlightId, onSelect, onUserMo
   function sync() {
     const m = map.current;
     if (!m || !ready.current) return;
-    const { points, me, highlightId } = latest.current;
+    const { points, me, highlightId, line } = latest.current;
     (m.getSource("stations") as GeoJSONSource).setData({
       type: "FeatureCollection",
       features: points.map((p) => ({
@@ -96,9 +101,19 @@ export function StationMap({ center, me, points, highlightId, onSelect, onUserMo
       features: me ? [{ type: "Feature", geometry: { type: "Point", coordinates: [me.lon, me.lat] }, properties: {} }] : [],
     });
     m.setFilter("st-hl", ["==", ["get", "id"], highlightId ?? -1]);
+    (m.getSource("route") as GeoJSONSource).setData({
+      type: "FeatureCollection",
+      features: line?.length ? [{ type: "Feature", geometry: { type: "LineString", coordinates: line }, properties: {} }] : [],
+    });
   }
 
-  useEffect(sync, [points, me, highlightId]);
+  useEffect(sync, [points, me, highlightId, line]);
+
+  useEffect(() => {
+    if (!line?.length || !map.current) return;
+    const b = line.reduce((acc, c) => acc.extend(c), new LngLatBounds(line[0], line[0]));
+    map.current.fitBounds(b, { padding: 40, duration: 600 });
+  }, [line]);
 
   useEffect(() => {
     map.current?.flyTo({ center: [center.lon, center.lat], zoom: center.zoom ?? 12, duration: 600 });

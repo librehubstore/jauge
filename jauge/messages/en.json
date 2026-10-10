@@ -14,7 +14,8 @@
     "signOut": "Sign out",
     "notifications": "Notifications",
     "alerts": "Alerts",
-    "openStation": "View station"
+    "openStation": "View station",
+    "route": "Route"
   },
   "common": {
     "save": "Save",
@@ -418,5 +419,42 @@
     "emailOn": "You also receive alerts by email.",
     "emailOff": "Alerts arrive in your notifications. Email is off.",
     "settingsLink": "Change"
+  },
+  "route": {
+    "map": "Route map",
+    "from": "Start",
+    "to": "Destination",
+    "via": "Stop {n}",
+    "addVia": "Add a stop",
+    "vehicle": "Vehicle",
+    "level": "Starting level: {value} %",
+    "reserve": "Safety reserve",
+    "corridor": "Max distance from the road",
+    "avoidTolls": "Avoid tolls",
+    "avoidHighways": "Avoid motorways",
+    "plan": "Compute fuel plan",
+    "error": "Could not compute the route. Please try again later.",
+    "summary": "{km} km · {h} h {m} min · {n} stations with a known price along the way",
+    "strategies": {
+      "cheapest": "Lowest cost",
+      "balanced": "Balanced",
+      "fewest": "Fewest stops"
+    },
+    "strategyHelp": {
+      "cheapest": "Cheapest overall: buy just enough to reach a cheaper station, including across a border.",
+      "balanced": "At most 2 stops, at the best cost.",
+      "fewest": "Drive as far as possible before stopping."
+    },
+    "infeasible": "No plan possible: not enough stations with a known price along the way. Widen the distance from the road or raise the starting level.",
+    "total": "Fuel",
+    "litres": "Litres bought",
+    "saving": "Saving",
+    "noStop": "No stop needed: your tank is enough.",
+    "stopLine": "km {km} · {litres} L · {cost} · detour ≈ {detour} km",
+    "navigate": "Navigate",
+    "endFuel": "Fuel left on arrival: {litres} L",
+    "openAll": "Open the full trip in Google Maps",
+    "share": "Copy link",
+    "copied": "Link copied"
   }
 }
