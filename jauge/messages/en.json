@@ -140,6 +140,8 @@
     },
     "median": "Area median: {value}",
     "partialAT": "Austria: E-Control only publishes the cheapest stations of each district. Partial coverage.",
+    "partialDK": "Denmark: only OK and Shell publish an open API. Partial coverage.",
+    "partialRO": "Romania: the official source answers by small areas; the list fills in as you search.",
     "showResults": "Show stations"
   },
   "price": {

@@ -337,3 +337,50 @@ describe("prévision attendre / faire le plein (spec 4.9)", () => {
     expect(forecast(build([0.03, 0, -0.04, 0, 0, 0, 0], 0, 2), monday)).toBeNull();
   });
 });
+
+import { parseDkOk, parseDkShell } from "@/connectors/dk";
+import { parseHr } from "@/connectors/hr";
+import { gridPoints, parseRo } from "@/connectors/ro";
+import { parseSi } from "@/connectors/si";
+
+describe("connecteurs SI, HR, DK, RO", () => {
+  it("SI : prix factices (0,001) ignorés, enseigne depuis la liste des franchises, 24/24", () => {
+    const j = JSON.parse(fx("si.json").toString());
+    const rows = parseSi(j.search.results, j.franchise);
+    expect(rows).toHaveLength(3);
+    expect(rows.every((r) => r.prices.every((p) => p.price > 0.3))).toBe(true);
+    expect(rows[0].brand).toBeTruthy();
+  });
+  it("HR : lat/long inversés corrigés, gazole le moins cher = B7, horaires par type de jour", () => {
+    const rows = parseHr(JSON.parse(fx("hr.json").toString()));
+    expect(rows).toHaveLength(3);
+    for (const r of rows) {
+      expect(r.lat).toBeGreaterThan(41.5); expect(r.lat).toBeLessThan(47);
+      expect(r.lon).toBeGreaterThan(13); expect(r.lon).toBeLessThan(20);
+    }
+    expect(rows[0].prices.length).toBeGreaterThan(0);
+    expect(rows[0].hours?.some((h) => h.weekday === 0)).toBe(true);
+    const d = JSON.parse(fx("hr.json").toString());
+    d.postajas[0].radnaVremena = [{ vrsta_dana_id: 1, pocetak: "06:00:00", kraj: "12:00:00" }, { vrsta_dana_id: 1, pocetak: "14:00:00", kraj: "21:00:00" }];
+    d.postajas[0].cjenici = [{ gorivo_id: d.gorivos.find((g: { vrsta_goriva_id: number }) => [7, 8].includes(g.vrsta_goriva_id)).id, cijena: 1.4 }];
+    expect(parseHr(d)[0].prices).toMatchObject([{ fuel: "B7", price: 1.4 }]);
+    const split = parseHr(d)[0].hours!;
+    expect(split).toHaveLength(5);
+    expect(split[0]).toMatchObject({ opens: "06:00", closes: "21:00" });
+  });
+  it("DK : Blyfri 95 → E10, diesel → B7, V-Power Diesel → premium, prix en DKK", () => {
+    const ok = parseDkOk(JSON.parse(fx("dk_ok.json").toString()).items);
+    expect(ok[0].prices.map((p) => p.fuel)).toEqual(expect.arrayContaining(["E10", "B7"]));
+    expect(ok[0].prices[0].price).toBeGreaterThan(10);
+    const shell = parseDkShell(JSON.parse(fx("dk_shell.json").toString()));
+    expect(shell[0].lat).toBeGreaterThan(54);
+    expect(shell.flatMap((s) => s.prices).every((p) => ["B7", "B7_PREMIUM", "E10", "E5_98"].includes(p.fuel))).toBe(true);
+  });
+  it("RO : prix en lei, date de la station, services ; grille de cercles de 5 km", () => {
+    const rows = parseRo([JSON.parse(fx("ro.json").toString())]);
+    expect(rows).toHaveLength(3);
+    expect(rows[0].prices.length).toBeGreaterThan(0);
+    expect(rows[0].prices[0].updatedAt.getUTCFullYear()).toBe(2026);
+    expect(gridPoints(44.43, 26.1, 10).length).toBeGreaterThanOrEqual(9);
+  });
+});

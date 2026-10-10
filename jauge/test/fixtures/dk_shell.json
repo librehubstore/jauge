@@ -1,0 +1,72 @@
+[
+ {
+  "stationId": "D216",
+  "brand": "Shell",
+  "owner": "Shell",
+  "street": "Kertemindevej 2A",
+  "houseNumber": null,
+  "postalCode": "9220",
+  "city": "Aalborg Øst",
+  "coordinates": {
+   "latitude": "57.049130",
+   "longitude": "10.038070"
+  },
+  "prices": [
+   {
+    "fuelType": "Autodiesel",
+    "octane": null,
+    "productName": "FuelSave Diesel",
+    "price": "20.19",
+    "currency": "DKK",
+    "lastUpdated": "2026-10-09T11:00:00.000"
+   }
+  ]
+ },
+ {
+  "stationId": "D820",
+  "brand": "Shell",
+  "owner": "Shell",
+  "street": "ØSTERGADE 1",
+  "houseNumber": null,
+  "postalCode": "4171",
+  "city": "GLUMSØ",
+  "coordinates": {
+   "latitude": "55.353391",
+   "longitude": "11.691900"
+  },
+  "prices": [
+   {
+    "fuelType": "Autodiesel",
+    "octane": null,
+    "productName": "V-Power Diesel",
+    "price": "19.99",
+    "currency": "DKK",
+    "lastUpdated": "2026-10-09T11:00:00.000"
+   },
+   {
+    "fuelType": "Autobenzin",
+    "octane": "98",
+    "productName": "V-Power",
+    "price": "20.69",
+    "currency": "DKK",
+    "lastUpdated": "2026-10-09T11:00:00.000"
+   },
+   {
+    "fuelType": "Autodiesel",
+    "octane": null,
+    "productName": "FuelSave Diesel",
+    "price": "18.99",
+    "currency": "DKK",
+    "lastUpdated": "2026-10-09T11:00:00.000"
+   },
+   {
+    "fuelType": "Autobenzin",
+    "octane": "95",
+    "productName": "Blyfri 95",
+    "price": "18.19",
+    "currency": "DKK",
+    "lastUpdated": "2026-10-09T11:00:00.000"
+   }
+  ]
+ }
+]

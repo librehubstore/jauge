@@ -68,13 +68,29 @@ Hypothèses retenues quand la spécification (`../gasoil-now-prompt.md`) laissai
 
 ## V1 — Langues et devises (spec 4.12)
 - **7 langues** : traductions rédigées pour l'interface et les emails ; à faire relire par des locuteurs natifs avant diffusion large. Le géocodage Photon ne gère que fr/en/de/it (sinon langue par défaut).
-- **Devises** : toutes les sources actuelles publient en EUR. La conversion (taux BCE, base EUR) est un affichage : « ≈ » + mention, valeurs stockées inchangées. Le graphique d'historique et la modération restent en devise d'origine.
+- **Devises** : les sources publient en EUR, sauf DK (DKK) et RO (RON) depuis la V2. La conversion (taux BCE, base EUR) est un affichage : « ≈ » + mention, valeurs stockées inchangées. Le graphique d'historique et la modération restent en devise d'origine.
 
 ## V1 — PWA (spec 4.8 / 10)
 - **Service worker écrit à la main** plutôt que Serwist : une centaine de lignes, sans dépendance ni configuration de bundler. Enregistré en production seulement (`NEXT_PUBLIC_SW=1` pour le tester en dev).
 - **Hors ligne** : réseau d'abord pour l'API de recherche et les pages Carte/Favoris, dernière réponse sinon, marquée par l'en-tête `x-jauge-offline` (date) ; cache d'abord pour les ressources versionnées et les tuiles.
 - **Push** : envoyé pour les alertes de prix et les comptes à valider, en plus de la notification in-app. Désactivé si les clés VAPID manquent.
 
+## V2 — Journal de pleins (spec 4.13)
+- **Consommation plein à plein** : seuls les pleins complets ferment un segment ; les pleins partiels intermédiaires s'y cumulent ; un kilométrage qui recule invalide le segment au lieu de produire une valeur absurde.
+- **Export CSV** : séparateur « ; » et BOM pour Excel en français ; cellules commençant par `= + - @` préfixées d'une apostrophe (injection de formules).
+
+## V2 — Prévision (spec 4.9)
+- **Méthode volontairement simple et explicable** : profil hebdomadaire (écart de chaque jour à la moyenne de sa semaine sur 12 semaines) + pente sur 14 jours, horizon 3 jours. Pas de modèle statistique lourd : les cycles de prix sont essentiellement hebdomadaires et l'utilisateur doit comprendre le conseil.
+- **Confiance** : mesurée seulement sur les semaines où le prix a bougé, sinon les semaines stables passent pour des désaccords. Repli sur la médiane de la zone si la station manque d'historique ; la base utilisée est affichée.
+
+## V2 — Nouveaux pays (spec 4.2)
+- **SI** : API JSON paginée de goriva.si (non documentée, utilisée par le site officiel). Pas d'horodatage par prix → date de récupération ; la valeur 0,001 sert de « vide » côté source et est ignorée.
+- **HR** : fichier `data.gz` chargé par l'application officielle du ministère. Latitude et longitude parfois inversées → corrigées par plage plausible. La mention « avec/sans additifs » ne distingue pas standard et premium : gazole le moins cher = `B7`, le plus cher = `B7_PREMIUM`. Prix > 4 €/L ignorés (saisies erronées). Plages horaires coupées fusionnées (une ligne par jour).
+- **DK** : pas de portail national ; chaque enseigne publie une API (§ 16 a, guide KFST de décembre 2025). Seules OK et Shell sont ouvertes avec coordonnées. « Blyfri 95 » = `E10` (E10 généralisé au Danemark depuis 2020).
+- **RO** : l'API du Monitorul Prețurilor ignore les rayons > 5 km, renvoie des listes vides si plusieurs produits sont demandés, et plafonne à 50 résultats. Import national impossible sans des milliers de requêtes : grandes villes en planifié + rafraîchissement à la demande (cache mémoire 2 h par cellule, à déplacer en base si plusieurs instances web).
+- **Carburants disparus d'une source** : l'ingestion ne supprime pas le prix ; il vieillit et sort de l'affichage par la règle de fraîcheur.
+
 ## Reste à faire
 - **V1** : connecteur UK (Fuel Finder), bloqué faute d'identifiants GOV.UK One Login.
-- **V2** (spec section 3) : journal de pleins, prévision « attendre ou faire le plein », connecteurs HR/SI/DK/RO (sources officielles à identifier).
+- **DK** : ajouter Q8/F24 (géocoder les adresses), Circle K et Uno-X quand leur accès sera ouvert.
+- **RO** : couverture nationale si la source publie un jour un export complet.

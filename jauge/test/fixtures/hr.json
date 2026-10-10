@@ -1,0 +1,576 @@
+{
+ "postajas": [
+  {
+   "id": 1223,
+   "naziv": "BP KLINČA SELA",
+   "adresa": "KOLODVORSKA 74",
+   "mjesto": "KLINČA SELA",
+   "obveznik_id": 212,
+   "long": "45.684651",
+   "lat": "15.748905",
+   "radnaVremena": [
+    {
+     "id": 15704,
+     "vrsta_dana_id": 1,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    },
+    {
+     "id": 15705,
+     "vrsta_dana_id": 2,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    },
+    {
+     "id": 15706,
+     "vrsta_dana_id": 3,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    },
+    {
+     "id": 15707,
+     "vrsta_dana_id": 4,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    }
+   ],
+   "opcije": [],
+   "cjenici": [
+    {
+     "id": 5177211,
+     "gorivo_id": 1011,
+     "cijena": 1.38
+    },
+    {
+     "id": 5165092,
+     "gorivo_id": 1012,
+     "cijena": 1.43
+    },
+    {
+     "id": 5177212,
+     "gorivo_id": 1013,
+     "cijena": 0.79
+    },
+    {
+     "id": 5177213,
+     "gorivo_id": 1014,
+     "cijena": 0.76
+    },
+    {
+     "id": 5177214,
+     "gorivo_id": 1015,
+     "cijena": 1.44
+    },
+    {
+     "id": 5177215,
+     "gorivo_id": 1016,
+     "cijena": 20.8
+    },
+    {
+     "id": 5177216,
+     "gorivo_id": 1017,
+     "cijena": 72.8
+    }
+   ],
+   "obavijesti": [],
+   "url": "1223-tomica-benz-d-o-o-bp-klinca-sela"
+  },
+  {
+   "id": 1425,
+   "naziv": "SLANO",
+   "adresa": "Banići 40",
+   "mjesto": "Banići",
+   "obveznik_id": 5,
+   "long": "42.798694",
+   "lat": "17.850944",
+   "radnaVremena": [
+    {
+     "id": 542027,
+     "vrsta_dana_id": 1,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    },
+    {
+     "id": 542028,
+     "vrsta_dana_id": 2,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    },
+    {
+     "id": 542029,
+     "vrsta_dana_id": 3,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    },
+    {
+     "id": 542030,
+     "vrsta_dana_id": 4,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    }
+   ],
+   "opcije": [],
+   "cjenici": [
+    {
+     "id": 5843114,
+     "gorivo_id": 829,
+     "cijena": 1.74
+    },
+    {
+     "id": 5843168,
+     "gorivo_id": 780,
+     "cijena": 2.32
+    },
+    {
+     "id": 5843277,
+     "gorivo_id": 830,
+     "cijena": 1.84
+    },
+    {
+     "id": 5843223,
+     "gorivo_id": 831,
+     "cijena": 2.11
+    },
+    {
+     "id": 5843323,
+     "gorivo_id": 832,
+     "cijena": 0.89
+    }
+   ],
+   "obavijesti": [],
+   "url": "1425-tifon-d-o-o-slano"
+  },
+  {
+   "id": 1256,
+   "naziv": "PM POREČ, ŽBANDAJ",
+   "adresa": "ST. DANELON 1B",
+   "mjesto": "KADUMI",
+   "obveznik_id": 9,
+   "long": "45.21885900",
+   "lat": "13.64893600",
+   "radnaVremena": [
+    {
+     "id": 689229,
+     "vrsta_dana_id": 1,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    },
+    {
+     "id": 689230,
+     "vrsta_dana_id": 2,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    },
+    {
+     "id": 689231,
+     "vrsta_dana_id": 3,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    },
+    {
+     "id": 689232,
+     "vrsta_dana_id": 4,
+     "pocetak": "06:00:00",
+     "kraj": "22:00:00"
+    }
+   ],
+   "opcije": [
+    {
+     "id": 5432,
+     "opcija_id": 11
+    },
+    {
+     "id": 5424,
+     "opcija_id": 10
+    },
+    {
+     "id": 5426,
+     "opcija_id": 4
+    },
+    {
+     "id": 5435,
+     "opcija_id": 8
+    },
+    {
+     "id": 5437,
+     "opcija_id": 6
+    },
+    {
+     "id": 5438,
+     "opcija_id": 12
+    }
+   ],
+   "cjenici": [
+    {
+     "id": 5848695,
+     "gorivo_id": 54,
+     "cijena": 0.91
+    },
+    {
+     "id": 5848696,
+     "gorivo_id": 55,
+     "cijena": 1.74
+    },
+    {
+     "id": 5848697,
+     "gorivo_id": 56,
+     "cijena": 2.39
+    },
+    {
+     "id": 5848698,
+     "gorivo_id": 57,
+     "cijena": 2.17
+    },
+    {
+     "id": 5848699,
+     "gorivo_id": 1159,
+     "cijena": 1.84
+    }
+   ],
+   "obavijesti": [],
+   "url": "1256-petrol-d-o-o-pm-porec-zbandaj"
+  }
+ ],
+ "gorivos": [
+  {
+   "id": 55,
+   "naziv": "Q MAX EUROSUPER 95",
+   "obveznik_id": 9,
+   "vrsta_goriva_id": 1,
+   "oznaka": null
+  },
+  {
+   "id": 56,
+   "naziv": "Q MAX EUROSUPER 100",
+   "obveznik_id": 9,
+   "vrsta_goriva_id": 5,
+   "oznaka": null
+  },
+  {
+   "id": 54,
+   "naziv": "Q MAX AUTOPLIN",
+   "obveznik_id": 9,
+   "vrsta_goriva_id": 9,
+   "oznaka": null
+  },
+  {
+   "id": 57,
+   "naziv": "Q MAX EURODIZEL B7",
+   "obveznik_id": 9,
+   "vrsta_goriva_id": 7,
+   "oznaka": null
+  },
+  {
+   "id": 780,
+   "naziv": "EVO Eurosuper 100+ BS Premium ",
+   "obveznik_id": 5,
+   "vrsta_goriva_id": 5,
+   "oznaka": null
+  },
+  {
+   "id": 829,
+   "naziv": "EVO Eurosuper 95 BS ",
+   "obveznik_id": 5,
+   "vrsta_goriva_id": 1,
+   "oznaka": null
+  },
+  {
+   "id": 830,
+   "naziv": "EVO Eurodiesel BS ",
+   "obveznik_id": 5,
+   "vrsta_goriva_id": 8,
+   "oznaka": null
+  },
+  {
+   "id": 831,
+   "naziv": "EVO Eurodiesel BS Premium ",
+   "obveznik_id": 5,
+   "vrsta_goriva_id": 7,
+   "oznaka": null
+  },
+  {
+   "id": 832,
+   "naziv": "EVO LPG",
+   "obveznik_id": 5,
+   "vrsta_goriva_id": 9,
+   "oznaka": null
+  },
+  {
+   "id": 1011,
+   "naziv": "EURODIZEL B7 ",
+   "obveznik_id": 212,
+   "vrsta_goriva_id": 8,
+   "oznaka": null
+  },
+  {
+   "id": 1012,
+   "naziv": "EUROSUPER 95 ",
+   "obveznik_id": 212,
+   "vrsta_goriva_id": 2,
+   "oznaka": null
+  },
+  {
+   "id": 1013,
+   "naziv": "AUTOPLIN ",
+   "obveznik_id": 212,
+   "vrsta_goriva_id": 9,
+   "oznaka": null
+  },
+  {
+   "id": 1014,
+   "naziv": "EURODIZEL PLAVI ",
+   "obveznik_id": 212,
+   "vrsta_goriva_id": 11,
+   "oznaka": null
+  },
+  {
+   "id": 1015,
+   "naziv": "EURODIZEL B7 ADD",
+   "obveznik_id": 212,
+   "vrsta_goriva_id": 7,
+   "oznaka": null
+  },
+  {
+   "id": 1016,
+   "naziv": "PLINSKA BOCA 10KG.",
+   "obveznik_id": 212,
+   "vrsta_goriva_id": 21,
+   "oznaka": null
+  },
+  {
+   "id": 1017,
+   "naziv": "PLINSKA BOCA 35KG.",
+   "obveznik_id": 212,
+   "vrsta_goriva_id": 22,
+   "oznaka": null
+  },
+  {
+   "id": 1159,
+   "naziv": "EURODIZEL AD B7",
+   "obveznik_id": 9,
+   "vrsta_goriva_id": 7,
+   "oznaka": null
+  }
+ ],
+ "obvezniks": [
+  {
+   "id": 9,
+   "naziv": "Petrol d.o.o.",
+   "logo": "obv_9_logo.png"
+  },
+  {
+   "id": 5,
+   "naziv": "Tifon d.o.o.",
+   "logo": "obv_5_logo.png"
+  },
+  {
+   "id": 212,
+   "naziv": "TOMICA BENZ d.o.o.",
+   "logo": null
+  }
+ ],
+ "vrsta_gorivas": [
+  {
+   "id": 1,
+   "vrsta_goriva": "Eurosuper 95 sa aditivima",
+   "tip_goriva_id": 1
+  },
+  {
+   "id": 2,
+   "vrsta_goriva": "Eurosuper 95 bez aditiva",
+   "tip_goriva_id": 1
+  },
+  {
+   "id": 5,
+   "vrsta_goriva": "Eurosuper 100 sa aditivima",
+   "tip_goriva_id": 1
+  },
+  {
+   "id": 6,
+   "vrsta_goriva": "Eurosuper 100 bez aditiva",
+   "tip_goriva_id": 1
+  },
+  {
+   "id": 7,
+   "vrsta_goriva": "Eurodizel sa aditivima",
+   "tip_goriva_id": 2
+  },
+  {
+   "id": 8,
+   "vrsta_goriva": "Eurodizel bez aditiva",
+   "tip_goriva_id": 2
+  },
+  {
+   "id": 9,
+   "vrsta_goriva": "UNP (autoplin)",
+   "tip_goriva_id": 3
+  },
+  {
+   "id": 10,
+   "vrsta_goriva": "Plinsko ulje LU EL (lož ulje)",
+   "tip_goriva_id": 4
+  },
+  {
+   "id": 11,
+   "vrsta_goriva": "Plinsko ulje obojano plavom bojom (plavi dizel)",
+   "tip_goriva_id": 4
+  },
+  {
+   "id": 12,
+   "vrsta_goriva": "Bioetanol",
+   "tip_goriva_id": 5
+  },
+  {
+   "id": 13,
+   "vrsta_goriva": "Biodizel",
+   "tip_goriva_id": 5
+  },
+  {
+   "id": 14,
+   "vrsta_goriva": "Bioplin",
+   "tip_goriva_id": 5
+  },
+  {
+   "id": 15,
+   "vrsta_goriva": "Biometanol",
+   "tip_goriva_id": 5
+  },
+  {
+   "id": 16,
+   "vrsta_goriva": "Biodimetileter",
+   "tip_goriva_id": 5
+  },
+  {
+   "id": 17,
+   "vrsta_goriva": "Bio-ETBE",
+   "tip_goriva_id": 5
+  },
+  {
+   "id": 18,
+   "vrsta_goriva": "Bio-MTBE",
+   "tip_goriva_id": 5
+  },
+  {
+   "id": 19,
+   "vrsta_goriva": "Biovodik",
+   "tip_goriva_id": 5
+  },
+  {
+   "id": 20,
+   "vrsta_goriva": "Smjesa UNP za boce sadržaja 7.5kg",
+   "tip_goriva_id": 6
+  },
+  {
+   "id": 21,
+   "vrsta_goriva": "Smjesa UNP za boce sadržaja 10kg",
+   "tip_goriva_id": 6
+  },
+  {
+   "id": 22,
+   "vrsta_goriva": "Smjesa UNP za boce sadržaja 35kg",
+   "tip_goriva_id": 6
+  },
+  {
+   "id": 23,
+   "vrsta_goriva": "DC Fast Charging",
+   "tip_goriva_id": 7
+  },
+  {
+   "id": 24,
+   "vrsta_goriva": "Level 2",
+   "tip_goriva_id": 7
+  },
+  {
+   "id": 25,
+   "vrsta_goriva": "Level 1",
+   "tip_goriva_id": 7
+  },
+  {
+   "id": 26,
+   "vrsta_goriva": "Stlačeni prirodni plin",
+   "tip_goriva_id": 3
+  }
+ ],
+ "opcijas": [
+  {
+   "id": 1,
+   "naziv": "Zamjena motornoga ulja"
+  },
+  {
+   "id": 2,
+   "naziv": "Autopraonica"
+  },
+  {
+   "id": 3,
+   "naziv": "Opskrba plovila"
+  },
+  {
+   "id": 4,
+   "naziv": "Hot spot/ Wifi"
+  },
+  {
+   "id": 5,
+   "naziv": "Bankomat"
+  },
+  {
+   "id": 6,
+   "naziv": "WC"
+  },
+  {
+   "id": 7,
+   "naziv": "Mjenjačnica"
+  },
+  {
+   "id": 8,
+   "naziv": "Trgovina"
+  },
+  {
+   "id": 9,
+   "naziv": "Restoran"
+  },
+  {
+   "id": 10,
+   "naziv": "Caffe bar"
+  },
+  {
+   "id": 11,
+   "naziv": "Pekarski proizvodi"
+  },
+  {
+   "id": 12,
+   "naziv": "WC za invalide"
+  },
+  {
+   "id": 13,
+   "naziv": "Previjalište za bebe"
+  },
+  {
+   "id": 14,
+   "naziv": "Tuš"
+  },
+  {
+   "id": 15,
+   "naziv": "Dječje igralište/Igraonica"
+  },
+  {
+   "id": 16,
+   "naziv": "Hotel/Motel"
+  },
+  {
+   "id": 17,
+   "naziv": "Parking za autobuse"
+  },
+  {
+   "id": 18,
+   "naziv": "Mjesto za kućne ljubimce"
+  },
+  {
+   "id": 19,
+   "naziv": "Otvoreno 24 sata"
+  },
+  {
+   "id": 20,
+   "naziv": "Elektro-punionica"
+  }
+ ]
+}

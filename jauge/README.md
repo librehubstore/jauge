@@ -60,5 +60,9 @@ npm test
 | AD | Govern d'Andorra — couche ArcGIS | 2 h | Données ouvertes |
 | AT | E-Control — Spritpreisrechner (couverture partielle) | 1 h | Données publiques |
 | DE | MTS-K via Tankerkönig (clé, zones `DE_ZONES`) | 15 min | CC BY 4.0 |
+| SI | goriva.si — ministère de l'Économie | 3 h | Données publiques |
+| HR | mzoe-gor.hr — fichier national `data.gz` | 2 h | Données publiques |
+| DK | API des enseignes OK et Shell (§ 16 a, couverture partielle) | 1 h | Données publiées par obligation légale |
+| RO | Monitorul Prețurilor — grandes villes + à la demande (couverture partielle) | 2 h | Données publiques |
 | BE, LU, MC | Stations OpenStreetMap, prix communautaires | hebdomadaire | ODbL |
 | FR (enseignes) | OpenStreetMap via Overpass | hebdomadaire | ODbL |

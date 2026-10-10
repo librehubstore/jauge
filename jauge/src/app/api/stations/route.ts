@@ -3,6 +3,7 @@ import { z } from "zod";
 import { db } from "@/db";
 import { vehicle } from "@/db/schema";
 import { FUEL_CODES } from "@/lib/fuels";
+import { refreshRomaniaArea } from "@/lib/ro-live";
 import { searchStations } from "@/lib/search";
 import { currentUser } from "@/lib/session";
 
@@ -34,6 +35,8 @@ export async function GET(req: Request) {
   const [v] = await db.select().from(vehicle).where(and(
     eq(vehicle.userId, u.id), q.vehicleId ? eq(vehicle.id, q.vehicleId) : eq(vehicle.isDefault, true),
   ));
+  // Roumanie : la source ne répond que par petites zones, rafraîchies à la demande.
+  await refreshRomaniaArea(q.lat, q.lon, q.radius);
   // La position sert à la requête et n'est jamais stockée (RGPD).
   const result = await searchStations({
     lat: q.lat, lon: q.lon, radiusKm: q.radius, fuel: q.fuel, sort: q.sort, level: q.level,

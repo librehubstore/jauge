@@ -2,7 +2,7 @@
 export type Hours = [number, string | null, string | null, boolean][];
 
 // ponytail: un fuseau par pays ; les DOM et les Canaries héritent du fuseau métropolitain. Passer au fuseau par station si besoin.
-export const TZ_BY_COUNTRY: Record<string, string> = { FR: "Europe/Paris", ES: "Europe/Madrid", IT: "Europe/Rome", PT: "Europe/Lisbon", DE: "Europe/Berlin", AT: "Europe/Vienna", GB: "Europe/London", AD: "Europe/Andorra" };
+export const TZ_BY_COUNTRY: Record<string, string> = { FR: "Europe/Paris", ES: "Europe/Madrid", IT: "Europe/Rome", PT: "Europe/Lisbon", DE: "Europe/Berlin", AT: "Europe/Vienna", GB: "Europe/London", AD: "Europe/Andorra", SI: "Europe/Ljubljana", HR: "Europe/Zagreb", DK: "Europe/Copenhagen", RO: "Europe/Bucharest", BE: "Europe/Brussels", LU: "Europe/Luxembourg", MC: "Europe/Monaco" };
 
 export function localNow(country: string, now: Date) {
   const parts = new Intl.DateTimeFormat("en-GB", {

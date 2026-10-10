@@ -1,0 +1,251 @@
+{
+ "Stations": [
+  {
+   "id": "041B11",
+   "name": "Vulcan Judetu (Bucuresti)",
+   "updatedate": "07/10/2026 14:52 ",
+   "network": {
+    "id": "ROMPETROL",
+    "name": "Rompetrol",
+    "logo": {
+     "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/rompetrol.png"
+    }
+   },
+   "addr": {
+    "addrstring": "Sos. Mihai Bravu nr. 396, sector 3, 030327, Bucuresti",
+    "zipcode": "396",
+    "location": {
+     "Lat": 44.421467,
+     "Lon": 26.136633
+    },
+    "wkt": "POINT(26.136633 44.421467)",
+    "uatid": "179132"
+   }
+  },
+  {
+   "id": "R1050",
+   "name": "SALAJ",
+   "updatedate": "07/10/2026 11:05 ",
+   "network": {
+    "id": "PETROM",
+    "name": "PETROM",
+    "logo": {
+     "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/petrom.png"
+    }
+   },
+   "addr": {
+    "addrstring": "Sos. Salaj, nr. 124, Sect 5",
+    "zipcode": "51901",
+    "location": {
+     "Lat": 44.40841,
+     "Lon": 26.07621
+    },
+    "wkt": "POINT(26.07621 44.40841)",
+    "uatid": "179132",
+    "contactdetails": "Non-Stop; Blueline: 0800 0800 11"
+   }
+  },
+  {
+   "id": "P010",
+   "name": "Mihai Bravu",
+   "updatedate": "08/10/2026 14:05 ",
+   "network": {
+    "id": "LUKOIL",
+    "name": "LUKOIL România S.R.L.",
+    "logo": {
+     "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/lukoil.png"
+    }
+   },
+   "addr": {
+    "addrstring": "Șoseaua Mihai Bravu",
+    "zipcode": "472-474",
+    "location": {
+     "Lat": 44.414057,
+     "Lon": 26.130472
+    },
+    "wkt": "POINT(26.130472 44.414057)",
+    "uatid": "179132"
+   }
+  }
+ ],
+ "Products": [
+  {
+   "id": "1800228_KSSS",
+   "stationid": "P010",
+   "name": "Euroluk COR 95",
+   "price": 10.15,
+   "specs": "COR = min 95,  dens 15grdc=720 - 775 kg/mc, sulf max 10 ppm, oxigen max 3.7%(m/m),  biocarburant min 8%(v/v) ( E10 ) . ",
+   "specsdetail": "COR = min 95, COM= min 85, dens 15grdc=720 - 775 kg/mc, sulf max 10 ppm, oxigen max 3.7%(m/m),  benzen max 1%(v/v), aromate max 35%(v/v), biocarburant min 8%(v/v) ( E10 ) . Asigură calitatea cerută de autovehicolele cu motoarele cu aprindere prin scânteie, asigură respectarea cerințelor referitoare la protecția mediului printr-un conținut redus de benzen și hidrocarburi aromatice, asigură respectarea normelor de emisie Euro 5.",
+   "distance": 2.63951,
+   "network": {
+    "id": "LUKOIL",
+    "name": "LUKOIL România S.R.L.",
+    "logo": {
+     "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/lukoil.png"
+    }
+   },
+   "catprod": {
+    "id": "11",
+    "name": "Benzină standard",
+    "logo": {}
+   },
+   "logo": {}
+  },
+  {
+   "id": "31EFX10B00",
+   "stationid": "041B11",
+   "name": "Efix Benzina 95",
+   "price": 10.17,
+   "specs": "EFIX 95 GASOLINE - Folosind o combinatie optima de aditivi, Efix – protejeaza motorul, curata supapele si injectoarele, reduce consumul de carburant.",
+   "distance": 2.78187,
+   "network": {
+    "id": "ROMPETROL",
+    "name": "Rompetrol",
+    "logo": {
+     "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/rompetrol.png"
+    }
+   },
+   "catprod": {
+    "id": "11",
+    "name": "Benzină standard",
+    "logo": {}
+   },
+   "logo": {}
+  },
+  {
+   "id": "02",
+   "stationid": "R1050",
+   "name": "Benzina Standard 95 / Benzina 95",
+   "price": 10.11,
+   "specs": "Cifra octanica min. 95, nivel optim de accelerare. Carburant de calitate, respecta normele de emisie Euro 5.",
+   "distance": 2.92575,
+   "network": {
+    "id": "PETROM",
+    "name": "PETROM",
+    "logo": {
+     "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/petrom.png"
+    }
+   },
+   "catprod": {
+    "id": "11",
+    "name": "Benzină standard",
+    "logo": {}
+   },
+   "logo": {}
+  }
+ ],
+ "services": [
+  {
+   "id": "1",
+   "name": "Magazin",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/magazin.png"
+   },
+   "stationid": "041B11"
+  },
+  {
+   "id": "5",
+   "name": "Peaj",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/peaj.png"
+   },
+   "stationid": "041B11"
+  },
+  {
+   "id": "7",
+   "name": "Plati facturi, reincarcare electronica",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/facturi.png"
+   },
+   "stationid": "041B11"
+  },
+  {
+   "id": "2",
+   "name": "Restaurant",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/restaurant.png"
+   },
+   "stationid": "041B11"
+  },
+  {
+   "id": "3",
+   "name": "Vigneta",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/vigneta.png"
+   },
+   "stationid": "041B11"
+  },
+  {
+   "id": "9",
+   "name": "WI-FI",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/wifi.png"
+   },
+   "stationid": "041B11"
+  },
+  {
+   "id": "1",
+   "name": "Magazin",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/magazin.png"
+   },
+   "stationid": "P010"
+  },
+  {
+   "id": "5",
+   "name": "Peaj",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/peaj.png"
+   },
+   "stationid": "P010"
+  },
+  {
+   "id": "7",
+   "name": "Plati facturi, reincarcare electronica",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/facturi.png"
+   },
+   "stationid": "P010"
+  },
+  {
+   "id": "3",
+   "name": "Vigneta",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/vigneta.png"
+   },
+   "stationid": "P010"
+  },
+  {
+   "id": "9",
+   "name": "WI-FI",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/wifi.png"
+   },
+   "stationid": "P010"
+  },
+  {
+   "id": "10",
+   "name": "AdBlue",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/AdBlue.png"
+   },
+   "stationid": "R1050"
+  },
+  {
+   "id": "5",
+   "name": "Peaj",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/peaj.png"
+   },
+   "stationid": "R1050"
+  },
+  {
+   "id": "3",
+   "name": "Vigneta",
+   "logo": {
+    "logouri": "http://monitorulpreturilor.info/MonitorulPreturilor/Images/vigneta.png"
+   },
+   "stationid": "R1050"
+  }
+ ]
+}

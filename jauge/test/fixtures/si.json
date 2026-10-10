@@ -1,0 +1,156 @@
+{
+ "search": {
+  "count": 551,
+  "next": null,
+  "previous": null,
+  "results": [
+   {
+    "pk": 2258,
+    "franchise": 5,
+    "name": "SHELL KOPER",
+    "address": "SERMIN 7C",
+    "lat": 45.552486,
+    "lng": 13.762092,
+    "prices": {
+     "95": 0.001,
+     "98": null,
+     "100": null,
+     "dizel": 1.883,
+     "dizel-premium": null,
+     "avtoplin-lpg": null,
+     "KOEL": null,
+     "hvo": null,
+     "cng": null,
+     "lng": null
+    },
+    "distance": null,
+    "direction": "",
+    "open_hours": "24 ur - črpalka brez osebja",
+    "zip_code": "6000"
+   },
+   {
+    "pk": 2259,
+    "franchise": 5,
+    "name": "SHELL AJDOVŠČINA",
+    "address": "MIRCE 20",
+    "lat": 45.883317,
+    "lng": 13.891954,
+    "prices": {
+     "95": 0.001,
+     "98": null,
+     "100": null,
+     "dizel": 1.883,
+     "dizel-premium": null,
+     "avtoplin-lpg": null,
+     "KOEL": null,
+     "hvo": null,
+     "cng": null,
+     "lng": null
+    },
+    "distance": null,
+    "direction": "",
+    "open_hours": "24 ur - črpalka brez osebja",
+    "zip_code": "5270"
+   },
+   {
+    "pk": 2260,
+    "franchise": 5,
+    "name": "SHELL SEŽANA",
+    "address": "PARTIZANSKA CESTA 79",
+    "lat": 45.703002,
+    "lng": 13.850927,
+    "prices": {
+     "95": 0.001,
+     "98": null,
+     "100": null,
+     "dizel": 1.883,
+     "dizel-premium": null,
+     "avtoplin-lpg": null,
+     "KOEL": null,
+     "hvo": null,
+     "cng": null,
+     "lng": null
+    },
+    "distance": null,
+    "direction": "",
+    "open_hours": "24 ur - črpalka brez osebja",
+    "zip_code": "6210"
+   }
+  ],
+  "position": null
+ },
+ "franchise": [
+  {
+   "pk": 1,
+   "name": "Petrol d.d., Ljubljana",
+   "marker": "https://goriva.si/media/images/markers/Pin_goriva-si_Petrol_P_osnovni.png",
+   "marker_hover": "https://goriva.si/media/images/markers/Pin_goriva-si_Petrol_P_hover.png"
+  },
+  {
+   "pk": 2,
+   "name": "MOL & INA d.o.o.",
+   "marker": "https://goriva.si/media/images/markers/mol_IuiCFzK.png",
+   "marker_hover": "https://goriva.si/media/images/markers/mol_O9IOH2X.png"
+  },
+  {
+   "pk": 3,
+   "name": "M – ENERGIJA, d.o.o.",
+   "marker": "https://goriva.si/media/images/markers/Maxen_Marker.png",
+   "marker_hover": "https://goriva.si/media/images/markers/Maxen_Marker_T09VNh5.png"
+  },
+  {
+   "pk": 4,
+   "name": "MOL SLOVENIJA d.o.o.",
+   "marker": "https://goriva.si/media/images/markers/mol.png",
+   "marker_hover": "https://goriva.si/media/images/markers/mol_NNpzHmw.png"
+  },
+  {
+   "pk": 5,
+   "name": "Shell Adria d.o.o.",
+   "marker": "https://goriva.si/media/images/markers/Shell_Icon_Marker2-02.png",
+   "marker_hover": "https://goriva.si/media/images/markers/Shell_Icon_Marker2-02_6GShYSj.png"
+  },
+  {
+   "pk": 6,
+   "name": "EKO-NAFTA d.o.o.",
+   "marker": "https://goriva.si/media/images/markers/marker_eko_nafta.png",
+   "marker_hover": "https://goriva.si/media/images/markers/marker_hover_eko_nafta.png"
+  },
+  {
+   "pk": 7,
+   "name": "LOGO ENERGIJA",
+   "marker": "https://goriva.si/media/images/markers/marker1.png",
+   "marker_hover": "https://goriva.si/media/images/markers/marker_hover1.png"
+  },
+  {
+   "pk": 9,
+   "name": "TehnoSTOR",
+   "marker": null,
+   "marker_hover": null
+  },
+  {
+   "pk": 10,
+   "name": "Butan plin d.d.",
+   "marker": "https://goriva.si/media/images/markers/marker-ButanPlin.png",
+   "marker_hover": "https://goriva.si/media/images/markers/marker-ButanPlin_2vSxoE6.png"
+  },
+  {
+   "pk": 11,
+   "name": "ECO OIL",
+   "marker": null,
+   "marker_hover": null
+  },
+  {
+   "pk": 12,
+   "name": "INA Slovenija",
+   "marker": null,
+   "marker_hover": null
+  },
+  {
+   "pk": 13,
+   "name": "FE - Trading",
+   "marker": "https://goriva.si/media/images/markers/marker-diskont-31x41-1_003.png",
+   "marker_hover": "https://goriva.si/media/images/markers/marker-diskont-31x41-1_003_SfHNBFS.png"
+  }
+ ]
+}

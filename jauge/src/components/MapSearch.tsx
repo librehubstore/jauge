@@ -306,7 +306,7 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
         <ul ref={listRef} hidden={showFilters} className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-2">
           {offlineAt && <li role="status" className="mx-3 mt-2 rounded-lg bg-tier-1/15 px-3 py-2 text-sm">{tpwa("offlineData", { date: new Date(offlineAt) })}</li>}
           {fmt.converted(stations[0]?.currency ?? "EUR") && <li className="mx-3 mt-2 text-sm text-muted">≈ {fmt.convertedLabel}</li>}
-          {stations.some((s) => s.country === "AT") && <li className="mx-3 mt-2 rounded-lg bg-tier-1/15 px-3 py-2 text-sm">{t("partialAT")}</li>}
+          {(["AT", "DK", "RO"] as const).filter((c) => stations.some((s) => s.country === c)).map((c) => <li key={c} className="mx-3 mt-2 rounded-lg bg-tier-1/15 px-3 py-2 text-sm">{t(`partial${c}`)}</li>)}
           {error && <li role="alert" className="mx-3 mt-2 rounded-lg bg-danger/10 px-3 py-2 text-sm text-danger">{tc("error")}</li>}
           {!loading && !error && data && stations.length === 0 && <li className="px-3 py-8 text-center text-base text-muted">{t("noResults")}</li>}
           {stations.map((s) => (

@@ -6,7 +6,7 @@ import { useState, useTransition } from "react";
 import { contribute } from "@/app/actions/app";
 
 // ponytail: liste courte des pays couverts ou visés ; à étendre avec les connecteurs.
-const COUNTRIES = ["FR", "ES", "IT", "PT", "BE", "LU", "MC", "AD", "DE", "AT", "GB", "CH", "NL"];
+const COUNTRIES = ["FR", "ES", "IT", "PT", "BE", "LU", "MC", "AD", "DE", "AT", "SI", "HR", "DK", "RO", "GB", "CH", "NL"];
 
 export function MissingStationForm() {
   const t = useTranslations("contrib");

@@ -91,9 +91,13 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - [x] Fiche station : « Faites le plein maintenant » ou « Si vous pouvez, attendez lundi : environ 0,033 € de moins par litre », base et confiance affichées
 - [x] Données réelles FR : cycle du lundi retrouvé (−0,02 €/L), calcul en 15–100 ms ; tests sur séries synthétiques → 58 tests
 
-### Phase 10 — Nouveaux pays : HR, SI, DK, RO (spec 4.2) 🔄
-- [ ] Identifier les sources officielles par station et leurs conditions
-- [ ] Connecteurs + fixtures réelles + tests, ou ⚠️ documenté si la source n'existe pas / n'est pas réutilisable
+### Phase 10 — Nouveaux pays : HR, SI, DK, RO (spec 4.2) ✅
+- [x] SI : API JSON de goriva.si (ministère de l'Économie), ~550 stations, toutes les 3 h
+- [x] HR : fichier national `data.gz` du ministère (mzoe-gor.hr), ~900 stations avec horaires et services, toutes les 2 h
+- [x] DK : API des enseignes (obligation § 16 a depuis janvier 2026) ; OK + Shell (~900 stations), toutes les heures. ⚠️ Partiel : Q8/F24 sans coordonnées, Circle K et Uno-X à accès restreint
+- [x] RO : Monitorul Prețurilor (Consiliul Concurenței). ⚠️ L'API ne répond que par cercles de 5 km, un produit et 50 résultats par requête : centres de 12 grandes villes en planifié, puis rafraîchissement à la demande avant chaque recherche en Roumanie (budget 6 s)
+- [x] Avertissement « couverture partielle » DK et RO dans la liste (7 langues) ; pays ajoutés au formulaire « station manquante »
+- [x] Fixtures réelles + tests (62) ; recherche vérifiée à Ljubljana, Zagreb, Copenhague, Cluj et Sibiu (rafraîchissement à la demande)
 
 ## Journal
 - 2026-10-10 — MVP commité. Plan V1 rédigé.
@@ -108,3 +112,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Refonte mobile + correctif des rechargements en boucle (commit a1b7ed9). Plan V2 rédigé, début phase 8.
 - 2026-10-10 — Phase 8 terminée (55 tests). Début phase 9.
 - 2026-10-10 — Phase 9 terminée (58 tests). Début phase 10.
+- 2026-10-10 — Phase 10 terminée (62 tests). V2 complète ; DK et RO en couverture partielle (limites des sources).

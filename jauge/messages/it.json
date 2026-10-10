@@ -140,6 +140,8 @@
     },
     "median": "Mediana della zona: {value}",
     "partialAT": "Austria: E-Control pubblica solo i distributori più economici di ogni distretto. Copertura parziale.",
+    "partialDK": "Danimarca: solo OK e Shell pubblicano un'API aperta. Copertura parziale.",
+    "partialRO": "Romania: la fonte ufficiale risponde per piccole zone; l'elenco si completa con le ricerche.",
     "showResults": "Mostra i distributori"
   },
   "price": {

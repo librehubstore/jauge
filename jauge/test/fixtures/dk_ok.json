@@ -1,0 +1,56 @@
+{
+ "items": [
+  {
+   "facility_number": 1034,
+   "street": "Bramhalevej",
+   "house_number": "2",
+   "postal_code": 6100,
+   "city": "Haderslev",
+   "coordinates": {
+    "latitude": 55.295925,
+    "longitude": 9.424641
+   },
+   "last_updated_time": "2026-10-10T08:35:54.1239194+02:00",
+   "prices": [
+    {
+     "product_name": "Blyfri 95",
+     "price": 18.09
+    },
+    {
+     "product_name": "Svovlfri Diesel",
+     "price": 18.89
+    },
+    {
+     "product_name": "Oktan 100",
+     "price": 20.59
+    }
+   ]
+  },
+  {
+   "facility_number": 1030,
+   "street": "Sydmotorvejen",
+   "house_number": "380",
+   "postal_code": 4733,
+   "city": "Tappernøje",
+   "coordinates": {
+    "latitude": 55.169491,
+    "longitude": 11.956868
+   },
+   "last_updated_time": "2026-10-10T08:35:54.1239194+02:00",
+   "prices": [
+    {
+     "product_name": "Blyfri 95",
+     "price": 18.09
+    },
+    {
+     "product_name": "Svovlfri Diesel",
+     "price": 18.89
+    },
+    {
+     "product_name": "Oktan 100",
+     "price": 20.59
+    }
+   ]
+  }
+ ]
+}
