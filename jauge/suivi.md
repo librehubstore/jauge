@@ -66,6 +66,33 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - [x] Vérifié en production locale : service worker actif, données servies serveur arrêté, bandeau affiché ; 51 tests
 - ⚠️ Push non vérifié de bout en bout (demande d'autorisation du navigateur impossible à accepter en automatique)
 
+## Refonte mobile et correctifs — ✅ (commit `a1b7ed9`)
+- [x] Bug : rechargements en boucle en dev (en-tête `nosniff` cassait les mises à jour à chaud) → liste de suggestions de l'itinéraire impossible à cliquer. En-têtes de sécurité désormais en production seulement
+- [x] Barre d'onglets en bas (Carte, Itinéraire, Favoris, Alertes, Plus), carte plein écran, recherche flottante, panneau coulissant à 3 hauteurs, réglages en pastilles
+- [x] Cibles tactiles ≥ 44 px, champs en 16 px (pas de zoom iOS), texte secondaire plus contrasté (lecture en plein soleil)
+- [x] Saisie d'adresse : suggestions pendant la frappe, liste refermée au choix, lieu choisi affiché dans le champ
+- [x] Itinéraire repliable après calcul, carte affichée seulement avec un résultat ; fiche station avec « Y aller » fixé en bas
+- [x] `PRODUCT.md` : cadrage design (conducteurs en mobilité, utilitaire et rapide)
+
+## V2 — plan
+
+### Phase 8 — Journal de pleins (spec 4.13) ✅
+- [x] Page `/log` (menu « Plus ») : saisie véhicule, date, quantité, montant, kilométrage, plein complet ou partiel, note ; suppression
+- [x] « J'ai fait le plein ici » depuis la fiche station : station préremplie, montant calculé à partir du prix affiché
+- [x] Consommation réelle plein à plein (pleins partiels cumulés, kilométrage incohérent ignoré), coût aux 100 km, prix moyen payé, dépenses par mois
+- [x] Proposition de remplacer la consommation déclarée du véhicule par la valeur mesurée (écart > 5 %)
+- [x] Export CSV (séparateur « ; », BOM Excel, formules neutralisées)
+- [x] Vérifié sur mobile (2 pleins → 6 L/100 km) ; 55 tests
+
+### Phase 9 — Prévision « attendre ou faire le plein » (spec 4.9) 🔄
+- [ ] Profil hebdomadaire des prix (écart moyen par jour de la semaine sur 12 semaines) par station, repli sur la zone
+- [ ] Recommandation : faire le plein maintenant / attendre jusqu'à tel jour (gain estimé), avec niveau de confiance
+- [ ] Affichage sur la fiche station ; tests sur des séries synthétiques
+
+### Phase 10 — Nouveaux pays : HR, SI, DK, RO (spec 4.2) ⏳
+- [ ] Identifier les sources officielles par station et leurs conditions
+- [ ] Connecteurs + fixtures réelles + tests, ou ⚠️ documenté si la source n'existe pas / n'est pas réutilisable
+
 ## Journal
 - 2026-10-10 — MVP commité. Plan V1 rédigé.
 - 2026-10-10 — Phase 1 terminée (28 tests). Overpass renvoie parfois 504 : le réessai suffit, l'import est hebdomadaire.
@@ -76,3 +103,5 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Phase 5 terminée hors UK (bloqué, identifiants requis). Début phase 6.
 - 2026-10-10 — Phase 6 terminée (51 tests). Début phase 7.
 - 2026-10-10 — Phase 7 terminée. V1 complète hors connecteur UK (identifiants requis).
+- 2026-10-10 — Refonte mobile + correctif des rechargements en boucle (commit a1b7ed9). Plan V2 rédigé, début phase 8.
+- 2026-10-10 — Phase 8 terminée (55 tests). Début phase 9.

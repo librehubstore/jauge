@@ -16,7 +16,8 @@
     "alerts": "Alerts",
     "openStation": "View station",
     "route": "Route",
-    "more": "More"
+    "more": "More",
+    "log": "Fuel log"
   },
   "common": {
     "save": "Save",
@@ -189,7 +190,8 @@
       "Sunday"
     ],
     "closed": "Closed",
-    "openWith": "Open with"
+    "openWith": "Open with",
+    "filledHere": "I filled up here"
   },
   "favorites": {
     "title": "Favourites",
@@ -479,5 +481,32 @@
     "disable": "Disable",
     "denied": "Notifications are blocked by the browser: allow them in its settings.",
     "unsupported": "Push notifications are not available in this browser."
+  },
+  "log": {
+    "title": "Fuel log",
+    "vehicle": "Vehicle",
+    "noVehicle": "Add a vehicle first to keep its fuel log.",
+    "addVehicle": "Add a vehicle",
+    "export": "Export (CSV)",
+    "realConsumption": "Real consumption",
+    "costPer100": "Cost per 100 km",
+    "avgPrice": "Average price paid",
+    "needTwoFull": "Real consumption needs two full fill-ups with the odometer reading.",
+    "declaredVsReal": "Declared consumption {declared}, measured {real}.",
+    "applyReal": "Use the measured value",
+    "byMonth": "Spending per month",
+    "add": "Add a fill-up",
+    "atStation": "Station: {station}",
+    "amount": "Quantity",
+    "total": "Amount paid",
+    "odometer": "Odometer",
+    "date": "Date",
+    "fullTank": "Full tank (filled to the top)",
+    "note": "Note",
+    "save": "Save fill-up",
+    "saved": "Fill-up saved.",
+    "history": "History",
+    "empty": "No fill-up recorded for this vehicle.",
+    "partial": "partial"
   }
 }

@@ -4,7 +4,7 @@ import { and, eq, isNull, ne } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { db } from "@/db";
-import { favorite, notification, priceAlert, pushSubscription, user, vehicle, type Preferences } from "@/db/schema";
+import { favorite, fillUp, notification, priceAlert, pushSubscription, stationFuelPrice, user, vehicle, type Preferences } from "@/db/schema";
 import { PAYLOADS, submitContribution, type ContributionType } from "@/lib/contributions";
 import { FUEL_CODES } from "@/lib/fuels";
 import { DISPLAY_CURRENCIES } from "@/lib/fx";
@@ -141,4 +141,47 @@ export async function savePushSubscription(sub: z.input<typeof PushInput>) {
 export async function deletePushSubscription(endpoint: string) {
   const u = await requireUser();
   await db.delete(pushSubscription).where(and(eq(pushSubscription.endpoint, endpoint), eq(pushSubscription.userId, u.id)));
+}
+
+const FillInput = z.object({
+  vehicleId: z.coerce.number().int(),
+  stationId: z.coerce.number().int().optional().nullable(),
+  filledAt: z.coerce.date(),
+  amount: z.coerce.number().min(0.1).max(2000),
+  totalCost: z.coerce.number().min(0.01).max(100000),
+  odometerKm: z.coerce.number().int().min(0).max(5_000_000).optional().nullable(),
+  fullTank: z.coerce.boolean(),
+  note: z.string().trim().max(200).optional(),
+});
+
+/** Plein ajouté au journal (spec 4.13) ; le carburant et la devise suivent le véhicule et la station. */
+export async function addFillUp(input: z.input<typeof FillInput>) {
+  const u = await requireUser();
+  const p = FillInput.parse(input);
+  const [v] = await db.select().from(vehicle).where(and(eq(vehicle.id, p.vehicleId), eq(vehicle.userId, u.id)));
+  if (!v) throw new Error("VEHICLE_NOT_FOUND");
+  let currency = "EUR";
+  if (p.stationId) {
+    const [pr] = await db.select({ c: stationFuelPrice.currency }).from(stationFuelPrice)
+      .where(and(eq(stationFuelPrice.stationId, p.stationId), eq(stationFuelPrice.fuelCode, v.fuelCode)));
+    currency = pr?.c ?? currency;
+  }
+  if (p.filledAt.getTime() > Date.now() + 86_400_000) throw new Error("DATE_IN_FUTURE");
+  await db.insert(fillUp).values({ ...p, stationId: p.stationId ?? null, odometerKm: p.odometerKm ?? null, note: p.note || null, userId: u.id, fuelCode: v.fuelCode, currency });
+  revalidatePath("/log");
+}
+
+export async function deleteFillUp(id: number) {
+  const u = await requireUser();
+  await db.delete(fillUp).where(and(eq(fillUp.id, id), eq(fillUp.userId, u.id)));
+  revalidatePath("/log");
+}
+
+/** Remplace la consommation déclarée du véhicule par la consommation réelle mesurée. */
+export async function applyRealConsumption(vehicleId: number, per100: number) {
+  const u = await requireUser();
+  const value = Math.round(z.number().min(0.5).max(100).parse(per100) * 10) / 10;
+  await db.update(vehicle).set({ consumptionPer100km: value }).where(and(eq(vehicle.id, vehicleId), eq(vehicle.userId, u.id)));
+  revalidatePath("/log");
+  revalidatePath("/vehicles");
 }

@@ -269,3 +269,37 @@ describe("devises (BCE)", () => {
     expect(parseEcbXml("<html/>")).toBeNull();
   });
 });
+
+import { consumptionSegments, csvCell, logStats } from "@/lib/fuel-log";
+
+describe("journal de pleins (spec 4.13)", () => {
+  const d = (day: number) => new Date(Date.UTC(2026, 8, day));
+  const e = (day: number, amount: number, odo: number | null, fullTank = true, totalCost = amount * 1.8) => ({ filledAt: d(day), amount, totalCost, odometerKm: odo, fullTank });
+
+  it("plein à plein : le premier plein sert de repère, partiels cumulés", () => {
+    const seg = consumptionSegments([e(1, 40, 10000), e(5, 20, 10300, false), e(10, 25, 10800)]);
+    expect(seg).toHaveLength(1);
+    expect(seg[0].distance).toBe(800);
+    expect(seg[0].per100).toBeCloseTo(((20 + 25) / 800) * 100, 6);
+  });
+  it("ordre de saisie indifférent ; kilométrage en recul : segment ignoré", () => {
+    expect(consumptionSegments([e(10, 30, 10600), e(1, 40, 10000)])[0].per100).toBeCloseTo(5, 6);
+    expect(consumptionSegments([e(1, 40, 10000), e(5, 30, 9000), e(9, 30, 9500)])[0].distance).toBe(500);
+  });
+  it("statistiques : moyenne, coût aux 100 km, prix moyen, dépenses par mois", () => {
+    const s = logStats([e(1, 40, 10000), e(10, 30, 10600)]);
+    expect(s.avgPer100).toBeCloseTo(5, 6);
+    expect(s.costPer100).toBeCloseTo(9, 6);
+    expect(s.avgUnitPrice).toBeCloseTo(1.8, 6);
+    expect(s.byMonth).toEqual([{ month: "2026-09", amount: 70, cost: 126 }]);
+    expect(logStats([e(1, 40, null)]).avgPer100).toBeNull();
+  });
+  it("CSV : séparateur échappé, formules neutralisées, nombres intacts", () => {
+    expect(csvCell("a;b")).toBe('"a;b"');
+    expect(csvCell("=HYPERLINK(1)")).toBe("'=HYPERLINK(1)");
+    expect(csvCell("-12")).toBe("'-12");
+    expect(csvCell("12 rue")).toBe("12 rue");
+    expect(csvCell(-12)).toBe("-12");
+    expect(csvCell(null)).toBe("");
+  });
+});

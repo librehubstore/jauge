@@ -27,6 +27,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
   ];
   const more: NavItem[] = [
     { href: "/notifications", label: t("notifications"), icon: "bell" },
+    { href: "/log", label: t("log"), icon: "fuel" },
     { href: "/vehicles", label: t("vehicles"), icon: "car" },
     { href: "/settings", label: t("settings"), icon: "gear" },
     ...(u.role !== "user" ? [{ href: "/moderation", label: t("moderation"), icon: "shield" } as NavItem] : []),

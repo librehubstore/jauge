@@ -210,6 +210,22 @@ export const vehicle = pgTable("vehicle", {
   isDefault: boolean("is_default").notNull().default(false),
 });
 
+export const fillUp = pgTable("fill_up", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+  vehicleId: integer("vehicle_id").notNull().references(() => vehicle.id, { onDelete: "cascade" }),
+  stationId: integer("station_id").references(() => station.id, { onDelete: "set null" }),
+  filledAt: ts("filled_at").notNull(),
+  fuelCode: text("fuel_code").notNull().references(() => fuelType.code),
+  amount: doublePrecision("amount").notNull(), // litres ou kg
+  totalCost: numeric("total_cost", { precision: 9, scale: 2, mode: "number" }).notNull(),
+  currency: text("currency").notNull().default("EUR"),
+  odometerKm: integer("odometer_km"),
+  fullTank: boolean("full_tank").notNull().default(true),
+  note: text("note"),
+  createdAt: ts("created_at").notNull().defaultNow(),
+}, (t) => [index("fill_up_vehicle_idx").on(t.vehicleId, t.filledAt)]);
+
 export const favorite = pgTable("favorite", {
   userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
   stationId: integer("station_id").notNull().references(() => station.id, { onDelete: "cascade" }),

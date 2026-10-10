@@ -16,7 +16,8 @@
     "alerts": "Preisalarme",
     "openStation": "Tankstelle ansehen",
     "route": "Route",
-    "more": "Mehr"
+    "more": "Mehr",
+    "log": "Tankbuch"
   },
   "common": {
     "save": "Speichern",
@@ -189,7 +190,8 @@
       "Sonntag"
     ],
     "closed": "Geschlossen",
-    "openWith": "Öffnen mit"
+    "openWith": "Öffnen mit",
+    "filledHere": "Hier getankt"
   },
   "favorites": {
     "title": "Favoriten",
@@ -479,5 +481,32 @@
     "disable": "Deaktivieren",
     "denied": "Der Browser blockiert Benachrichtigungen: erlauben Sie sie in den Browsereinstellungen.",
     "unsupported": "Push-Benachrichtigungen sind in diesem Browser nicht verfügbar."
+  },
+  "log": {
+    "title": "Tankbuch",
+    "vehicle": "Fahrzeug",
+    "noVehicle": "Fügen Sie zuerst ein Fahrzeug hinzu, um sein Tankbuch zu führen.",
+    "addVehicle": "Fahrzeug hinzufügen",
+    "export": "Exportieren (CSV)",
+    "realConsumption": "Realer Verbrauch",
+    "costPer100": "Kosten pro 100 km",
+    "avgPrice": "Bezahlter Durchschnittspreis",
+    "needTwoFull": "Für den realen Verbrauch braucht es zwei volle Tankfüllungen mit Kilometerstand.",
+    "declaredVsReal": "Angegebener Verbrauch {declared}, gemessen {real}.",
+    "applyReal": "Gemessenen Wert übernehmen",
+    "byMonth": "Ausgaben pro Monat",
+    "add": "Tankfüllung hinzufügen",
+    "atStation": "Tankstelle: {station}",
+    "amount": "Menge",
+    "total": "Bezahlter Betrag",
+    "odometer": "Kilometerstand",
+    "date": "Datum",
+    "fullTank": "Vollgetankt",
+    "note": "Notiz",
+    "save": "Tankfüllung speichern",
+    "saved": "Tankfüllung gespeichert.",
+    "history": "Verlauf",
+    "empty": "Noch keine Tankfüllung für dieses Fahrzeug.",
+    "partial": "Teilbetankung"
   }
 }

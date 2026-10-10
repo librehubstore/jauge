@@ -16,7 +16,8 @@
     "alerts": "Alertes",
     "openStation": "Voir la station",
     "route": "Itinéraire",
-    "more": "Plus"
+    "more": "Plus",
+    "log": "Journal de pleins"
   },
   "common": {
     "save": "Enregistrer",
@@ -189,7 +190,8 @@
       "Dimanche"
     ],
     "closed": "Fermé",
-    "openWith": "Ouvrir avec"
+    "openWith": "Ouvrir avec",
+    "filledHere": "J'ai fait le plein ici"
   },
   "favorites": {
     "title": "Favoris",
@@ -479,5 +481,32 @@
     "disable": "Désactiver",
     "denied": "Notifications bloquées par le navigateur : autorisez-les dans ses réglages.",
     "unsupported": "Notifications push indisponibles sur ce navigateur."
+  },
+  "log": {
+    "title": "Journal de pleins",
+    "vehicle": "Véhicule",
+    "noVehicle": "Ajoutez d'abord un véhicule pour tenir son journal de pleins.",
+    "addVehicle": "Ajouter un véhicule",
+    "export": "Exporter (CSV)",
+    "realConsumption": "Conso. réelle",
+    "costPer100": "Coût aux 100 km",
+    "avgPrice": "Prix moyen payé",
+    "needTwoFull": "Consommation réelle : il faut deux pleins complets avec le kilométrage.",
+    "declaredVsReal": "Consommation déclarée {declared}, mesurée {real}.",
+    "applyReal": "Utiliser la valeur mesurée",
+    "byMonth": "Dépenses par mois",
+    "add": "Ajouter un plein",
+    "atStation": "Station : {station}",
+    "amount": "Quantité",
+    "total": "Montant payé",
+    "odometer": "Kilométrage",
+    "date": "Date",
+    "fullTank": "Plein complet (réservoir rempli)",
+    "note": "Note",
+    "save": "Enregistrer le plein",
+    "saved": "Plein enregistré.",
+    "history": "Historique",
+    "empty": "Aucun plein enregistré pour ce véhicule.",
+    "partial": "partiel"
   }
 }

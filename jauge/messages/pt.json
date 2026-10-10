@@ -16,7 +16,8 @@
     "alerts": "Alertas",
     "openStation": "Ver o posto",
     "route": "Itinerário",
-    "more": "Mais"
+    "more": "Mais",
+    "log": "Registo de abastecimentos"
   },
   "common": {
     "save": "Guardar",
@@ -189,7 +190,8 @@
       "Domingo"
     ],
     "closed": "Fechado",
-    "openWith": "Abrir com"
+    "openWith": "Abrir com",
+    "filledHere": "Abasteci aqui"
   },
   "favorites": {
     "title": "Favoritos",
@@ -479,5 +481,32 @@
     "disable": "Desativar",
     "denied": "O navegador bloqueia as notificações: autorize-as nas definições.",
     "unsupported": "Notificações push indisponíveis neste navegador."
+  },
+  "log": {
+    "title": "Registo de abastecimentos",
+    "vehicle": "Veículo",
+    "noVehicle": "Adicione primeiro um veículo para manter o registo de abastecimentos.",
+    "addVehicle": "Adicionar um veículo",
+    "export": "Exportar (CSV)",
+    "realConsumption": "Consumo real",
+    "costPer100": "Custo aos 100 km",
+    "avgPrice": "Preço médio pago",
+    "needTwoFull": "O consumo real precisa de dois depósitos cheios com a quilometragem.",
+    "declaredVsReal": "Consumo declarado {declared}, medido {real}.",
+    "applyReal": "Usar o valor medido",
+    "byMonth": "Gastos por mês",
+    "add": "Adicionar um abastecimento",
+    "atStation": "Posto: {station}",
+    "amount": "Quantidade",
+    "total": "Montante pago",
+    "odometer": "Quilometragem",
+    "date": "Data",
+    "fullTank": "Depósito cheio",
+    "note": "Nota",
+    "save": "Guardar o abastecimento",
+    "saved": "Abastecimento guardado.",
+    "history": "Histórico",
+    "empty": "Nenhum abastecimento registado para este veículo.",
+    "partial": "parcial"
   }
 }

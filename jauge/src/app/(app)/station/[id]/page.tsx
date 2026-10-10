@@ -1,5 +1,6 @@
 import { and, eq, gt, isNull, or, sql } from "drizzle-orm";
 import { getFormatter, getNow, getTranslations } from "next-intl/server";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db } from "@/db";
 import { brand, favorite, fuelType, openingHours, outage, source, station, stationFuelPrice } from "@/db/schema";
@@ -141,6 +142,8 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
         {prices.length > 0 && (
           <PriceHistoryChart stationId={id} fuels={prices.map(({ p }) => p.fuelCode)} currency={prices[0].p.currency} />
         )}
+
+        <Link className="btn-ghost w-full" href={`/log?station=${id}`}>{t("filledHere")}</Link>
 
         {prices.length > 0 && (
           <section className="card px-4 py-3">

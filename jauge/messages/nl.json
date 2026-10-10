@@ -16,7 +16,8 @@
     "alerts": "Prijsalarmen",
     "openStation": "Station bekijken",
     "route": "Route",
-    "more": "Meer"
+    "more": "Meer",
+    "log": "Tanklogboek"
   },
   "common": {
     "save": "Opslaan",
@@ -189,7 +190,8 @@
       "Zondag"
     ],
     "closed": "Gesloten",
-    "openWith": "Openen met"
+    "openWith": "Openen met",
+    "filledHere": "Hier getankt"
   },
   "favorites": {
     "title": "Favorieten",
@@ -479,5 +481,32 @@
     "disable": "Uitschakelen",
     "denied": "De browser blokkeert meldingen: sta ze toe in de browserinstellingen.",
     "unsupported": "Pushmeldingen zijn niet beschikbaar in deze browser."
+  },
+  "log": {
+    "title": "Tanklogboek",
+    "vehicle": "Voertuig",
+    "noVehicle": "Voeg eerst een voertuig toe om het tanklogboek bij te houden.",
+    "addVehicle": "Voertuig toevoegen",
+    "export": "Exporteren (CSV)",
+    "realConsumption": "Werkelijk verbruik",
+    "costPer100": "Kosten per 100 km",
+    "avgPrice": "Gemiddeld betaalde prijs",
+    "needTwoFull": "Voor het werkelijk verbruik zijn twee volle tankbeurten met kilometerstand nodig.",
+    "declaredVsReal": "Opgegeven verbruik {declared}, gemeten {real}.",
+    "applyReal": "Gemeten waarde gebruiken",
+    "byMonth": "Uitgaven per maand",
+    "add": "Tankbeurt toevoegen",
+    "atStation": "Station: {station}",
+    "amount": "Hoeveelheid",
+    "total": "Betaald bedrag",
+    "odometer": "Kilometerstand",
+    "date": "Datum",
+    "fullTank": "Volle tank",
+    "note": "Notitie",
+    "save": "Tankbeurt opslaan",
+    "saved": "Tankbeurt opgeslagen.",
+    "history": "Geschiedenis",
+    "empty": "Nog geen tankbeurten voor dit voertuig.",
+    "partial": "gedeeltelijk"
   }
 }

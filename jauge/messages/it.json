@@ -16,7 +16,8 @@
     "alerts": "Avvisi",
     "openStation": "Vedi il distributore",
     "route": "Percorso",
-    "more": "Altro"
+    "more": "Altro",
+    "log": "Diario dei rifornimenti"
   },
   "common": {
     "save": "Salva",
@@ -189,7 +190,8 @@
       "Domenica"
     ],
     "closed": "Chiuso",
-    "openWith": "Apri con"
+    "openWith": "Apri con",
+    "filledHere": "Ho fatto rifornimento qui"
   },
   "favorites": {
     "title": "Preferiti",
@@ -479,5 +481,32 @@
     "disable": "Disattiva",
     "denied": "Il browser blocca le notifiche: consentile nelle sue impostazioni.",
     "unsupported": "Notifiche push non disponibili in questo browser."
+  },
+  "log": {
+    "title": "Diario dei rifornimenti",
+    "vehicle": "Veicolo",
+    "noVehicle": "Aggiungi prima un veicolo per tenerne il diario dei rifornimenti.",
+    "addVehicle": "Aggiungi un veicolo",
+    "export": "Esporta (CSV)",
+    "realConsumption": "Consumo reale",
+    "costPer100": "Costo ogni 100 km",
+    "avgPrice": "Prezzo medio pagato",
+    "needTwoFull": "Il consumo reale richiede due pieni completi con il chilometraggio.",
+    "declaredVsReal": "Consumo dichiarato {declared}, misurato {real}.",
+    "applyReal": "Usa il valore misurato",
+    "byMonth": "Spesa per mese",
+    "add": "Aggiungi un rifornimento",
+    "atStation": "Distributore: {station}",
+    "amount": "Quantità",
+    "total": "Importo pagato",
+    "odometer": "Chilometraggio",
+    "date": "Data",
+    "fullTank": "Pieno completo",
+    "note": "Nota",
+    "save": "Salva il rifornimento",
+    "saved": "Rifornimento salvato.",
+    "history": "Storico",
+    "empty": "Nessun rifornimento registrato per questo veicolo.",
+    "partial": "parziale"
   }
 }

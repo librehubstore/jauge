@@ -16,7 +16,8 @@
     "alerts": "Alertas",
     "openStation": "Ver la estación",
     "route": "Ruta",
-    "more": "Más"
+    "more": "Más",
+    "log": "Diario de repostajes"
   },
   "common": {
     "save": "Guardar",
@@ -189,7 +190,8 @@
       "Domingo"
     ],
     "closed": "Cerrado",
-    "openWith": "Abrir con"
+    "openWith": "Abrir con",
+    "filledHere": "He repostado aquí"
   },
   "favorites": {
     "title": "Favoritos",
@@ -479,5 +481,32 @@
     "disable": "Desactivar",
     "denied": "El navegador bloquea las notificaciones: permítelas en sus ajustes.",
     "unsupported": "Las notificaciones push no están disponibles en este navegador."
+  },
+  "log": {
+    "title": "Diario de repostajes",
+    "vehicle": "Vehículo",
+    "noVehicle": "Añade primero un vehículo para llevar su diario de repostajes.",
+    "addVehicle": "Añadir un vehículo",
+    "export": "Exportar (CSV)",
+    "realConsumption": "Consumo real",
+    "costPer100": "Coste por 100 km",
+    "avgPrice": "Precio medio pagado",
+    "needTwoFull": "El consumo real necesita dos repostajes completos con el kilometraje.",
+    "declaredVsReal": "Consumo declarado {declared}, medido {real}.",
+    "applyReal": "Usar el valor medido",
+    "byMonth": "Gasto por mes",
+    "add": "Añadir un repostaje",
+    "atStation": "Estación: {station}",
+    "amount": "Cantidad",
+    "total": "Importe pagado",
+    "odometer": "Kilometraje",
+    "date": "Fecha",
+    "fullTank": "Depósito lleno",
+    "note": "Nota",
+    "save": "Guardar el repostaje",
+    "saved": "Repostaje guardado.",
+    "history": "Historial",
+    "empty": "Ningún repostaje registrado para este vehículo.",
+    "partial": "parcial"
   }
 }
