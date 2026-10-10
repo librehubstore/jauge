@@ -6,9 +6,12 @@ import { bootstrap } from "@/lib/bootstrap";
 import { runConnector } from "@/lib/ingest";
 import { notifyAdmins } from "@/lib/notify";
 import { getSetting, refreshEcbRates } from "@/lib/settings";
+import { traceFetch } from "@/lib/trace-fetch";
 import { db } from "@/db";
 import { source } from "@/db/schema";
 import { eq, sql } from "drizzle-orm";
+
+traceFetch();
 
 const QUEUE = "ingest";
 const OSM_QUEUE = "osm-brands";

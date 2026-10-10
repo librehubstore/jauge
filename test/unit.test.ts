@@ -8,6 +8,7 @@ import { isAberrant } from "@/lib/ingest";
 import { hashPassword, isCommonPassword, verifyPassword } from "@/lib/password";
 import { emailDomainAllowed } from "@/lib/settings";
 import { parseDmyLocal, parseIsoLocal } from "@/lib/time";
+import { redactUrl, traceFetch } from "@/lib/trace-fetch";
 
 const fx = (f: string) => readFileSync(`test/fixtures/${f}`);
 
@@ -397,5 +398,25 @@ describe("connecteurs SI, HR, DK, RO", () => {
     expect(rows[0].prices.length).toBeGreaterThan(0);
     expect(rows[0].prices[0].updatedAt.getUTCFullYear()).toBe(2026);
     expect(gridPoints(44.43, 26.1, 10).length).toBeGreaterThanOrEqual(9);
+  });
+});
+
+describe("trace des appels sortants", () => {
+  it("masque les secrets et journalise statut et erreur", async () => {
+    expect(redactUrl("https://x.de/list.php?lat=1&apikey=abc&access_token=t")).toBe("https://x.de/list.php?lat=1&apikey=***&access_token=***");
+    const real = globalThis.fetch, lines: string[] = [];
+    globalThis.fetch = (async (u: string) => { if (u.includes("down")) throw new Error("ECONNREFUSED"); return new Response("ok", { status: 201 }); }) as typeof fetch;
+    try {
+      traceFetch((l) => lines.push(l));
+      traceFetch((l) => lines.push(l)); // deuxième appel sans effet
+      await fetch("https://a.test/p?key=s");
+      await expect(fetch("https://down.test/")).rejects.toThrow("ECONNREFUSED");
+      const [ok, ko] = lines.map((l) => JSON.parse(l));
+      expect(lines).toHaveLength(2);
+      expect(ok).toMatchObject({ t: "fetch", method: "GET", url: "https://a.test/p?key=***", status: 201 });
+      expect(ko).toMatchObject({ url: "https://down.test/", error: "ECONNREFUSED" });
+    } finally {
+      globalThis.fetch = real;
+    }
   });
 });
