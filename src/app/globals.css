@@ -150,3 +150,14 @@ html.no-splash .splash { display: none; }
   .splash { animation-duration: 0.2s; animation-delay: 0.4s; }
   .splash-arc, .splash-needle, .splash-word { animation: none; stroke-dashoffset: 0; transform: none; opacity: 1; }
 }
+
+/* Listes déroulantes natives : la liste ouverte reprend les couleurs du thème (sans cela, certains navigateurs
+   ouvrent une liste claire avec le texte clair hérité, illisible en mode sombre). Vaut aussi pour les pastilles
+   de la carte, dont le <select> transparent est posé sur le libellé. En couche base : les utilitaires gardent la main. */
+@layer base {
+  select { background-color: var(--surface); color: var(--fg); }
+  select option, select optgroup { background-color: var(--surface); color: var(--fg); }
+  select option:checked { background-color: var(--surface-2); }
+  select option:disabled { color: var(--muted); }
+  input[type="checkbox"], input[type="radio"], input[type="range"] { accent-color: var(--accent); }
+}
