@@ -18,7 +18,9 @@ export async function bootstrap() {
 
   for (const c of CONNECTORS) {
     const meta = { country: c.country, name: c.name, license: c.license, attribution: c.attribution, url: c.url, schedule: c.schedule, kind: c.kind ?? "official" };
-    await db.insert(source).values({ id: c.id, ...meta }).onConflictDoUpdate({ target: source.id, set: meta });
+    // Connecteurs à clé (DE) créés désactivés tant que la clé manque ; l'admin peut ensuite les activer.
+    const enabled = c.id !== "de" || !!process.env.TANKERKOENIG_API_KEY;
+    await db.insert(source).values({ id: c.id, ...meta, enabled }).onConflictDoUpdate({ target: source.id, set: meta });
   }
 
   // Stations ajoutées par la communauté (signalement « station manquante » validé).

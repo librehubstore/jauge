@@ -45,7 +45,7 @@ docker compose exec db psql -U jauge -c "CREATE DATABASE jauge_test"   # une foi
 npm test
 ```
 
-22 tests : connecteurs FR/ES/IT sur fixtures réelles, calculs de coût et classement, fuseaux horaires, argon2id, domaines autorisés, ingestion idempotente sur une vraie base.
+43 tests : connecteurs FR/ES/IT/PT/AD/AT/DE sur fixtures réelles, calculs de coût et classement, fuseaux horaires, argon2id, domaines autorisés, ingestion idempotente sur une vraie base.
 
 ## Sources de données
 
@@ -54,4 +54,9 @@ npm test
 | FR | prix-carburants.gouv.fr (flux instantané avec ruptures) | 10 min | Licence Ouverte 2.0 |
 | ES | MITECO — API EstacionesTerrestres | 30 min | Réutilisation libre |
 | IT | MIMIT — CSV quotidien | quotidien | IODL 2.0 |
+| PT | DGEG — PesquisarPostos (par district) | 2 h | Données ouvertes DGEG |
+| AD | Govern d'Andorra — couche ArcGIS | 2 h | Données ouvertes |
+| AT | E-Control — Spritpreisrechner (couverture partielle) | 1 h | Données publiques |
+| DE | MTS-K via Tankerkönig (clé, zones `DE_ZONES`) | 15 min | CC BY 4.0 |
+| BE, LU, MC | Stations OpenStreetMap, prix communautaires | hebdomadaire | ODbL |
 | FR (enseignes) | OpenStreetMap via Overpass | hebdomadaire | ODbL |

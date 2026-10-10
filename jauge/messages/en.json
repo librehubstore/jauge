@@ -135,7 +135,8 @@
       "2": "high",
       "none": "no price"
     },
-    "median": "Area median: {value}"
+    "median": "Area median: {value}",
+    "partialAT": "Austria: E-Control only publishes the cheapest stations of each district. Partial coverage."
   },
   "price": {
     "ago": "{value}",

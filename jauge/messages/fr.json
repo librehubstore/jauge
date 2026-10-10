@@ -135,7 +135,8 @@
       "2": "élevé",
       "none": "sans prix"
     },
-    "median": "Médiane de la zone : {value}"
+    "median": "Médiane de la zone : {value}",
+    "partialAT": "Autriche : seules les stations les moins chères de chaque district sont publiées par E-Control. Couverture partielle."
   },
   "price": {
     "ago": "{value}",

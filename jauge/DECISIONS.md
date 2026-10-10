@@ -58,5 +58,13 @@ Hypothèses retenues quand la spécification (`../gasoil-now-prompt.md`) laissai
 - **Économie** affichée par rapport à la stratégie naïve « moins d'arrêts », au même volume acheté.
 - **Recherche autour de soi** : détour routier réel (matrice Valhalla, aller-retour = 2 × aller) pour les 25 premières stations des tris « meilleur choix » et « prix du plein » ; au-delà et en cas d'échec, estimation × 1,3 libellée « estimé ».
 
+## V1 — Nouveaux pays (spec 4.2)
+- **Points d'accès PT et AD** : non documentés publiquement ; identifiés grâce au projet open source Plein (MIT, github.com/aslafy-z/plein). Le code des connecteurs est propre à Jauge.
+- **PT** : produit « especial » pris seulement si la station ne vend pas le produit simple (sauf gazole premium → `B7_PREMIUM`). Continent seul (Açores et Madère hors flux).
+- **AD** : pas d'adresse ni d'horaires dans le flux ; position = centre de l'emprise de la station ; les distributeurs de fioul seuls sont exclus.
+- **AT et DE** : pas d'horodatage par prix dans ces API → date de récupération. AT : la loi ne publie que les moins chères par district ; avertissement dans la liste et dans l'attribution.
+- **DE** : l'API Tankerkönig ne fait que des recherches par rayon (≤ 25 km) ; seules les zones `DE_ZONES` sont couvertes, toutes les 15 min.
+- **UK** : non livré (documentation inaccessible, identifiants requis).
+
 ## Hors MVP (prévu en V1/V2, voir spec section 3)
 Itinéraire et plan carburant, alertes de prix, historique graphique, saisie de prix communautaire et file de modération, connecteurs PT/AD/DE/UK/AT, langues ES/IT/PT/DE/NL, conversion de devises, PWA hors ligne et Web Push, journal de pleins.

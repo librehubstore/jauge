@@ -42,15 +42,16 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - [x] Tests : FR → ES (arrêt côté ES), achat minimal côté FR, contraintes de réserve et de capacité → 39 tests
 - Mesure réelle Toulouse → Barcelone : 398 km, 439 stations candidates, 2 arrêts, 38,88 € contre 45,51 € (−6,65 €)
 
-### Phase 5 — Nouveaux pays (spec 4.2) 🔄
-- [ ] PT (DGEG) — API à identifier
-- [ ] AD (gouvernement d'Andorre)
-- [ ] DE (Tankerkönig, clé `TANKERKOENIG_API_KEY`)
-- [ ] UK (Fuel Finder, OAuth2, GBP)
-- [ ] AT (E-Control, couverture partielle signalée)
-- [ ] Fixtures + tests par connecteur ; connecteur désactivé si clé absente
+### Phase 5 — Nouveaux pays (spec 4.2) ✅ (sauf UK)
+- [x] PT : API DGEG `PesquisarPostos` par district (18) — 3 098 stations, toutes les 2 h
+- [x] AD : couche ArcGIS du Govern d'Andorra — 54 stations, toutes les 2 h
+- [x] AT : API E-Control par district (117 × 3 carburants) — 918 stations, horaire ; avertissement « couverture partielle » dans la liste
+- [x] DE : Tankerkönig sur les zones `DE_ZONES` (rayon 25 km) ; source désactivée sans `TANKERKOENIG_API_KEY`
+- ⚠️ DE non testé en conditions réelles (pas de clé) : parseur testé sur une fixture conforme à la documentation
+- ⚠️ UK bloqué : portail développeur Fuel Finder inaccessible (403) et identifiants OAuth2 via GOV.UK One Login nécessaires — à reprendre avec un compte
+- [x] Tests : 4 parseurs (fixtures réelles PT/AD/AT, fixture documentée DE) → 43 tests
 
-### Phase 6 — Langues et devises (spec 4.12) ⏳
+### Phase 6 — Langues et devises (spec 4.12) 🔄
 - [ ] Traductions ES, IT, PT, DE, NL (interface + emails)
 - [ ] Taux BCE quotidiens, préférence « convertir en », mention « converti »
 
@@ -66,3 +67,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Phase 2 validée visuellement. Début phase 3.
 - 2026-10-10 — Phase 3 terminée (34 tests). Début phase 4 (itinéraire).
 - 2026-10-10 — Phase 4 terminée (39 tests). Début phase 5 (nouveaux pays).
+- 2026-10-10 — Phase 5 terminée hors UK (bloqué, identifiants requis). Début phase 6.

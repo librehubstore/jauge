@@ -1,0 +1,290 @@
+[
+ {
+  "id": 42886,
+  "name": "Tanke Blaguss",
+  "location": {
+   "address": "Industriestraße",
+   "postalCode": "7000",
+   "city": "Eisenstadt",
+   "latitude": 47.8328353,
+   "longitude": 16.5336044
+  },
+  "contact": {},
+  "openingHours": [
+   {
+    "day": "MO",
+    "label": "Montag",
+    "order": 1,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "DI",
+    "label": "Dienstag",
+    "order": 2,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "MI",
+    "label": "Mittwoch",
+    "order": 3,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "DO",
+    "label": "Donnerstag",
+    "order": 4,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "FR",
+    "label": "Freitag",
+    "order": 5,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "SA",
+    "label": "Samstag",
+    "order": 6,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "SO",
+    "label": "Sonntag",
+    "order": 7,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "FE",
+    "label": "Feiertag",
+    "order": 8,
+    "from": "00:00",
+    "to": "24:00"
+   }
+  ],
+  "offerInformation": {
+   "service": false,
+   "selfService": false,
+   "unattended": true
+  },
+  "paymentMethods": {
+   "cash": false,
+   "debitCard": true,
+   "creditCard": true
+  },
+  "paymentArrangements": {
+   "cooperative": false,
+   "clubCard": false
+  },
+  "position": 1,
+  "open": true,
+  "prices": [
+   {
+    "fuelType": "DIE",
+    "amount": 2.039,
+    "label": "Diesel"
+   }
+  ]
+ },
+ {
+  "id": 1214419,
+  "name": "CP - so günstig wie möglich",
+  "location": {
+   "address": "Wiener Straße 36-38",
+   "postalCode": "7000",
+   "city": "Eisenstadt",
+   "latitude": 47.8449265,
+   "longitude": 16.50778
+  },
+  "contact": {
+   "telephone": "+43148049507700",
+   "mail": "office@zth-tankstellen.at"
+  },
+  "openingHours": [
+   {
+    "day": "MO",
+    "label": "Montag",
+    "order": 1,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "DI",
+    "label": "Dienstag",
+    "order": 2,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "MI",
+    "label": "Mittwoch",
+    "order": 3,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "DO",
+    "label": "Donnerstag",
+    "order": 4,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "FR",
+    "label": "Freitag",
+    "order": 5,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "SA",
+    "label": "Samstag",
+    "order": 6,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "SO",
+    "label": "Sonntag",
+    "order": 7,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "FE",
+    "label": "Feiertag",
+    "order": 8,
+    "from": "00:00",
+    "to": "24:00"
+   }
+  ],
+  "offerInformation": {
+   "service": false,
+   "selfService": false,
+   "unattended": true
+  },
+  "paymentMethods": {
+   "cash": false,
+   "debitCard": true,
+   "creditCard": true,
+   "others": "Chipkarten"
+  },
+  "paymentArrangements": {
+   "cooperative": false,
+   "clubCard": false
+  },
+  "position": 2,
+  "open": true,
+  "prices": [
+   {
+    "fuelType": "DIE",
+    "amount": 2.077,
+    "label": "Diesel"
+   }
+  ]
+ },
+ {
+  "id": 1474414,
+  "name": "Diskont Tankstelle",
+  "location": {
+   "address": "Haidäckerstrasse 4 (am HOFER Parkplatz)",
+   "postalCode": "7000",
+   "city": "Eisenstadt",
+   "latitude": 47.825,
+   "longitude": 16.5319
+  },
+  "contact": {
+   "telephone": "43800202055",
+   "mail": "avanti@avanti.at",
+   "website": "http://www.diskonttanken.at/"
+  },
+  "openingHours": [
+   {
+    "day": "MO",
+    "label": "Montag",
+    "order": 1,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "DI",
+    "label": "Dienstag",
+    "order": 2,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "MI",
+    "label": "Mittwoch",
+    "order": 3,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "DO",
+    "label": "Donnerstag",
+    "order": 4,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "FR",
+    "label": "Freitag",
+    "order": 5,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "SA",
+    "label": "Samstag",
+    "order": 6,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "SO",
+    "label": "Sonntag",
+    "order": 7,
+    "from": "00:00",
+    "to": "24:00"
+   },
+   {
+    "day": "FE",
+    "label": "Feiertag",
+    "order": 8,
+    "from": "00:00",
+    "to": "24:00"
+   }
+  ],
+  "offerInformation": {
+   "service": false,
+   "selfService": false,
+   "unattended": false
+  },
+  "paymentMethods": {
+   "cash": false,
+   "debitCard": false,
+   "creditCard": false,
+   "others": " UTA, DKV, OMV ROUTEX, MASTERCARD, EUROTRAFIC, MAESTRO, ROUTEX, DINERS, VISA, AMEX, OMV STATIONSKARTE"
+  },
+  "paymentArrangements": {
+   "cooperative": false,
+   "clubCard": false
+  },
+  "position": 3,
+  "open": true,
+  "prices": [
+   {
+    "fuelType": "DIE",
+    "amount": 2.087,
+    "label": "Diesel"
+   }
+  ]
+ }
+]

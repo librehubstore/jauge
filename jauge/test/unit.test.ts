@@ -220,3 +220,38 @@ describe("plan carburant (spec 4.7)", () => {
     expect(evaluate({ ...p, startLevel: 0.2 }, [{ c: es1, amount: 30 }]).feasible).toBe(false);
   });
 });
+
+import { parseAd } from "@/connectors/ad";
+import { parseAt } from "@/connectors/at";
+import { parseDe } from "@/connectors/de";
+import { parsePt } from "@/connectors/pt";
+
+describe("connecteurs PT, AD, AT, DE", () => {
+  it("PT : regroupe station × produit, prix à virgule, heure de Lisbonne, « Genérico » sans enseigne", () => {
+    const rows = parsePt(JSON.parse(fx("pt.json").toString()).resultado);
+    expect(rows).toHaveLength(3);
+    const s = rows[0];
+    expect(s.prices.length).toBeGreaterThan(0);
+    expect(s.prices.every((p) => p.price > 0.3 && p.price < 5)).toBe(true);
+    expect(s.lat).toBeGreaterThan(36);
+  });
+  it("AD : centre de l'emprise, produits codés, horodatage en ms", () => {
+    const rows = parseAd(JSON.parse(fx("ad.json").toString()).features);
+    expect(rows.length).toBeGreaterThan(0);
+    expect(rows[0].lat).toBeGreaterThan(42.4);
+    expect(rows[0].lon).toBeGreaterThan(1.4);
+    expect(rows[0].prices.some((p) => p.fuel === "B7")).toBe(true);
+  });
+  it("AT : horaires, carte de paiement, prix du district", () => {
+    const rows = parseAt([JSON.parse(fx("at.json").toString())], new Date("2026-10-10T10:00:00Z"));
+    expect(rows.length).toBe(3);
+    expect(rows[0].prices[0]).toMatchObject({ fuel: "B7", updatedAt: new Date("2026-10-10T10:00:00Z") });
+  });
+  it("DE : prix absents (null/false) ignorés, code postal sur 5 chiffres", () => {
+    const rows = parseDe([JSON.parse(fx("de.json").toString()).stations]);
+    expect(rows[0].prices.map((p) => p.fuel)).toEqual(["B7", "E5", "E10"]);
+    expect(rows[1].prices.map((p) => p.fuel)).toEqual(["B7"]);
+    expect(rows[0].postalCode).toBe("10407");
+    expect(rows[1].address).toBe("Holzmarktstraße 12");
+  });
+});
