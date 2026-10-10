@@ -119,7 +119,7 @@
     "hideOutages": "Ocultar desabastecimientos",
     "openNow": "Abierta ahora",
     "automat24": "Surtidor con tarjeta 24 h",
-    "includeOld": "Incluir precios de más de 7 días",
+    "includeOld": "Incluir precios antiguos",
     "favoritesFirst": "Favoritos primero",
     "showEv": "Mostrar puntos de recarga",
     "brands": "Marcas",
@@ -143,7 +143,8 @@
     "partialAT": "Austria: E-Control solo publica las estaciones más baratas de cada distrito. Cobertura parcial.",
     "partialDK": "Dinamarca: estaciones OK, Shell, Q8 y F24; Circle K y Uno-X aún no publican una API abierta. Cobertura parcial.",
     "partialRO": "Rumanía: la fuente oficial responde por zonas pequeñas; la lista se completa con cada búsqueda.",
-    "showResults": "Ver las estaciones"
+    "showResults": "Ver las estaciones",
+    "oldData": "Datos de hace {days, plural, one {# día} other {# días}}"
   },
   "price": {
     "ago": "{value}",
@@ -235,7 +236,8 @@
     "originalCurrency": "Moneda de origen",
     "maxPriceAge": "Ignorar precios con más de",
     "days": "{count, plural, one {# día} other {# días}}",
-    "maxPriceAgeHint": "Algunas estaciones solo actualizan un precio cuando cambia (a menudo E85 o GLP)."
+    "maxPriceAgeHint": "Algunas estaciones solo actualizan un precio cuando cambia (a menudo E85 o GLP).",
+    "showOldPrices": "Mostrar también, en gris, las estaciones cuyo precio supera este límite"
   },
   "admin": {
     "title": "Administración",

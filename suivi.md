@@ -120,3 +120,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Trace des appels HTTP sortants (app + worker) : une ligne JSON par appel dans les logs, secrets masqués.
 - 2026-10-10 — Image Docker allégée : build multi-étapes, Next standalone, worker et scripts empaquetés (esbuild) ; ~600 Mo → ~200 Mo estimés.
 - 2026-10-10 — Réglage « Ignorer les prix plus anciens que » (1 à 30 j, 7 par défaut) appliqué à la recherche, la fiche station et l'itinéraire. Cas Cugnaux : E85 Intermarché daté du 28/09, exclu par l'ancienne limite fixe de 7 j.
+- 2026-10-10 — Âge max des prix : 14 j par défaut ; option « afficher aussi les stations au prix trop ancien » (en gris, « Données datant de x jours », hors classement et coûts).

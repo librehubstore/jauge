@@ -45,7 +45,8 @@ export type Preferences = {
   theme?: "system" | "light" | "dark";
   emailAlerts?: boolean;
   displayCurrency?: string; // vide = devise d'origine
-  maxPriceAgeDays?: number; // au-delà, un prix est ignoré (7 par défaut)
+  maxPriceAgeDays?: number; // au-delà, un prix est ignoré (14 par défaut)
+  showOldPrices?: boolean; // afficher quand même, en gris, les stations au prix trop ancien
 };
 
 export const session = pgTable("session", {

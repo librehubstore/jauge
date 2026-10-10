@@ -93,14 +93,15 @@ export function rank(rows: Row[], p: SearchParams, now: Date) {
   const tierOf = freshPrices.length ? priceTiers(freshPrices) : null;
 
   const stations: StationResult[] = filtered.map(({ r, price, fresh, openNow }) => {
-    const ranked = price !== null && usable({ r, price, fresh, openNow }) && !r.outage;
+    // Prix trop ancien : affiché (option « inclure les prix anciens »), en gris, hors classement et sans coût.
+    const ranked = price !== null && fresh !== "excluded" && !r.outage;
     return {
       id: r.id, name: r.name, brandId: r.brand_id, brand: r.brand, brandOrigin: r.brand_origin, address: r.address, city: r.city,
       country: r.country, lat: Number(r.lat), lon: Number(r.lon), distanceKm: Number(r.distance_km), status: r.status,
       is24hAutomat: r.is_24h_automat, services: r.services, favorite: r.favorite,
       price, currency: r.currency, priceUpdatedAt: r.source_updated_at ? new Date(r.source_updated_at).toISOString() : null,
       origin: r.origin, freshness: fresh, outage: r.outage, openNow,
-      tier: ranked && fresh !== "excluded" && tierOf ? (tierOf(price!) as 0 | 1 | 2) : null,
+      tier: ranked && tierOf ? (tierOf(price!) as 0 | 1 | 2) : null,
       fillCost: ranked ? price! * amount : null,
       detourKm: detourKm(Number(r.distance_km)), detourEstimated: true, detourMinutes: null,
       detourCost: ranked ? detourCost(Number(r.distance_km), p.consumption, price!) : null,

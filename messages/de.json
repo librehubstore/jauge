@@ -119,7 +119,7 @@
     "hideOutages": "Ausfälle ausblenden",
     "openNow": "Jetzt geöffnet",
     "automat24": "Kartenautomat 24 h",
-    "includeOld": "Preise älter als 7 Tage einbeziehen",
+    "includeOld": "Ältere Preise einbeziehen",
     "favoritesFirst": "Favoriten zuerst",
     "showEv": "Ladesäulen anzeigen",
     "brands": "Marken",
@@ -143,7 +143,8 @@
     "partialAT": "Österreich: E-Control veröffentlicht nur die günstigsten Tankstellen je Bezirk. Unvollständige Abdeckung.",
     "partialDK": "Dänemark: Tankstellen von OK, Shell, Q8 und F24; Circle K und Uno-X veröffentlichen noch keine offene API. Unvollständige Abdeckung.",
     "partialRO": "Rumänien: Die amtliche Quelle antwortet nur für kleine Gebiete; die Liste füllt sich mit jeder Suche.",
-    "showResults": "Tankstellen anzeigen"
+    "showResults": "Tankstellen anzeigen",
+    "oldData": "Daten von vor {days, plural, one {# Tag} other {# Tagen}}"
   },
   "price": {
     "ago": "{value}",
@@ -235,7 +236,8 @@
     "originalCurrency": "Originalwährung",
     "maxPriceAge": "Preise ignorieren, die älter sind als",
     "days": "{count, plural, one {# Tag} other {# Tage}}",
-    "maxPriceAgeHint": "Manche Tankstellen aktualisieren einen Preis nur, wenn er sich ändert (oft E85 oder Autogas)."
+    "maxPriceAgeHint": "Manche Tankstellen aktualisieren einen Preis nur, wenn er sich ändert (oft E85 oder Autogas).",
+    "showOldPrices": "Tankstellen mit älterem Preis trotzdem grau anzeigen"
   },
   "admin": {
     "title": "Verwaltung",

@@ -119,7 +119,7 @@
     "hideOutages": "Tekorten verbergen",
     "openNow": "Nu open",
     "automat24": "Pinautomaat 24 u",
-    "includeOld": "Prijzen ouder dan 7 dagen meenemen",
+    "includeOld": "Oudere prijzen meenemen",
     "favoritesFirst": "Favorieten eerst",
     "showEv": "Laadpalen tonen",
     "brands": "Merken",
@@ -143,7 +143,8 @@
     "partialAT": "Oostenrijk: E-Control publiceert alleen de goedkoopste stations per district. Gedeeltelijke dekking.",
     "partialDK": "Denemarken: stations van OK, Shell, Q8 en F24; Circle K en Uno-X publiceren nog geen open API. Gedeeltelijke dekking.",
     "partialRO": "Roemenië: de officiële bron antwoordt per klein gebied; de lijst vult zich aan bij elke zoekopdracht.",
-    "showResults": "Stations tonen"
+    "showResults": "Stations tonen",
+    "oldData": "Gegevens van {days, plural, one {# dag} other {# dagen}} geleden"
   },
   "price": {
     "ago": "{value}",
@@ -235,7 +236,8 @@
     "originalCurrency": "Oorspronkelijke valuta",
     "maxPriceAge": "Prijzen negeren die ouder zijn dan",
     "days": "{count, plural, one {# dag} other {# dagen}}",
-    "maxPriceAgeHint": "Sommige stations werken een prijs alleen bij als die verandert (vaak E85 of lpg)."
+    "maxPriceAgeHint": "Sommige stations werken een prijs alleen bij als die verandert (vaak E85 of lpg).",
+    "showOldPrices": "Stations met een oudere prijs toch grijs tonen"
   },
   "admin": {
     "title": "Beheer",

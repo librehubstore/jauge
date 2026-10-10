@@ -14,6 +14,7 @@ export default async function HomePage() {
         defaultFuel: u.preferences.defaultFuel ?? "B7",
         radiusKm: u.preferences.radiusKm ?? 10,
         distanceUnit: u.preferences.distanceUnit ?? "km",
+        showOldPrices: !!u.preferences.showOldPrices,
       }}
     />
   );

@@ -119,7 +119,7 @@
     "hideOutages": "Hide shortages",
     "openNow": "Open now",
     "automat24": "24/7 card pump",
-    "includeOld": "Include prices older than 7 days",
+    "includeOld": "Include old prices",
     "favoritesFirst": "Favourites first",
     "showEv": "Show EV chargers",
     "brands": "Brands",
@@ -143,7 +143,8 @@
     "partialAT": "Austria: E-Control only publishes the cheapest stations of each district. Partial coverage.",
     "partialDK": "Denmark: OK, Shell, Q8 and F24 stations; Circle K and Uno-X do not publish an open API yet. Partial coverage.",
     "partialRO": "Romania: the official source answers by small areas; the list fills in as you search.",
-    "showResults": "Show stations"
+    "showResults": "Show stations",
+    "oldData": "Data from {days, plural, one {# day} other {# days}} ago"
   },
   "price": {
     "ago": "{value}",
@@ -235,7 +236,8 @@
     "originalCurrency": "Original currency",
     "maxPriceAge": "Ignore prices older than",
     "days": "{count, plural, one {# day} other {# days}}",
-    "maxPriceAgeHint": "Some stations only update a price when it changes (often E85 or LPG)."
+    "maxPriceAgeHint": "Some stations only update a price when it changes (often E85 or LPG).",
+    "showOldPrices": "Also show, greyed out, stations whose price is older than this"
   },
   "admin": {
     "title": "Administration",

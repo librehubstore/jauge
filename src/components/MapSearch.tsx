@@ -13,7 +13,7 @@ import type { MapPoint } from "./StationMap";
 const StationMap = dynamic(() => import("./StationMap").then((m) => m.StationMap), { ssr: false });
 
 type Vehicle = { id: number; name: string; fuelCode: string; isDefault: boolean };
-type Prefs = { defaultFuel: string; radiusKm: number; distanceUnit: "km" | "mi" };
+type Prefs = { defaultFuel: string; radiusKm: number; distanceUnit: "km" | "mi"; showOldPrices: boolean };
 type Zone = { lat: number; lon: number; zoom?: number; seq: number };
 
 const FALLBACK: Zone = { lat: 48.8566, lon: 2.3522, zoom: 12, seq: 0 };
@@ -47,7 +47,7 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
   const [sort, setSort] = useState<SortKey>("best");
   const [level, setLevel] = useState(0.25);
   const [filters, setFilters] = useState<Record<FilterKey, boolean>>({
-    onlySelling: true, hideOutages: false, openNow: false, automat24: false, includeOld: false, favoritesFirst: false,
+    onlySelling: true, hideOutages: false, openNow: false, automat24: false, includeOld: prefs.showOldPrices, favoritesFirst: false,
   });
   const [services, setServices] = useState<string[]>([]);
   const [excludeBrands, setExcludeBrands] = useState<number[]>([]);
@@ -326,7 +326,9 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
                     {s.price !== null
                       ? <p className="price text-xl font-semibold leading-tight">{fmt.price(s.price, s.currency ?? "EUR")}<span className="text-xs font-normal text-muted">/{unit}</span></p>
                       : <p className="text-sm text-muted">{tp("noPrice")}</p>}
-                    <TierBadge tier={s.outage ? null : s.tier} label={s.outage ? tst("outageTemporary") : t(`tier.${s.tier ?? "none"}` as never)} />
+                    <TierBadge tier={s.outage ? null : s.tier} label={s.outage ? tst("outageTemporary")
+                      : s.freshness === "excluded" && s.priceUpdatedAt ? t("oldData", { days: daysSince(s.priceUpdatedAt) })
+                      : t(`tier.${s.tier ?? "none"}` as never)} />
                   </div>
                 </div>
                 <p className="mt-1 flex flex-wrap gap-x-2 text-sm text-muted">
@@ -356,6 +358,8 @@ export function MapSearch({ vehicles, prefs }: { vehicles: Vehicle[]; prefs: Pre
     </div>
   );
 }
+
+const daysSince = (iso: string) => Math.floor((Date.now() - Date.parse(iso)) / 86_400_000);
 
 const SNAP_HEIGHT: Record<"peek" | "half" | "full", string> = { peek: "34%", half: "58%", full: "calc(100% - 4.75rem)" };
 

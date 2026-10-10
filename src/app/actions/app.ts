@@ -71,6 +71,7 @@ const PrefsInput = z.object({
   emailAlerts: z.boolean().optional(),
   displayCurrency: z.enum(["", ...DISPLAY_CURRENCIES]).optional(),
   maxPriceAgeDays: z.coerce.number().int().min(1).max(60).optional(),
+  showOldPrices: z.boolean().optional(),
 });
 
 export async function savePreferences(input: Preferences) {

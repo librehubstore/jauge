@@ -119,7 +119,7 @@
     "hideOutages": "Masquer les ruptures",
     "openNow": "Ouvert maintenant",
     "automat24": "Automate 24/24",
-    "includeOld": "Inclure les prix de plus de 7 jours",
+    "includeOld": "Inclure les prix anciens",
     "favoritesFirst": "Favoris d'abord",
     "showEv": "Afficher les bornes électriques",
     "brands": "Enseignes",
@@ -143,7 +143,8 @@
     "partialAT": "Autriche : seules les stations les moins chères de chaque district sont publiées par E-Control. Couverture partielle.",
     "partialDK": "Danemark : enseignes OK, Shell, Q8 et F24 ; Circle K et Uno-X ne publient pas encore d'API ouverte. Couverture partielle.",
     "partialRO": "Roumanie : la source officielle répond par petites zones ; la liste se complète au fil des recherches.",
-    "showResults": "Voir les stations"
+    "showResults": "Voir les stations",
+    "oldData": "Données datant de {days, plural, one {# jour} other {# jours}}"
   },
   "price": {
     "ago": "{value}",
@@ -235,7 +236,8 @@
     "originalCurrency": "Devise d'origine",
     "maxPriceAge": "Ignorer les prix plus anciens que",
     "days": "{count, plural, one {# jour} other {# jours}}",
-    "maxPriceAgeHint": "Certaines stations ne mettent à jour un prix que lorsqu'il change (souvent l'E85 ou le GPL)."
+    "maxPriceAgeHint": "Certaines stations ne mettent à jour un prix que lorsqu'il change (souvent l'E85 ou le GPL).",
+    "showOldPrices": "Afficher aussi, en gris, les stations dont le prix dépasse ce seuil"
   },
   "admin": {
     "title": "Administration",

@@ -2,7 +2,7 @@
 
 export const ROAD_FACTOR = 1.3; // vol d'oiseau → route estimée
 export const STALE_HOURS = 48;
-export const EXCLUDED_DAYS = 7;
+export const EXCLUDED_DAYS = 14;
 
 export function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
   const r = Math.PI / 180;

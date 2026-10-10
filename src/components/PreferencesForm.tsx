@@ -24,6 +24,7 @@ export function PreferencesForm({ prefs }: { prefs: Preferences }) {
           distanceUnit: f.distanceUnit as Preferences["distanceUnit"], defaultFuel: f.defaultFuel,
           radiusKm: Number(f.radiusKm), navApp: f.navApp as Preferences["navApp"], theme: f.theme as Preferences["theme"],
           emailAlerts: f.emailAlerts === "on", displayCurrency: f.displayCurrency, maxPriceAgeDays: Number(f.maxPriceAgeDays),
+          showOldPrices: f.showOldPrices === "on",
         });
         setSaved(true);
       });
@@ -37,7 +38,7 @@ export function PreferencesForm({ prefs }: { prefs: Preferences }) {
           {[2, 5, 10, 20, 30, 50].map((r) => <option key={r} value={r}>{r}</option>)}
         </select></label>
       <label><span className="label">{t("maxPriceAge")}</span>
-        <select className="input" name="maxPriceAgeDays" defaultValue={prefs.maxPriceAgeDays ?? 7}>
+        <select className="input" name="maxPriceAgeDays" defaultValue={prefs.maxPriceAgeDays ?? 14}>
           {[1, 2, 3, 7, 14, 30].map((d) => <option key={d} value={d}>{t("days", { count: d })}</option>)}
         </select>
         <span className="mt-1 block text-xs text-muted">{t("maxPriceAgeHint")}</span></label>
@@ -58,6 +59,9 @@ export function PreferencesForm({ prefs }: { prefs: Preferences }) {
           <option value="">{t("originalCurrency")}</option>
           {DISPLAY_CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
         </select></label>
+      <label className="flex items-center gap-2 text-sm sm:col-span-2">
+        <input type="checkbox" name="showOldPrices" defaultChecked={!!prefs.showOldPrices} /> {t("showOldPrices")}
+      </label>
       <label className="flex items-center gap-2 text-sm sm:col-span-2">
         <input type="checkbox" name="emailAlerts" defaultChecked={!!prefs.emailAlerts} /> {t("emailAlerts")}
       </label>

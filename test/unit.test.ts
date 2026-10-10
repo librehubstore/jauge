@@ -76,11 +76,13 @@ describe("calculs de coût (spec 4.5)", () => {
     expect(amountToAdd(50, 0.25)).toBe(37.5);
     expect(savings(1.9, 1.8, 30, 0, 6)).toBeCloseTo(3, 5);
   });
-  it("fraîcheur : ancien après 48 h, exclu après 7 jours", () => {
+  it("fraîcheur : ancien après 48 h, exclu après 14 jours (réglable)", () => {
     const now = new Date("2026-10-09T12:00:00Z");
     expect(freshness(new Date("2026-10-09T00:00:00Z"), now)).toBe("fresh");
     expect(freshness(new Date("2026-10-06T00:00:00Z"), now)).toBe("stale");
-    expect(freshness(new Date("2026-09-30T00:00:00Z"), now)).toBe("excluded");
+    expect(freshness(new Date("2026-09-30T00:00:00Z"), now)).toBe("stale");
+    expect(freshness(new Date("2026-09-24T00:00:00Z"), now)).toBe("excluded");
+    expect(freshness(new Date("2026-09-30T00:00:00Z"), now, 7)).toBe("excluded");
   });
   it("médiane, tiers et prix aberrants", () => {
     expect(median([3, 1, 2])).toBe(2);
@@ -142,11 +144,14 @@ describe("recherche (spec 4.3)", () => {
     expect(stations[0].id).toBe(2);
     expect(rank([row(1, "1.780", 15), row(2, "1.800", 1)], { ...base, sort: "price" }, now).stations[0].id).toBe(1);
   });
-  it("un prix de plus de 7 jours est exclu, sauf option", () => {
+  it("un prix trop ancien est exclu, sauf option", () => {
     const old = row(3, "1.500", 1, { source_updated_at: new Date("2026-09-20T00:00:00Z") });
     expect(rank([old], base, now).stations).toHaveLength(0);
-    expect(rank([old], { ...base, includeOld: true }, now).stations).toHaveLength(1);
+    const shown = rank([old, row(7, "1.900", 3)], { ...base, includeOld: true }, now).stations;
+    expect(shown.map((s) => s.id)).toEqual([7, 3]); // affiché après les prix récents, en gris, sans coût
+    expect(shown[1]).toMatchObject({ freshness: "excluded", tier: null, totalCost: null });
     expect(rank([old], { ...base, maxAgeDays: 30 }, now).stations[0].freshness).toBe("stale");
+    expect(rank([row(8, "1.500", 1, { source_updated_at: new Date("2026-09-28T00:00:00Z") })], base, now).stations).toHaveLength(1); // 11 j < 14 j par défaut
     const recent = row(6, "1.500", 1, { source_updated_at: new Date("2026-10-07T00:00:00Z") });
     expect(rank([recent], { ...base, maxAgeDays: 1 }, now).stations).toHaveLength(0);
   });

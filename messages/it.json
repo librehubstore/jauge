@@ -119,7 +119,7 @@
     "hideOutages": "Nascondi le carenze",
     "openNow": "Aperto ora",
     "automat24": "Self con carta 24 h",
-    "includeOld": "Includi prezzi più vecchi di 7 giorni",
+    "includeOld": "Includi prezzi vecchi",
     "favoritesFirst": "Prima i preferiti",
     "showEv": "Mostra le colonnine elettriche",
     "brands": "Marchi",
@@ -143,7 +143,8 @@
     "partialAT": "Austria: E-Control pubblica solo i distributori più economici di ogni distretto. Copertura parziale.",
     "partialDK": "Danimarca: distributori OK, Shell, Q8 e F24; Circle K e Uno-X non pubblicano ancora un'API aperta. Copertura parziale.",
     "partialRO": "Romania: la fonte ufficiale risponde per piccole zone; l'elenco si completa con le ricerche.",
-    "showResults": "Mostra i distributori"
+    "showResults": "Mostra i distributori",
+    "oldData": "Dati di {days, plural, one {# giorno} other {# giorni}} fa"
   },
   "price": {
     "ago": "{value}",
@@ -235,7 +236,8 @@
     "originalCurrency": "Valuta d'origine",
     "maxPriceAge": "Ignora i prezzi più vecchi di",
     "days": "{count, plural, one {# giorno} other {# giorni}}",
-    "maxPriceAgeHint": "Alcuni distributori aggiornano un prezzo solo quando cambia (spesso E85 o GPL)."
+    "maxPriceAgeHint": "Alcuni distributori aggiornano un prezzo solo quando cambia (spesso E85 o GPL).",
+    "showOldPrices": "Mostra comunque, in grigio, i distributori con prezzo oltre questa soglia"
   },
   "admin": {
     "title": "Amministrazione",
