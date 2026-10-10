@@ -118,3 +118,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — DK : Q8 et F24 ajoutés (237 stations géocodées via Photon, une seule fois) ; doublons d'identifiants dédoublonnés à l'ingestion.
 - 2026-10-10 — Écran de lancement animé (jauge qui se remplit, ~1,5 s, une fois par onglet, mouvement réduit respecté) ; conf nginx SSL pour jauge.librehub.store.
 - 2026-10-10 — Trace des appels HTTP sortants (app + worker) : une ligne JSON par appel dans les logs, secrets masqués.
+- 2026-10-10 — Image Docker allégée : build multi-étapes, Next standalone, worker et scripts empaquetés (esbuild) ; ~600 Mo → ~200 Mo estimés.

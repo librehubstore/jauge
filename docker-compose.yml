@@ -24,7 +24,7 @@ services:
   worker:
     build: .
     profiles: [full]
-    command: ["npx", "tsx", "src/worker.ts"]
+    command: ["node", "dist/src/worker.mjs"]
     env_file: .env
     environment:
       DATABASE_URL: postgres://jauge:jauge@db:5432/jauge

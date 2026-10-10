@@ -5,6 +5,8 @@ const I18N_REQUEST = "./src/i18n/request.ts";
 
 const nextConfig: NextConfig = {
   // Application entièrement dynamique (par utilisateur, derrière l'auth) : pas de Cache Components.
+  // Image Docker légère : serveur autonome avec seulement les dépendances utilisées (voir Dockerfile).
+  output: "standalone",
   serverExternalPackages: ["pg-boss", "web-push"],
   async headers() {
     // Production seulement : en dev, nosniff casse les mises à jour à chaud et provoque des rechargements en boucle.

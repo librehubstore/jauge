@@ -24,6 +24,8 @@ docker compose --profile full up -d --build
 
 Trois services : `db`, `worker` (migrations, admin initial, ingestions planifiées) et `app`. Au tout premier démarrage, l'app peut répondre avant la fin des migrations faites par le worker : attendre que le worker affiche `[worker] prêt`.
 
+L'image (~200 Mo) contient le serveur Next autonome (`output: "standalone"`) et le worker et les scripts empaquetés par esbuild dans `dist/`. Scripts ponctuels dans le conteneur : `docker compose run --rm worker node dist/scripts/osm-once.mjs` (idem `ingest-once.mjs`, `import-history.mjs`).
+
 ## Variables d'environnement
 
 | Variable | Rôle |
