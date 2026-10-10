@@ -15,7 +15,8 @@
     "notifications": "Notifiche",
     "alerts": "Avvisi",
     "openStation": "Vedi il distributore",
-    "route": "Percorso"
+    "route": "Percorso",
+    "more": "Altro"
   },
   "common": {
     "save": "Salva",
@@ -29,7 +30,8 @@
     "back": "Indietro",
     "km": "{value} km",
     "mi": "{value} mi",
-    "none": "Nessuno"
+    "none": "Nessuno",
+    "noMatch": "Nessun luogo trovato."
   },
   "auth": {
     "email": "Email",
@@ -136,7 +138,8 @@
       "none": "senza prezzo"
     },
     "median": "Mediana della zona: {value}",
-    "partialAT": "Austria: E-Control pubblica solo i distributori più economici di ogni distretto. Copertura parziale."
+    "partialAT": "Austria: E-Control pubblica solo i distributori più economici di ogni distretto. Copertura parziale.",
+    "showResults": "Mostra i distributori"
   },
   "price": {
     "ago": "{value}",
@@ -185,7 +188,8 @@
       "Sabato",
       "Domenica"
     ],
-    "closed": "Chiuso"
+    "closed": "Chiuso",
+    "openWith": "Apri con"
   },
   "favorites": {
     "title": "Preferiti",
@@ -459,7 +463,11 @@
     "endFuel": "Carburante rimasto all'arrivo: {litres} L",
     "openAll": "Apri il percorso completo in Google Maps",
     "share": "Copia il link",
-    "copied": "Link copiato"
+    "copied": "Link copiato",
+    "title": "Percorso",
+    "fromPlaceholder": "Città o indirizzo",
+    "options": "Opzioni del percorso",
+    "edit": "Modifica"
   },
   "pwa": {
     "title": "Notifiche push",

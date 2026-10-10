@@ -18,7 +18,7 @@ type Props = {
   onSelect: (id: number) => void;
   onUserMove: (c: { lat: number; lon: number; radiusKm: number }) => void;
   recenterLabel: string;
-  onRecenter: () => void;
+  onRecenter?: () => void;
   /** Tracé d'itinéraire [lon, lat] ; la carte s'y cadre à chaque changement. */
   line?: [number, number][];
 };
@@ -40,7 +40,8 @@ export function StationMap({ center, me, points, highlightId, onSelect, onUserMo
     map.current = m;
     m.on("error", (e) => console.error("[map]", e.error?.message ?? e));
     if (process.env.NODE_ENV !== "production") (window as unknown as { __map?: MlMap }).__map = m;
-    m.addControl(new NavigationControl({ showCompass: false }), "top-right");
+    // Mobile : zoom au pincement, pas de boutons (ils seraient sous la recherche flottante).
+    if (matchMedia("(min-width: 768px)").matches) m.addControl(new NavigationControl({ showCompass: false }), "top-right");
     m.on("load", () => {
       m.addSource("stations", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
       m.addSource("me", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
@@ -122,12 +123,12 @@ export function StationMap({ center, me, points, highlightId, onSelect, onUserMo
   return (
     <div className="relative h-full w-full">
       <div ref={el} className="h-full w-full" />
-      <button type="button" onClick={onRecenter} aria-label={recenterLabel} title={recenterLabel}
-        className="absolute bottom-6 right-2.5 rounded-md border border-border bg-surface p-2 shadow-sm hover:bg-surface-2">
+      {onRecenter && <button type="button" onClick={onRecenter} aria-label={recenterLabel} title={recenterLabel}
+        className="absolute right-3 top-[4.75rem] z-10 flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface shadow-md active:bg-surface-2 md:bottom-6 md:right-2.5 md:top-auto md:h-auto md:w-auto md:rounded-md md:p-2 md:shadow-sm">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
           <circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /><circle cx="12" cy="12" r="7" />
         </svg>
-      </button>
+      </button>}
     </div>
   );
 }

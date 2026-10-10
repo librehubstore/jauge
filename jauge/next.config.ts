@@ -7,10 +7,12 @@ const nextConfig: NextConfig = {
   // Application entièrement dynamique (par utilisateur, derrière l'auth) : pas de Cache Components.
   serverExternalPackages: ["pg-boss", "web-push"],
   async headers() {
+    // Production seulement : en dev, nosniff casse les mises à jour à chaud et provoque des rechargements en boucle.
+    if (process.env.NODE_ENV !== "production") return [];
     return [
       { source: "/(.*)", headers: [
         { key: "X-Content-Type-Options", value: "nosniff" },
-        { key: "X-Frame-Options", value: "DENY" },
+        { key: "X-Frame-Options", value: "SAMEORIGIN" },
         { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
       ] },
       // Le service worker doit toujours être revalidé pour que les mises à jour arrivent.

@@ -15,7 +15,8 @@
     "notifications": "Benachrichtigungen",
     "alerts": "Preisalarme",
     "openStation": "Tankstelle ansehen",
-    "route": "Route"
+    "route": "Route",
+    "more": "Mehr"
   },
   "common": {
     "save": "Speichern",
@@ -29,7 +30,8 @@
     "back": "Zurück",
     "km": "{value} km",
     "mi": "{value} mi",
-    "none": "Keine"
+    "none": "Keine",
+    "noMatch": "Kein Ort gefunden."
   },
   "auth": {
     "email": "E-Mail",
@@ -136,7 +138,8 @@
       "none": "kein Preis"
     },
     "median": "Median der Umgebung: {value}",
-    "partialAT": "Österreich: E-Control veröffentlicht nur die günstigsten Tankstellen je Bezirk. Unvollständige Abdeckung."
+    "partialAT": "Österreich: E-Control veröffentlicht nur die günstigsten Tankstellen je Bezirk. Unvollständige Abdeckung.",
+    "showResults": "Tankstellen anzeigen"
   },
   "price": {
     "ago": "{value}",
@@ -185,7 +188,8 @@
       "Samstag",
       "Sonntag"
     ],
-    "closed": "Geschlossen"
+    "closed": "Geschlossen",
+    "openWith": "Öffnen mit"
   },
   "favorites": {
     "title": "Favoriten",
@@ -459,7 +463,11 @@
     "endFuel": "Restkraftstoff bei Ankunft: {litres} L",
     "openAll": "Gesamte Strecke in Google Maps öffnen",
     "share": "Link kopieren",
-    "copied": "Link kopiert"
+    "copied": "Link kopiert",
+    "title": "Route",
+    "fromPlaceholder": "Ort oder Adresse",
+    "options": "Routenoptionen",
+    "edit": "Ändern"
   },
   "pwa": {
     "title": "Push-Benachrichtigungen",

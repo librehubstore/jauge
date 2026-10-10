@@ -15,7 +15,8 @@
     "notifications": "Notificações",
     "alerts": "Alertas",
     "openStation": "Ver o posto",
-    "route": "Itinerário"
+    "route": "Itinerário",
+    "more": "Mais"
   },
   "common": {
     "save": "Guardar",
@@ -29,7 +30,8 @@
     "back": "Voltar",
     "km": "{value} km",
     "mi": "{value} mi",
-    "none": "Nenhum"
+    "none": "Nenhum",
+    "noMatch": "Nenhum local encontrado."
   },
   "auth": {
     "email": "Email",
@@ -136,7 +138,8 @@
       "none": "sem preço"
     },
     "median": "Mediana da zona: {value}",
-    "partialAT": "Áustria: a E-Control só publica os postos mais baratos de cada distrito. Cobertura parcial."
+    "partialAT": "Áustria: a E-Control só publica os postos mais baratos de cada distrito. Cobertura parcial.",
+    "showResults": "Ver os postos"
   },
   "price": {
     "ago": "{value}",
@@ -185,7 +188,8 @@
       "Sábado",
       "Domingo"
     ],
-    "closed": "Fechado"
+    "closed": "Fechado",
+    "openWith": "Abrir com"
   },
   "favorites": {
     "title": "Favoritos",
@@ -459,7 +463,11 @@
     "endFuel": "Combustível restante à chegada: {litres} L",
     "openAll": "Abrir o percurso completo no Google Maps",
     "share": "Copiar a ligação",
-    "copied": "Ligação copiada"
+    "copied": "Ligação copiada",
+    "title": "Itinerário",
+    "fromPlaceholder": "Cidade ou morada",
+    "options": "Opções do percurso",
+    "edit": "Alterar"
   },
   "pwa": {
     "title": "Notificações push",

@@ -15,7 +15,8 @@
     "notifications": "Notificaciones",
     "alerts": "Alertas",
     "openStation": "Ver la estación",
-    "route": "Ruta"
+    "route": "Ruta",
+    "more": "Más"
   },
   "common": {
     "save": "Guardar",
@@ -29,7 +30,8 @@
     "back": "Volver",
     "km": "{value} km",
     "mi": "{value} mi",
-    "none": "Ninguno"
+    "none": "Ninguno",
+    "noMatch": "Ningún lugar encontrado."
   },
   "auth": {
     "email": "Correo electrónico",
@@ -136,7 +138,8 @@
       "none": "sin precio"
     },
     "median": "Mediana de la zona: {value}",
-    "partialAT": "Austria: E-Control solo publica las estaciones más baratas de cada distrito. Cobertura parcial."
+    "partialAT": "Austria: E-Control solo publica las estaciones más baratas de cada distrito. Cobertura parcial.",
+    "showResults": "Ver las estaciones"
   },
   "price": {
     "ago": "{value}",
@@ -185,7 +188,8 @@
       "Sábado",
       "Domingo"
     ],
-    "closed": "Cerrado"
+    "closed": "Cerrado",
+    "openWith": "Abrir con"
   },
   "favorites": {
     "title": "Favoritos",
@@ -459,7 +463,11 @@
     "endFuel": "Combustible restante al llegar: {litres} L",
     "openAll": "Abrir el trayecto completo en Google Maps",
     "share": "Copiar el enlace",
-    "copied": "Enlace copiado"
+    "copied": "Enlace copiado",
+    "title": "Ruta",
+    "fromPlaceholder": "Ciudad o dirección",
+    "options": "Opciones del trayecto",
+    "edit": "Modificar"
   },
   "pwa": {
     "title": "Notificaciones push",

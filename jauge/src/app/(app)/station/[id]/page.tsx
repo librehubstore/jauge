@@ -68,8 +68,9 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
   const days = t.raw("days") as string[];
 
   return (
-    <div className="h-full overflow-y-auto">
-      <article className="mx-auto max-w-2xl space-y-5 p-4 pb-16">
+    <div className="flex h-full flex-col">
+     <div className="min-h-0 flex-1 overflow-y-auto">
+      <article className="mx-auto max-w-2xl space-y-5 p-4 pb-8 md:pb-16">
         {st.status === "closed" && <p role="alert" className="rounded-md bg-danger/10 px-3 py-2 text-sm text-danger">{t("closedBanner")}</p>}
         {st.status === "closed_temp" && <p role="alert" className="rounded-md bg-tier-1/10 px-3 py-2 text-sm">{t("closedTempBanner")}</p>}
 
@@ -84,13 +85,14 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
               {st.roadType !== "unknown" && <span className="text-muted"> · {t(st.roadType)}</span>}
             </p>
           </div>
-          <FavoriteButton stationId={id} initial={fav.length > 0} labels={{ on: t("unfavorite"), off: t("favorite") }} />
+          <div className="hidden md:block"><FavoriteButton stationId={id} initial={fav.length > 0} labels={{ on: t("unfavorite"), off: t("favorite") }} /></div>
         </header>
 
-        <div className="flex flex-wrap gap-2">
-          <a className="btn-primary" href={nav[navApp]} target="_blank" rel="noopener noreferrer">{t("go")} · {tn(navApp)}</a>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 md:gap-2">
+          <span className="text-sm text-muted md:hidden">{t("openWith")}</span>
+          <a className="btn-primary hidden md:inline-flex" href={nav[navApp]} target="_blank" rel="noopener noreferrer">{t("go")} · {tn(navApp)}</a>
           {(Object.keys(nav) as (keyof typeof nav)[]).filter((k) => k !== navApp).map((k) => (
-            <a key={k} className="btn-ghost" href={nav[k]} target="_blank" rel="noopener noreferrer">{tn(k)}</a>
+            <a key={k} className="inline-flex min-h-9 items-center text-sm font-medium text-accent md:btn-ghost md:text-fg" href={nav[k]} target="_blank" rel="noopener noreferrer">{tn(k)}</a>
           ))}
         </div>
 
@@ -179,6 +181,12 @@ export default async function StationPage({ params }: PageProps<"/station/[id]">
           {t("source")} : <a className="underline" href={s.src.url ?? "#"} target="_blank" rel="noopener noreferrer">{s.src.attribution}</a> — {s.src.license}
         </p>
       </article>
+     </div>
+      {/* Mobile : l'action principale reste sous le pouce */}
+      <div className="flex shrink-0 gap-2 border-t border-border bg-surface p-3 md:hidden">
+        <a className="btn-primary flex-1" href={nav[navApp]} target="_blank" rel="noopener noreferrer">{t("go")} · {tn(navApp)}</a>
+        <FavoriteButton stationId={id} initial={fav.length > 0} labels={{ on: t("unfavorite"), off: t("favorite") }} />
+      </div>
     </div>
   );
 }

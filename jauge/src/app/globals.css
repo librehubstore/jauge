@@ -87,7 +87,7 @@ body {
 
 /* Composants de base */
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-md px-3.5 py-2 text-sm font-medium transition-colors disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 py-2 text-base font-medium transition-colors active:opacity-80 disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-9 md:rounded-md md:px-3.5 md:text-sm;
 }
 @utility btn-primary {
   @apply btn bg-accent text-accent-fg hover:opacity-90;
@@ -99,7 +99,8 @@ body {
   @apply btn border border-danger text-danger hover:bg-surface-2;
 }
 @utility input {
-  @apply w-full rounded-md border border-border bg-surface px-3 py-2 text-sm placeholder:text-muted focus:outline-2 focus:outline-accent;
+  /* 16 px sur mobile : en dessous, iOS zoome sur le champ au focus. */
+  @apply min-h-11 w-full rounded-lg border border-border bg-surface px-3 py-2 text-base placeholder:text-muted focus:outline-2 focus:outline-accent md:min-h-9 md:rounded-md md:text-sm;
 }
 @utility label {
   @apply mb-1 block text-sm font-medium;
@@ -110,3 +111,15 @@ body {
 @utility price {
   @apply font-mono tabular-nums;
 }
+
+/* Pastille de réglage compacte (sélecteurs natifs dans le panneau de la carte). */
+@utility pill {
+  @apply inline-flex min-h-10 shrink-0 items-center gap-1 rounded-full border border-border bg-surface px-3 text-sm font-medium;
+}
+
+/* Le texte utile ne doit pas être trop pâle en plein soleil : muted assombri en clair. */
+:root { --muted: #5d5a52; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --muted: #aeaaa0; } }
+:root[data-theme="dark"] { --muted: #aeaaa0; }
+
+html { -webkit-tap-highlight-color: transparent; }

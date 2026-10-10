@@ -15,7 +15,8 @@
     "notifications": "Meldingen",
     "alerts": "Prijsalarmen",
     "openStation": "Station bekijken",
-    "route": "Route"
+    "route": "Route",
+    "more": "Meer"
   },
   "common": {
     "save": "Opslaan",
@@ -29,7 +30,8 @@
     "back": "Terug",
     "km": "{value} km",
     "mi": "{value} mi",
-    "none": "Geen"
+    "none": "Geen",
+    "noMatch": "Geen plaats gevonden."
   },
   "auth": {
     "email": "E-mail",
@@ -136,7 +138,8 @@
       "none": "geen prijs"
     },
     "median": "Mediaan van het gebied: {value}",
-    "partialAT": "Oostenrijk: E-Control publiceert alleen de goedkoopste stations per district. Gedeeltelijke dekking."
+    "partialAT": "Oostenrijk: E-Control publiceert alleen de goedkoopste stations per district. Gedeeltelijke dekking.",
+    "showResults": "Stations tonen"
   },
   "price": {
     "ago": "{value}",
@@ -185,7 +188,8 @@
       "Zaterdag",
       "Zondag"
     ],
-    "closed": "Gesloten"
+    "closed": "Gesloten",
+    "openWith": "Openen met"
   },
   "favorites": {
     "title": "Favorieten",
@@ -459,7 +463,11 @@
     "endFuel": "Brandstof bij aankomst: {litres} L",
     "openAll": "Volledige route openen in Google Maps",
     "share": "Link kopiëren",
-    "copied": "Link gekopieerd"
+    "copied": "Link gekopieerd",
+    "title": "Route",
+    "fromPlaceholder": "Plaats of adres",
+    "options": "Route-opties",
+    "edit": "Wijzigen"
   },
   "pwa": {
     "title": "Pushmeldingen",

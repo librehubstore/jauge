@@ -15,7 +15,8 @@
     "notifications": "Notifications",
     "alerts": "Alertes",
     "openStation": "Voir la station",
-    "route": "Itinéraire"
+    "route": "Itinéraire",
+    "more": "Plus"
   },
   "common": {
     "save": "Enregistrer",
@@ -29,7 +30,8 @@
     "back": "Retour",
     "km": "{value} km",
     "mi": "{value} mi",
-    "none": "Aucun"
+    "none": "Aucun",
+    "noMatch": "Aucun lieu trouvé."
   },
   "auth": {
     "email": "Email",
@@ -136,7 +138,8 @@
       "none": "sans prix"
     },
     "median": "Médiane de la zone : {value}",
-    "partialAT": "Autriche : seules les stations les moins chères de chaque district sont publiées par E-Control. Couverture partielle."
+    "partialAT": "Autriche : seules les stations les moins chères de chaque district sont publiées par E-Control. Couverture partielle.",
+    "showResults": "Voir les stations"
   },
   "price": {
     "ago": "{value}",
@@ -185,7 +188,8 @@
       "Samedi",
       "Dimanche"
     ],
-    "closed": "Fermé"
+    "closed": "Fermé",
+    "openWith": "Ouvrir avec"
   },
   "favorites": {
     "title": "Favoris",
@@ -459,7 +463,11 @@
     "endFuel": "Carburant restant à l'arrivée : {litres} L",
     "openAll": "Ouvrir le trajet complet dans Google Maps",
     "share": "Copier le lien",
-    "copied": "Lien copié"
+    "copied": "Lien copié",
+    "title": "Itinéraire",
+    "fromPlaceholder": "Ville ou adresse",
+    "options": "Options du trajet",
+    "edit": "Modifier"
   },
   "pwa": {
     "title": "Notifications push",

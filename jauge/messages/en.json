@@ -15,7 +15,8 @@
     "notifications": "Notifications",
     "alerts": "Alerts",
     "openStation": "View station",
-    "route": "Route"
+    "route": "Route",
+    "more": "More"
   },
   "common": {
     "save": "Save",
@@ -29,7 +30,8 @@
     "back": "Back",
     "km": "{value} km",
     "mi": "{value} mi",
-    "none": "None"
+    "none": "None",
+    "noMatch": "No place found."
   },
   "auth": {
     "email": "Email",
@@ -136,7 +138,8 @@
       "none": "no price"
     },
     "median": "Area median: {value}",
-    "partialAT": "Austria: E-Control only publishes the cheapest stations of each district. Partial coverage."
+    "partialAT": "Austria: E-Control only publishes the cheapest stations of each district. Partial coverage.",
+    "showResults": "Show stations"
   },
   "price": {
     "ago": "{value}",
@@ -185,7 +188,8 @@
       "Saturday",
       "Sunday"
     ],
-    "closed": "Closed"
+    "closed": "Closed",
+    "openWith": "Open with"
   },
   "favorites": {
     "title": "Favourites",
@@ -459,7 +463,11 @@
     "endFuel": "Fuel left on arrival: {litres} L",
     "openAll": "Open the full trip in Google Maps",
     "share": "Copy link",
-    "copied": "Link copied"
+    "copied": "Link copied",
+    "title": "Route",
+    "fromPlaceholder": "City or address",
+    "options": "Trip options",
+    "edit": "Edit"
   },
   "pwa": {
     "title": "Push notifications",
