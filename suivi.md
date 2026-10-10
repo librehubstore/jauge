@@ -116,3 +116,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Boucle de recompilation en dev : serveur Turbopack resté actif des heures, corrigée par redémarrage ; service worker de test désormais retiré en dev.
 - 2026-10-10 — Exports CSV de la spec 8 complétés : favoris et historique d'une station (63 tests).
 - 2026-10-10 — DK : Q8 et F24 ajoutés (237 stations géocodées via Photon, une seule fois) ; doublons d'identifiants dédoublonnés à l'ingestion.
+- 2026-10-10 — Écran de lancement animé (jauge qui se remplit, ~1,5 s, une fois par onglet, mouvement réduit respecté) ; conf nginx SSL pour jauge.librehub.store.

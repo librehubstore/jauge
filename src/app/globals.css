@@ -123,3 +123,30 @@ body {
 :root[data-theme="dark"] { --muted: #aeaaa0; }
 
 html { -webkit-tap-highlight-color: transparent; }
+
+/* Écran de lancement (components/Splash.tsx). Au-dessus de la carte et de ses contrôles. */
+.splash {
+  position: fixed; inset: 0; z-index: 2000;
+  display: grid; place-content: center; justify-items: center; gap: 0.875rem;
+  background: var(--bg);
+  animation: splash-out 0.35s ease-in 1.15s forwards;
+}
+html.no-splash .splash { display: none; }
+.splash-arc { stroke-dasharray: 1; stroke-dashoffset: 1; animation: splash-draw 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; }
+.splash-needle {
+  transform-box: view-box; transform-origin: 16px 21px; transform: rotate(-130deg);
+  animation: splash-needle 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+.splash-word {
+  font-size: 1.375rem; font-weight: 600; letter-spacing: -0.01em;
+  opacity: 0; transform: translateY(6px);
+  animation: splash-word 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+}
+@keyframes splash-draw { to { stroke-dashoffset: 0; } }
+@keyframes splash-needle { to { transform: rotate(0deg); } }
+@keyframes splash-word { to { opacity: 1; transform: none; } }
+@keyframes splash-out { to { opacity: 0; visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) {
+  .splash { animation-duration: 0.2s; animation-delay: 0.4s; }
+  .splash-arc, .splash-needle, .splash-word { animation: none; stroke-dashoffset: 0; transform: none; opacity: 1; }
+}

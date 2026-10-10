@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { ServiceWorker } from "@/components/Pwa";
+import { Splash } from "@/components/Splash";
 import { currentUser } from "@/lib/session";
 import "./globals.css";
 
@@ -22,9 +23,11 @@ export const viewport: Viewport = {
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const locale = await getLocale();
   const theme = (await currentUser())?.preferences.theme ?? "system";
+  const t = await getTranslations("app");
   return (
-    <html lang={locale} data-theme={theme} className={`${sans.variable} ${mono.variable} h-full antialiased`}>
+    <html lang={locale} suppressHydrationWarning data-theme={theme} className={`${sans.variable} ${mono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans" suppressHydrationWarning>
+        <Splash name={t("name")} />
         <NextIntlClientProvider><ServiceWorker />{children}</NextIntlClientProvider>
       </body>
     </html>
