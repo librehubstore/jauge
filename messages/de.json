@@ -96,6 +96,12 @@
       "body": "Der Preis ist unter Ihre Schwelle gefallen: {station} zeigt jetzt {price} {currency}.",
       "cta": "Tankstelle ansehen",
       "footer": "Sie erhalten diese E-Mail, weil Preisalarme per E-Mail in Ihren Jauge-Einstellungen aktiviert sind."
+    },
+    "test": {
+      "subject": "Test-E-Mail — Jauge",
+      "body": "Diese E-Mail bestätigt, dass Jauge E-Mails versenden kann.",
+      "cta": "Administration öffnen",
+      "footer": "Gesendet von der Administrationsseite von Jauge."
     }
   },
   "search": {
@@ -280,7 +286,21 @@
     "running": "läuft",
     "success": "erfolgreich",
     "error": "Fehler",
-    "osm": "OpenStreetMap-Marken"
+    "osm": "OpenStreetMap-Marken",
+    "tests": {
+      "title": "Versandtests",
+      "push": "Test-Push-Benachrichtigung senden",
+      "pushHelp": "An Ihre Geräte mit aktivierten Push-Benachrichtigungen (Einstellungen).",
+      "push_sent": "Benachrichtigung an {count, plural, one {# Gerät} other {# Geräte}} gesendet.",
+      "push_no_device": "Kein abonniertes Gerät: Aktivieren Sie Push-Benachrichtigungen in den Einstellungen auf dem zu testenden Gerät.",
+      "push_disabled": "Push nicht konfiguriert: VAPID-Schlüssel fehlen auf dem Server.",
+      "push_failed": "Versand fehlgeschlagen: siehe Serverprotokolle.",
+      "mail": "Test-E-Mail senden",
+      "mailHelp": "An {email}.",
+      "mail_sent": "E-Mail an {email} gesendet. Prüfen Sie auch den Spam-Ordner.",
+      "mail_console": "Kein Brevo-Schlüssel: Die E-Mail wurde in die Serverprotokolle geschrieben.",
+      "mail_failed": "Versand fehlgeschlagen: siehe Serverprotokolle (Brevo-Schlüssel, verifizierter Absender)."
+    }
   },
   "about": {
     "title": "Über",
@@ -334,7 +354,8 @@
     "account_approved": "Ihr Konto wurde freigegeben.",
     "contribution_approved": "Ihr Beitrag wurde freigegeben. Danke!",
     "contribution_rejected": "Ihr Beitrag wurde abgelehnt. {reason}",
-    "price_alert": "{station}: {price} {currency}, unter Ihrer Schwelle von {threshold}"
+    "price_alert": "{station}: {price} {currency}, unter Ihrer Schwelle von {threshold}",
+    "test": "Testbenachrichtigung: Push-Benachrichtigungen funktionieren."
   },
   "nav_apps": {
     "google": "Google Maps",

@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
 import {
-  resendVerification, runOsmNow, runSourceNow, saveAdminSettings, sendPasswordReset, setSourceEnabled, setUserRole, setUserStatus,
+  resendVerification, runOsmNow, runSourceNow, saveAdminSettings, sendPasswordReset, setSourceEnabled, setUserRole, setUserStatus, testMail, testPush,
 } from "@/app/actions/admin";
 
 export function UserActions({ u }: { u: { id: string; status: string; role: string; emailVerified: boolean } }) {
@@ -72,5 +72,30 @@ export function ConnectorActions({ id, enabled }: { id: string; enabled?: boolea
         {queued ? t("queued") : t("runNow")}
       </button>
     </div>
+  );
+}
+
+/** Envoi d'une notification push et d'un email de test à l'administrateur connecté. */
+export function SendTests({ email }: { email: string }) {
+  const t = useTranslations("admin.tests");
+  const [pending, start] = useTransition();
+  const [push, setPush] = useState<Awaited<ReturnType<typeof testPush>> | null>(null);
+  const [mail, setMail] = useState<Awaited<ReturnType<typeof testMail>> | null>(null);
+  // Vert : envoyé ; rouge : échec ; orange : configuration à compléter.
+  const tone = (s: string) => `text-sm ${s === "sent" ? "text-tier-0" : s === "failed" ? "text-danger" : "text-tier-1"}`;
+  return (
+    <section className="card max-w-xl space-y-4 p-4">
+      <h2 className="font-semibold">{t("title")}</h2>
+      <div className="space-y-1.5">
+        <button type="button" className="btn-ghost" disabled={pending} onClick={() => start(async () => setPush(await testPush()))}>{t("push")}</button>
+        <p className="text-xs text-muted">{t("pushHelp")}</p>
+        {push && <p role="status" className={tone(push.status)}>{t(`push_${push.status}`, { count: push.sent })}</p>}
+      </div>
+      <div className="space-y-1.5">
+        <button type="button" className="btn-ghost" disabled={pending} onClick={() => start(async () => setMail(await testMail()))}>{t("mail")}</button>
+        <p className="text-xs text-muted">{t("mailHelp", { email })}</p>
+        {mail && <p role="status" className={tone(mail)}>{t(`mail_${mail}`, { email })}</p>}
+      </div>
+    </section>
   );
 }

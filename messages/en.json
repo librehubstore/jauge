@@ -96,6 +96,12 @@
       "body": "The price dropped below your threshold: {station} now shows {price} {currency}.",
       "cta": "View the station",
       "footer": "You receive this email because email alerts are enabled in your Jauge settings."
+    },
+    "test": {
+      "subject": "Test email — Jauge",
+      "body": "This email confirms that Jauge can send emails.",
+      "cta": "Open administration",
+      "footer": "Sent from the Jauge administration page."
     }
   },
   "search": {
@@ -280,7 +286,21 @@
     "running": "running",
     "success": "success",
     "error": "error",
-    "osm": "OpenStreetMap brands"
+    "osm": "OpenStreetMap brands",
+    "tests": {
+      "title": "Delivery tests",
+      "push": "Send a test push notification",
+      "pushHelp": "To your devices where push notifications are enabled (Settings).",
+      "push_sent": "Notification sent to {count, plural, one {# device} other {# devices}}.",
+      "push_no_device": "No subscribed device: enable push notifications in Settings on the device to test.",
+      "push_disabled": "Push not configured: VAPID keys missing on the server.",
+      "push_failed": "Sending failed: see the server logs.",
+      "mail": "Send a test email",
+      "mailHelp": "To {email}.",
+      "mail_sent": "Email sent to {email}. Check your spam folder too.",
+      "mail_console": "No Brevo key: the email was written to the server logs.",
+      "mail_failed": "Sending failed: see the server logs (Brevo key, verified sender)."
+    }
   },
   "about": {
     "title": "About",
@@ -334,7 +354,8 @@
     "account_approved": "Your account has been approved.",
     "contribution_approved": "Your contribution has been approved. Thanks!",
     "contribution_rejected": "Your contribution was rejected. {reason}",
-    "price_alert": "{station}: {price} {currency}, below your {threshold} threshold"
+    "price_alert": "{station}: {price} {currency}, below your {threshold} threshold",
+    "test": "Test notification: push notifications work."
   },
   "nav_apps": {
     "google": "Google Maps",

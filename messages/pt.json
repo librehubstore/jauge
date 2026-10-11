@@ -96,6 +96,12 @@
       "body": "O preço desceu abaixo do seu limite: {station} indica agora {price} {currency}.",
       "cta": "Ver o posto",
       "footer": "Recebe este email porque os alertas por email estão ativos nas definições do Jauge."
+    },
+    "test": {
+      "subject": "Email de teste — Jauge",
+      "body": "Este email confirma que o Jauge consegue enviar emails.",
+      "cta": "Abrir a administração",
+      "footer": "Enviado a partir da página de administração do Jauge."
     }
   },
   "search": {
@@ -280,7 +286,21 @@
     "running": "em curso",
     "success": "sucesso",
     "error": "erro",
-    "osm": "Marcas do OpenStreetMap"
+    "osm": "Marcas do OpenStreetMap",
+    "tests": {
+      "title": "Testes de envio",
+      "push": "Enviar uma notificação push de teste",
+      "pushHelp": "Para os seus dispositivos com notificações push ativadas (Definições).",
+      "push_sent": "Notificação enviada para {count, plural, one {# dispositivo} other {# dispositivos}}.",
+      "push_no_device": "Nenhum dispositivo subscrito: ative as notificações push em Definições, no dispositivo a testar.",
+      "push_disabled": "Push não configurado: faltam as chaves VAPID no servidor.",
+      "push_failed": "Falha no envio: consulte os registos do servidor.",
+      "mail": "Enviar um email de teste",
+      "mailHelp": "Para {email}.",
+      "mail_sent": "Email enviado para {email}. Verifique também o spam.",
+      "mail_console": "Sem chave Brevo: o email foi escrito nos registos do servidor.",
+      "mail_failed": "Falha no envio: consulte os registos do servidor (chave Brevo, remetente verificado)."
+    }
   },
   "about": {
     "title": "Acerca",
@@ -334,7 +354,8 @@
     "account_approved": "A sua conta foi aprovada.",
     "contribution_approved": "A sua contribuição foi aprovada. Obrigado!",
     "contribution_rejected": "A sua contribuição foi recusada. {reason}",
-    "price_alert": "{station}: {price} {currency}, abaixo do seu limite de {threshold}"
+    "price_alert": "{station}: {price} {currency}, abaixo do seu limite de {threshold}",
+    "test": "Notificação de teste: as notificações push funcionam."
   },
   "nav_apps": {
     "google": "Google Maps",

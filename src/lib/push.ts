@@ -14,23 +14,26 @@ function configure() {
   configured = true;
 }
 
-/** Envoie une notification push (texte traduit dans la langue de l'utilisateur) à tous ses appareils. */
+/** Envoie une notification push (texte traduit dans la langue de l'utilisateur) à tous ses appareils ; renvoie le nombre d'envois réussis. */
 export async function sendPush(userId: string, type: string, payload: Record<string, unknown>, url: string) {
-  if (!pushEnabled()) return;
+  if (!pushEnabled()) return 0;
   const subs = await db.select().from(pushSubscription).where(eq(pushSubscription.userId, userId));
-  if (!subs.length) return;
+  if (!subs.length) return 0;
   configure();
   const [u] = await db.select({ locale: user.locale }).from(user).where(eq(user.id, userId));
   const locale = (LOCALES as readonly string[]).includes(u?.locale ?? "") ? (u!.locale as Locale) : "fr";
   const messages = (await import(`../../messages/${locale}.json`)).default;
   const t = createTranslator({ locale, messages, namespace: "notif" });
   const body = JSON.stringify({ title: "Jauge", body: t(type as never, payload as never), url });
+  let sent = 0;
   for (const s of subs) {
     await webpush.sendNotification({ endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } }, body, { TTL: 3600 })
+      .then(() => { sent++; })
       .catch(async (e: { statusCode?: number }) => {
         // Abonnement expiré ou révoqué : on le supprime.
         if (e.statusCode === 404 || e.statusCode === 410) await db.delete(pushSubscription).where(eq(pushSubscription.endpoint, s.endpoint));
         else console.error("[push]", e);
       });
   }
+  return sent;
 }

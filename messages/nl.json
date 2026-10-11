@@ -96,6 +96,12 @@
       "body": "De prijs is onder je drempel gezakt: {station} vraagt nu {price} {currency}.",
       "cta": "Station bekijken",
       "footer": "Je ontvangt deze e-mail omdat prijsalarmen per e-mail aanstaan in je Jauge-instellingen."
+    },
+    "test": {
+      "subject": "Testmail — Jauge",
+      "body": "Deze e-mail bevestigt dat Jauge e-mails kan versturen.",
+      "cta": "Beheer openen",
+      "footer": "Verstuurd vanaf de beheerpagina van Jauge."
     }
   },
   "search": {
@@ -280,7 +286,21 @@
     "running": "bezig",
     "success": "geslaagd",
     "error": "fout",
-    "osm": "OpenStreetMap-merken"
+    "osm": "OpenStreetMap-merken",
+    "tests": {
+      "title": "Verzendtests",
+      "push": "Testpushmelding versturen",
+      "pushHelp": "Naar je apparaten met pushmeldingen ingeschakeld (Instellingen).",
+      "push_sent": "Melding verstuurd naar {count, plural, one {# apparaat} other {# apparaten}}.",
+      "push_no_device": "Geen geabonneerd apparaat: schakel pushmeldingen in bij Instellingen, op het apparaat dat je wilt testen.",
+      "push_disabled": "Push niet geconfigureerd: VAPID-sleutels ontbreken op de server.",
+      "push_failed": "Verzenden mislukt: zie de serverlogs.",
+      "mail": "Testmail versturen",
+      "mailHelp": "Naar {email}.",
+      "mail_sent": "E-mail verstuurd naar {email}. Kijk ook in je spammap.",
+      "mail_console": "Geen Brevo-sleutel: de e-mail is in de serverlogs geschreven.",
+      "mail_failed": "Verzenden mislukt: zie de serverlogs (Brevo-sleutel, geverifieerde afzender)."
+    }
   },
   "about": {
     "title": "Over",
@@ -334,7 +354,8 @@
     "account_approved": "Je account is goedgekeurd.",
     "contribution_approved": "Je bijdrage is goedgekeurd. Bedankt!",
     "contribution_rejected": "Je bijdrage is afgewezen. {reason}",
-    "price_alert": "{station}: {price} {currency}, onder je drempel van {threshold}"
+    "price_alert": "{station}: {price} {currency}, onder je drempel van {threshold}",
+    "test": "Testmelding: pushmeldingen werken."
   },
   "nav_apps": {
     "google": "Google Maps",

@@ -96,6 +96,12 @@
       "body": "El precio ha bajado de tu umbral: {station} marca ahora {price} {currency}.",
       "cta": "Ver la estación",
       "footer": "Recibes este correo porque las alertas por correo están activadas en tus ajustes de Jauge."
+    },
+    "test": {
+      "subject": "Correo de prueba — Jauge",
+      "body": "Este correo confirma que Jauge puede enviar correos.",
+      "cta": "Abrir la administración",
+      "footer": "Enviado desde la página de administración de Jauge."
     }
   },
   "search": {
@@ -280,7 +286,21 @@
     "running": "en curso",
     "success": "éxito",
     "error": "error",
-    "osm": "Marcas de OpenStreetMap"
+    "osm": "Marcas de OpenStreetMap",
+    "tests": {
+      "title": "Pruebas de envío",
+      "push": "Enviar una notificación push de prueba",
+      "pushHelp": "A tus dispositivos con las notificaciones push activadas (Ajustes).",
+      "push_sent": "Notificación enviada a {count, plural, one {# dispositivo} other {# dispositivos}}.",
+      "push_no_device": "Ningún dispositivo suscrito: activa las notificaciones push en Ajustes, en el dispositivo que quieras probar.",
+      "push_disabled": "Push no configurado: faltan las claves VAPID en el servidor.",
+      "push_failed": "Error de envío: consulta los registros del servidor.",
+      "mail": "Enviar un correo de prueba",
+      "mailHelp": "A {email}.",
+      "mail_sent": "Correo enviado a {email}. Revisa también el correo no deseado.",
+      "mail_console": "Sin clave de Brevo: el correo se ha escrito en los registros del servidor.",
+      "mail_failed": "Error de envío: consulta los registros del servidor (clave de Brevo, remitente verificado)."
+    }
   },
   "about": {
     "title": "Acerca de",
@@ -334,7 +354,8 @@
     "account_approved": "Tu cuenta ha sido validada.",
     "contribution_approved": "Tu contribución ha sido validada. ¡Gracias!",
     "contribution_rejected": "Tu contribución ha sido rechazada. {reason}",
-    "price_alert": "{station}: {price} {currency}, por debajo de tu umbral de {threshold}"
+    "price_alert": "{station}: {price} {currency}, por debajo de tu umbral de {threshold}",
+    "test": "Notificación de prueba: las notificaciones push funcionan."
   },
   "nav_apps": {
     "google": "Google Maps",

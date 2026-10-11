@@ -1,7 +1,7 @@
 import { createTranslator } from "next-intl";
 import { LOCALES, type Locale } from "@/i18n/config";
 
-type MailKind = "verify" | "reset" | "alert";
+type MailKind = "verify" | "reset" | "alert" | "test";
 
 async function translator(locale: string) {
   const l = (LOCALES as readonly string[]).includes(locale) ? (locale as Locale) : "fr";

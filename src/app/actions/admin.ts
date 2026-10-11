@@ -1,6 +1,6 @@
 "use server";
 
-import { eq } from "drizzle-orm";
+import { count, eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { after } from "next/server";
@@ -8,11 +8,13 @@ import { z } from "zod";
 import { connectorById } from "@/connectors";
 import { enrichFrBrandsFromOsm } from "@/connectors/osm-brands";
 import { db } from "@/db";
-import { auditLog, session, source, user } from "@/db/schema";
+import { auditLog, pushSubscription, session, source, user } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { moderate } from "@/lib/contributions";
 import { runConnector } from "@/lib/ingest";
+import { sendMail } from "@/lib/mail";
 import { notify } from "@/lib/notify";
+import { pushEnabled, sendPush } from "@/lib/push";
 import { requireRole } from "@/lib/session";
 import { setSetting } from "@/lib/settings";
 
@@ -93,4 +95,25 @@ export async function moderateContribution(id: number, decision: "approve" | "re
   const status = await moderate(id, mod.id, decision, reason?.trim().slice(0, 300));
   if (status) await audit(mod.id, `contribution.${decision}`, "contribution", String(id), { reason });
   revalidatePath("/moderation");
+}
+
+/** Notification push de test vers les appareils abonnés de l'administrateur. */
+export async function testPush(): Promise<{ status: "disabled" | "no_device" | "sent" | "failed"; sent: number }> {
+  const admin = await requireRole("admin");
+  if (!pushEnabled()) return { status: "disabled", sent: 0 };
+  const [{ n }] = await db.select({ n: count() }).from(pushSubscription).where(eq(pushSubscription.userId, admin.id));
+  if (!n) return { status: "no_device", sent: 0 };
+  const sent = await sendPush(admin.id, "test", {}, "/admin?tab=settings");
+  await audit(admin.id, "test.push", "user", admin.id, { devices: n, sent });
+  return { status: sent ? "sent" : "failed", sent };
+}
+
+/** Email de test à l'adresse de l'administrateur ; sans clé Brevo, il est écrit dans les logs. */
+export async function testMail(): Promise<"sent" | "console" | "failed"> {
+  const admin = await requireRole("admin");
+  const base = process.env.BETTER_AUTH_URL ?? "http://localhost:3000";
+  const ok = await sendMail("test", { email: admin.email, name: admin.name, locale: admin.locale }, `${base}/admin?tab=settings`)
+    .then(() => true, () => false);
+  await audit(admin.id, "test.mail", "user", admin.id, { to: admin.email, ok });
+  return !ok ? "failed" : process.env.BREVO_API_KEY ? "sent" : "console";
 }

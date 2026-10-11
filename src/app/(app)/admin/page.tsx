@@ -3,7 +3,7 @@ import { getFormatter, getNow, getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { db } from "@/db";
 import { auditLog, ingestionRun, source, user } from "@/db/schema";
-import { AdminSettingsForm, ConnectorActions, UserActions } from "@/components/AdminActions";
+import { AdminSettingsForm, ConnectorActions, SendTests, UserActions } from "@/components/AdminActions";
 import { requireRole } from "@/lib/session";
 import { getSetting } from "@/lib/settings";
 
@@ -73,7 +73,10 @@ export default async function AdminPage({ searchParams }: PageProps<"/admin">) {
         })()}
 
         {tab === "settings" && (
-          <AdminSettingsForm domains={(await getSetting("allowed_email_domains")).join("\n")} requireApproval={await getSetting("require_admin_approval")} />
+          <div className="space-y-4">
+            <AdminSettingsForm domains={(await getSetting("allowed_email_domains")).join("\n")} requireApproval={await getSetting("require_admin_approval")} />
+            <SendTests email={me.email} />
+          </div>
         )}
 
         {tab === "connectors" && await (async () => {

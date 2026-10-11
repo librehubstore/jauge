@@ -96,6 +96,12 @@
       "body": "Il prezzo è sceso sotto la tua soglia: {station} ora indica {price} {currency}.",
       "cta": "Vedi il distributore",
       "footer": "Ricevi questa email perché gli avvisi via email sono attivi nelle impostazioni di Jauge."
+    },
+    "test": {
+      "subject": "Email di prova — Jauge",
+      "body": "Questa email conferma che Jauge può inviare email.",
+      "cta": "Apri l'amministrazione",
+      "footer": "Inviata dalla pagina di amministrazione di Jauge."
     }
   },
   "search": {
@@ -280,7 +286,21 @@
     "running": "in corso",
     "success": "successo",
     "error": "errore",
-    "osm": "Marchi OpenStreetMap"
+    "osm": "Marchi OpenStreetMap",
+    "tests": {
+      "title": "Test di invio",
+      "push": "Invia una notifica push di prova",
+      "pushHelp": "Ai tuoi dispositivi con le notifiche push attive (Impostazioni).",
+      "push_sent": "Notifica inviata a {count, plural, one {# dispositivo} other {# dispositivi}}.",
+      "push_no_device": "Nessun dispositivo iscritto: attiva le notifiche push in Impostazioni, sul dispositivo da provare.",
+      "push_disabled": "Push non configurato: chiavi VAPID mancanti sul server.",
+      "push_failed": "Invio non riuscito: vedi i log del server.",
+      "mail": "Invia un'email di prova",
+      "mailHelp": "A {email}.",
+      "mail_sent": "Email inviata a {email}. Controlla anche lo spam.",
+      "mail_console": "Nessuna chiave Brevo: l'email è stata scritta nei log del server.",
+      "mail_failed": "Invio non riuscito: vedi i log del server (chiave Brevo, mittente verificato)."
+    }
   },
   "about": {
     "title": "Informazioni",
@@ -334,7 +354,8 @@
     "account_approved": "Il tuo account è stato approvato.",
     "contribution_approved": "Il tuo contributo è stato approvato. Grazie!",
     "contribution_rejected": "Il tuo contributo è stato rifiutato. {reason}",
-    "price_alert": "{station}: {price} {currency}, sotto la tua soglia di {threshold}"
+    "price_alert": "{station}: {price} {currency}, sotto la tua soglia di {threshold}",
+    "test": "Notifica di prova: le notifiche push funzionano."
   },
   "nav_apps": {
     "google": "Google Maps",
