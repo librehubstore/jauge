@@ -5,12 +5,14 @@ import { db } from "@/db";
 import { pushSubscription, user } from "@/db/schema";
 import { LOCALES, type Locale } from "@/i18n/config";
 
-export const pushEnabled = () => !!(process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY);
+// Clés lues à l'exécution : un NEXT_PUBLIC_* serait figé au build, et l'image Docker est construite sans .env.
+export const vapidPublicKey = () => process.env.VAPID_PUBLIC_KEY || null;
+export const pushEnabled = () => !!(vapidPublicKey() && process.env.VAPID_PRIVATE_KEY);
 
 let configured = false;
 function configure() {
   if (configured) return;
-  webpush.setVapidDetails(process.env.VAPID_SUBJECT ?? "mailto:admin@example.com", process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!, process.env.VAPID_PRIVATE_KEY!);
+  webpush.setVapidDetails(process.env.VAPID_SUBJECT ?? "mailto:admin@example.com", vapidPublicKey()!, process.env.VAPID_PRIVATE_KEY!);
   configured = true;
 }
 

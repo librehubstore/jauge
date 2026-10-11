@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LocaleSwitch } from "@/components/LocaleSwitch";
 import { PreferencesForm } from "@/components/PreferencesForm";
 import { PushToggle } from "@/components/Pwa";
+import { pushEnabled, vapidPublicKey } from "@/lib/push";
 import { requireUser } from "@/lib/session";
 
 export default async function SettingsPage() {
@@ -21,7 +22,7 @@ export default async function SettingsPage() {
         <PreferencesForm prefs={u.preferences} />
         <div className="card space-y-2 px-4 py-3">
           <h2 className="text-sm font-medium">{tp("title")}</h2>
-          <PushToggle />
+          <PushToggle vapidKey={pushEnabled() ? vapidPublicKey() : null} />
         </div>
         <p className="text-sm"><Link className="text-accent hover:underline" href="/about">{tn("about")}</Link></p>
       </div>

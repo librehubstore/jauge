@@ -48,10 +48,9 @@ const b64ToBytes = (b64: string) => {
   return Uint8Array.from(s, (c) => c.charCodeAt(0));
 };
 
-/** Activation des notifications push sur cet appareil. */
-export function PushToggle() {
+/** Activation des notifications push sur cet appareil ; vapidKey est fournie par le serveur (null si le push n'est pas configuré). */
+export function PushToggle({ vapidKey: key }: { vapidKey: string | null }) {
   const t = useTranslations("pwa");
-  const key = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
   const [state, setState] = useState<"unsupported" | "off" | "on" | "denied" | "loading">("loading");
 
   useEffect(() => {

@@ -36,7 +36,7 @@ L'image (~200 Mo) contient le serveur Next autonome (`output: "standalone"`) et 
 | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | Connexion Google (bouton masqué si absent) |
 | `BREVO_API_KEY`, `MAIL_FROM` | Emails transactionnels (compte Brevo librehub) |
 | `PHOTON_URL`, `NEXT_PUBLIC_MAP_STYLE`, `VALHALLA_URL` | Géocodage, fond de carte et routage auto-hébergés (facultatif) |
-| `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` | Notifications push (`npx web-push generate-vapid-keys`) |
+| `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` | Notifications push (`npx web-push generate-vapid-keys`), lues à l'exécution |
 | `TANKERKOENIG_API_KEY`, `DE_ZONES` | Allemagne : clé Tankerkönig et zones couvertes |
 | `HISTORY_DAYS` | Fenêtre d'import de l'historique FR (365 par défaut, `npm run import-history`) |
 
