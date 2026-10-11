@@ -1,8 +1,8 @@
 # Jauge — Prompt de régénération
 
 Ce document décrit entièrement une application existante, nommée **Jauge**, pour qu'un assistant de code puisse en reconstruire un équivalent fonctionnel sans accès au code d'origine. Il décrit des comportements, pas une implémentation : la pile technique est libre, sauf mention contraire dans la section 6.
-
 ---
+
 
 ## 1. Intention
 
