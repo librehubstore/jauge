@@ -48,6 +48,43 @@ const b64ToBytes = (b64: string) => {
   return Uint8Array.from(s, (c) => c.charCodeAt(0));
 };
 
+// Choix mémorisé par appareil : désactivé à la main = plus d'abonnement automatique ; permission demandée une seule fois.
+const PUSH_OFF = "jauge.push.off", PUSH_ASKED = "jauge.push.asked";
+const local = {
+  get: (k: string) => { try { return localStorage.getItem(k); } catch { return null; } },
+  set: (k: string, v: string | null) => { try { if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch { /* stockage indisponible */ } },
+};
+const pushSupported = (key: string | null): key is string =>
+  SW_ENABLED && !!key && "serviceWorker" in navigator && "PushManager" in window;
+
+/** Abonne cet appareil (ou réutilise son abonnement) et l'enregistre pour l'utilisateur connecté. */
+async function subscribePush(key: string) {
+  const reg = (await navigator.serviceWorker.getRegistration()) ?? (await navigator.serviceWorker.register("/sw.js"));
+  await navigator.serviceWorker.ready;
+  const sub = (await reg.pushManager.getSubscription()) ?? (await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64ToBytes(key) }));
+  const j = sub.toJSON() as { endpoint: string; keys: { p256dh: string; auth: string } };
+  await savePushSubscription({ endpoint: j.endpoint, keys: j.keys });
+}
+
+/**
+ * Push activé par défaut : abonne l'appareil si la permission est déjà accordée, sinon la demande
+ * au premier geste de l'utilisateur (une fois par appareil ; le navigateur exige un geste).
+ */
+export function AutoPush({ vapidKey }: { vapidKey: string | null }) {
+  useEffect(() => {
+    if (!pushSupported(vapidKey) || local.get(PUSH_OFF)) return;
+    if (Notification.permission === "granted") { subscribePush(vapidKey).catch(() => {}); return; }
+    if (Notification.permission !== "default" || local.get(PUSH_ASKED)) return;
+    const ask = () => {
+      local.set(PUSH_ASKED, "1");
+      Notification.requestPermission().then((p) => (p === "granted" ? subscribePush(vapidKey) : undefined)).catch(() => {});
+    };
+    window.addEventListener("pointerdown", ask, { once: true });
+    return () => window.removeEventListener("pointerdown", ask);
+  }, [vapidKey]);
+  return null;
+}
+
 /** Activation des notifications push sur cet appareil ; vapidKey est fournie par le serveur (null si le push n'est pas configuré). */
 export function PushToggle({ vapidKey: key }: { vapidKey: string | null }) {
   const t = useTranslations("pwa");
@@ -55,7 +92,7 @@ export function PushToggle({ vapidKey: key }: { vapidKey: string | null }) {
 
   useEffect(() => {
     (async () => {
-      if (!SW_ENABLED || !key || !("serviceWorker" in navigator) || !("PushManager" in window)) return setState("unsupported");
+      if (!pushSupported(key)) return setState("unsupported");
       if (Notification.permission === "denied") return setState("denied");
       const reg = await navigator.serviceWorker.getRegistration();
       setState((await reg?.pushManager.getSubscription()) ? "on" : "off");
@@ -66,11 +103,8 @@ export function PushToggle({ vapidKey: key }: { vapidKey: string | null }) {
     setState("loading");
     try {
       if ((await Notification.requestPermission()) !== "granted") return setState("denied");
-      const reg = (await navigator.serviceWorker.getRegistration()) ?? (await navigator.serviceWorker.register("/sw.js"));
-      await navigator.serviceWorker.ready;
-      const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64ToBytes(key!) });
-      const j = sub.toJSON() as { endpoint: string; keys: { p256dh: string; auth: string } };
-      await savePushSubscription({ endpoint: j.endpoint, keys: j.keys });
+      await subscribePush(key!);
+      local.set(PUSH_OFF, null);
       setState("on");
     } catch {
       setState("off");
@@ -81,6 +115,7 @@ export function PushToggle({ vapidKey: key }: { vapidKey: string | null }) {
     setState("loading");
     const sub = await (await navigator.serviceWorker.getRegistration())?.pushManager.getSubscription();
     if (sub) { await deletePushSubscription(sub.endpoint); await sub.unsubscribe(); }
+    local.set(PUSH_OFF, "1");
     setState("off");
   }
 

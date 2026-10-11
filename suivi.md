@@ -123,3 +123,4 @@ Ordre retenu : d'abord ce qui s'appuie sur les données déjà là (contribution
 - 2026-10-10 — Âge max des prix : 14 j par défaut ; option « afficher aussi les stations au prix trop ancien » (en gris, « Données datant de x jours », hors classement et coûts).
 - 2026-10-11 — Admin > Paramètres : boutons « notification push de test » et « email de test » (vers l'administrateur connecté, résultat affiché, action auditée).
 - 2026-10-11 — Push en prod : clé VAPID publique lue à l'exécution (VAPID_PUBLIC_KEY) au lieu de NEXT_PUBLIC_*, figée vide au build Docker.
+- 2026-10-11 — Push activé par défaut : abonnement automatique si la permission est accordée, sinon demande au premier geste (une fois par appareil) ; « Désactiver » dans Réglages l'arrête sur l'appareil.

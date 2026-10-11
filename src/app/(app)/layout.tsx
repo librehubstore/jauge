@@ -7,8 +7,9 @@ import { FxProvider } from "@/components/FxContext";
 import { Logo } from "@/components/Logo";
 import { MobileNav, type NavItem } from "@/components/MobileNav";
 import { NavLinks } from "@/components/NavLinks";
-import { OfflineBanner } from "@/components/Pwa";
+import { AutoPush, OfflineBanner } from "@/components/Pwa";
 import { SignOutButton } from "@/components/SignOutButton";
+import { pushEnabled, vapidPublicKey } from "@/lib/push";
 import { requireUser } from "@/lib/session";
 import { getSetting } from "@/lib/settings";
 
@@ -56,6 +57,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
         </div>
       </header>
       <OfflineBanner />
+      <AutoPush vapidKey={pushEnabled() ? vapidPublicKey() : null} />
       <main className="min-h-0 flex-1 pt-[env(safe-area-inset-top)] md:pt-0">
         <FxProvider target={u.preferences.displayCurrency || null} rates={(await getSetting("ecb_rates"))?.rates ?? {}}>{children}</FxProvider>
       </main>
